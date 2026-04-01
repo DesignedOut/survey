@@ -896,78 +896,99 @@ function hideTooltip() {
   tooltipEl.classList.remove('visible');
 }
 
-// ── Wheel zoom: pinch on mobile only, no accidental desktop scroll zoom ──
+// ── Wheel zoom: pinch within SVG area, pinch out to zoom back ──
 (function() {
   const container = document.getElementById('wheel-container');
   const svg = document.getElementById('wheel-svg');
   if (!container || !svg) return;
 
   let scale = 1, panX = 0, panY = 0;
-  const MIN = 0.8, MAX = 4;
+  const MIN = 1, MAX = 4;  // MIN=1 so it never goes smaller than original
 
   function apply() {
     svg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
   }
 
-  function dist(t) {
+  function getDist(t) {
     return Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
   }
-  function mid(t) {
-    return [(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2];
+  function getMid(t) {
+    return [(t[0].clientX+t[1].clientX)/2, (t[0].clientY+t[1].clientY)/2];
   }
 
-  let lastDist=null, lastMid=null, panning=false, startPan=[0,0], startXY=[0,0];
+  let lastDist = null, lastMid = null;
+  let panning = false, startPan = [0,0], startXY = [0,0];
+  let pinching = false;
 
-  container.addEventListener('touchstart', e=>{
-    if(e.touches.length===2){
+  container.addEventListener('touchstart', e => {
+    if (e.touches.length === 2) {
       e.preventDefault();
-      lastDist=dist(e.touches);
-      lastMid=mid(e.touches);
-      panning=false;
-    } else if(e.touches.length===1 && scale>1.05){
-      panning=true;
-      startXY=[e.touches[0].clientX,e.touches[0].clientY];
-      startPan=[panX,panY];
-    }
-  },{passive:false});
-
-  container.addEventListener('touchmove', e=>{
-    if(e.touches.length===2){
-      e.preventDefault();
-      const d=dist(e.touches), m=mid(e.touches);
-      if(lastDist){
-        const ratio=d/lastDist;
-        scale=Math.min(MAX,Math.max(MIN,scale*ratio));
-        panX+=m[0]-lastMid[0];
-        panY+=m[1]-lastMid[1];
+      pinching = true;
+      panning = false;
+      lastDist = getDist(e.touches);
+      lastMid  = getMid(e.touches);
+    } else if (e.touches.length === 1) {
+      if (scale > 1.05) {
+        panning = true;
+        startXY  = [e.touches[0].clientX, e.touches[0].clientY];
+        startPan = [panX, panY];
       }
-      lastDist=d; lastMid=m;
-      apply();
-    } else if(e.touches.length===1 && panning){
+    }
+  }, { passive: false });
+
+  container.addEventListener('touchmove', e => {
+    if (e.touches.length === 2 && pinching) {
       e.preventDefault();
-      panX=startPan[0]+(e.touches[0].clientX-startXY[0]);
-      panY=startPan[1]+(e.touches[0].clientY-startXY[1]);
+      const d = getDist(e.touches);
+      const m = getMid(e.touches);
+      if (lastDist) {
+        const ratio = d / lastDist;
+        const newScale = Math.min(MAX, Math.max(MIN, scale * ratio));
+        // Zoom toward the pinch midpoint
+        const rect = container.getBoundingClientRect();
+        const cx = m[0] - rect.left - rect.width/2;
+        const cy = m[1] - rect.top  - rect.height/2;
+        panX = cx - (cx - panX) * (newScale / scale) + (m[0] - lastMid[0]);
+        panY = cy - (cy - panY) * (newScale / scale) + (m[1] - lastMid[1]);
+        scale = newScale;
+      }
+      lastDist = d;
+      lastMid  = m;
+      apply();
+    } else if (e.touches.length === 1 && panning) {
+      e.preventDefault();
+      panX = startPan[0] + (e.touches[0].clientX - startXY[0]);
+      panY = startPan[1] + (e.touches[0].clientY - startXY[1]);
       apply();
     }
-  },{passive:false});
+  }, { passive: false });
 
-  container.addEventListener('touchend', e=>{
-    if(e.touches.length<2) lastDist=null;
-    if(e.touches.length===0){
-      panning=false;
-      if(scale<=1.05){ scale=1; panX=0; panY=0; apply(); }
+  container.addEventListener('touchend', e => {
+    if (e.touches.length < 2) {
+      pinching = false;
+      lastDist = null;
+      lastMid  = null;
+    }
+    if (e.touches.length === 0) {
+      panning = false;
+      // Snap back to original only if pinched all the way back to scale~1
+      if (scale <= 1.05) {
+        scale = 1; panX = 0; panY = 0;
+        apply();
+      }
     }
   });
 
   // Double-tap to reset
-  let lastTap=0;
-  container.addEventListener('touchend', e=>{
-    const now=Date.now();
-    if(now-lastTap<300){ scale=1; panX=0; panY=0; apply(); }
-    lastTap=now;
+  let lastTap = 0;
+  container.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTap < 300 && e.changedTouches.length === 1) {
+      scale = 1; panX = 0; panY = 0;
+      apply();
+    }
+    lastTap = now;
   });
-
-  // NO mouse wheel zoom — too easy to trigger accidentally on desktop
 })();
 
 // ── Mobile: suppress hover tooltips on touch, show briefly on tap instead ──
