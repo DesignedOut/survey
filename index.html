@@ -199,7 +199,7 @@
 <section class="section" id="s3">
   <div class="section-number">03 — Your positionality</div>
   <h2 class="section-title">Where you stand</h2>
-  <p class="section-desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the innermost ring represents facing more obstacles and marginalization, the outermost fewer. Select as many or as few categories as you feel comfortable with. This section is completely optional, anonymous, and no personal data is stored.</p>
+  <p class="section-desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the innermost ring represents facing more obstacles and marginalization, the outermost fewer obstacles and more privilege. Select as many or as few categories as you feel comfortable with. This section is completely optional, anonymous, and no personal data is stored.</p>
 
   <div class="wheel-wrap">
     <div class="wheel-legend">
@@ -712,25 +712,73 @@ function resetWheel() {
   renderPills();
 }
 
-function submitSurvey() {
+async function submitSurvey() {
+  const btn = document.querySelector('#s3 .btn-next');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+
   const data = {
+    responseId:    responseId,
     productType:   document.getElementById('product-type').value,
     whyChosen:     document.getElementById('why-chosen').value,
-    feelings:      [...document.querySelectorAll('#feel-grid input:checked')].map(el=>el.value),
+    feelings:      [...document.querySelectorAll('#feel-grid input:checked')].map(el=>el.value).join(', '),
     feelOther:     document.getElementById('feel-other').value,
-    positionality: Object.entries(wheelState).filter(([,v])=>v!==null).map(([i,r])=>({
-      dimension: wheelDimensions[i].name,
-      position:  wheelDimensions[i].rings[r],
-      obstacles: obstacleLabels[r]
-    })),
     finalThoughts: document.getElementById('final-thoughts').value,
+    imageUrl:      '',
   };
-  console.log('Survey data:', JSON.stringify(data, null, 2));
-  ['s1','s2','s3'].forEach(id => { document.getElementById(id).style.display='none'; });
-  document.getElementById('progress').style.width = '100%';
-  document.getElementById('progress-label').textContent = 'Complete';
-  document.getElementById('thankyou').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  wheelDimensions.forEach((dim, i) => {
+    const r = wheelState[i];
+    data[dim.name] = r !== null ? wheelDimensions[i].rings[r] : '';
+  });
+
+  const imgInput = document.getElementById('img-input');
+  const file = imgInput.files && imgInput.files[0];
+
+  function submitToSheets(imageUrl) {
+    data.imageUrl = imageUrl || '';
+    fetch('https://script.google.com/macros/s/AKfycbwpBmrTzvpvhdRiayyjr4avt1iDwtpFmuqhCWredz5T5pHx6mU4A6Ove5bPtY4cDxrilA/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      ['s1','s2','s3'].forEach(id => { document.getElementById(id).style.display='none'; });
+      document.getElementById('progress').style.width = '100%';
+      document.getElementById('progress-label').textContent = 'Complete';
+      document.getElementById('thankyou').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+      btn.textContent = 'Submit →';
+      btn.disabled = false;
+      alert('Could not connect. Please check your internet connection and try again.');
+    });
+  }
+
+  if (file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'designed_out');
+    formData.append('public_id', responseId);
+    formData.append('tags', responseId);
+
+    fetch('https://api.cloudinary.com/v1_1/dmfc7eknr/image/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(result => {
+      submitToSheets(result.secure_url || '');
+    })
+    .catch(() => {
+      submitToSheets('');
+    });
+  } else {
+    submitToSheets('');
+  }
 }
 
 document.getElementById('img-input').addEventListener('change', function() {
