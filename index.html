@@ -138,6 +138,11 @@
     cursor: not-allowed;
   }
 
+  .section--landing {
+    border-bottom: none;
+    padding-top: 0.5rem;
+  }
+
   @media (max-width: 500px) {
     .survey-header, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
     .feel-grid { grid-template-columns: 1fr; }
@@ -145,18 +150,7 @@
     #wheel-container { border-radius: 8px; }
   }
 
-  @media (hover: none) {
-    #wheel-container::after {
-      content: 'Pinch to zoom · Double-tap to reset';
-      display: block;
-      text-align: center;
-      font-size: 11px;
-      color: var(--ink-faint);
-      font-family: var(--sans);
-      margin-top: 4px;
-      font-style: italic;
-    }
-  }
+
 
   @keyframes glitch-main {
     0%,1.9%,4.1%,6%,59.9%,62.1%,64%,74.9%,76.1%,78%,100% { transform:translate(0) skewX(0); }
@@ -284,14 +278,24 @@
 <header class="survey-header">
   <h1>Designed Ou<span class="glitch-t" data-char="t">t</span></h1>
   <p class="h1-sub">Discrimination in product language</p>
-  <p>This survey collects examples of everyday products that communicate exclusion or discrimination through their formal aesthetic qualities — colour, material, shape, and form.</p>
-  <p class="survey-note">This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary. The survey is completely anonymous — a random ID is assigned to each response and cannot be traced back to you.</p>
-  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-  <p class="progress-label" id="progress-label">Section 1 of 3</p>
+
+  <div class="progress-bar" style="display:none;"><div class="progress-fill" id="progress"></div></div>
+  <p class="progress-label" id="progress-label" style="display:none;"></p>
 </header>
 
+<!-- LANDING -->
+<section class="section active" id="s0">
+  <h2 class="section-title">About this survey</h2>
+  <p class="section-desc">This survey collects examples of everyday physical products — objects — that communicate exclusion or discrimination through their formal aesthetic qualities: colour, material, shape, and form.</p>
+  <p class="section-desc">You will be asked to upload a photo or image of a product, share how it makes you feel, and optionally reflect on where you stand.</p>
+  <p class="survey-note">This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary. The survey is completely anonymous — a random ID is assigned to each response and cannot be traced back to you.</p>
+  <div class="btn-row" style="margin-top:2rem;">
+    <button class="btn-next" onclick="goTo(1)" style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;">Start survey →</button>
+  </div>
+</section>
+
 <!-- SECTION 1 -->
-<section class="section active" id="s1">
+<section class="section" id="s1">
   <div class="section-number">01 — The product</div>
   <h2 class="section-title">Show us the product</h2>
   <p class="section-desc">Upload a photo of a physical product — an everyday object — that made you feel discriminated against, excluded, or simply not considered as a user.</p>
@@ -373,6 +377,7 @@
     <div id="wheel-container" style="width:100%;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none;"><svg id="wheel-svg" width="100%" viewBox="0 0 960 960" style="max-width:820px;display:block;margin:0 auto;transform-origin:50% 50%;user-select:none;-webkit-user-select:none;"></svg></div>
 
     <p class="wheel-hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.</p>
+    <p class="wheel-hint" style="margin-top:-0.5rem;">Use + and − to zoom in and drag to navigate.</p>
 
     <div class="pill-list" id="pill-list">
       <span class="wheel-hint">No dimensions marked yet</span>
@@ -425,7 +430,7 @@ const ringTextColors = ["#3C3489","#ffffff","#ffffff"];
 const ringBorders    = ["#AFA9EC","#6B67C8","#3C3489"];
 const obstacleLabels = ["fewer obstacles","some obstacles","more obstacles"];
 
-let currentSection = 1;
+let currentSection = 0;
 const wheelState = {};
 wheelDimensions.forEach((_,i) => wheelState[i] = null);
 
@@ -448,9 +453,19 @@ function goTo(n) {
 }
 
 function updateProgress() {
-  const pct = ((currentSection - 1) / 3) * 100;
-  document.getElementById('progress').style.width = pct + '%';
-  document.getElementById('progress-label').textContent = `Section ${currentSection} of 3`;
+  const bar = document.getElementById('progress');
+  const label = document.getElementById('progress-label');
+  const progressBar = document.querySelector('.progress-bar');
+  if (currentSection === 0) {
+    progressBar.style.display = 'none';
+    label.style.display = 'none';
+    return;
+  }
+  progressBar.style.display = 'block';
+  label.style.display = 'block';
+  const pct = (currentSection / 3) * 100;
+  bar.style.width = pct + '%';
+  label.textContent = `Section ${currentSection} of 3`;
 }
 
 function showTooltip(name, x, y) {
@@ -934,7 +949,7 @@ async function submitSurvey() {
       body: JSON.stringify(data)
     })
     .then(() => {
-      ['s1','s2','s3'].forEach(id => { document.getElementById(id).style.display='none'; });
+      ['s0','s1','s2','s3'].forEach(id => { document.getElementById(id).style.display='none'; });
       document.getElementById('progress').style.width = '100%';
       document.getElementById('progress-label').textContent = 'Complete';
       document.getElementById('thankyou').style.display = 'block';
