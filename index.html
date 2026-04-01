@@ -98,7 +98,7 @@
       font-size: 11px;
       color: var(--ink-faint);
       font-family: var(--sans);
-      margin-top: 6px;
+      margin-top: 4px;
       font-style: italic;
     }
   }
@@ -381,8 +381,8 @@ function buildWheel() {
     band.setAttribute('stroke-width','0.5');
     band.setAttribute('pointer-events','all');
     band.style.cursor = 'default';
-    band.addEventListener('mouseenter', (e) => showTooltip(dim.name, e.clientX, e.clientY));
-    band.addEventListener('mousemove',  (e) => moveTooltip(e.clientX, e.clientY));
+    band.addEventListener('mouseenter', (e) => { if(!window.matchMedia('(hover:none)').matches) showTooltip(dim.name, e.clientX, e.clientY); });
+    band.addEventListener('mousemove',  (e) => { if(!window.matchMedia('(hover:none)').matches) moveTooltip(e.clientX, e.clientY); });
     band.addEventListener('mouseleave', () => hideTooltip());
     svg.appendChild(band);
   });
@@ -459,8 +459,8 @@ function buildWheel() {
       path.style.cursor='pointer'; path.style.transition='opacity 0.12s';
 
       path.addEventListener('click',      ()=>handleRingClick(i,r));
-      path.addEventListener('mouseenter', (e)=>{ hoverRing(i,r,true); showTooltip(label, e.clientX, e.clientY); });
-      path.addEventListener('mousemove',  (e)=>moveTooltip(e.clientX, e.clientY));
+      path.addEventListener('mouseenter', (e)=>{ hoverRing(i,r,true); if(!window.matchMedia('(hover:none)').matches) showTooltip(label, e.clientX, e.clientY); });
+      path.addEventListener('mousemove',  (e)=>{ if(!window.matchMedia('(hover:none)').matches) moveTooltip(e.clientX, e.clientY); });
       path.addEventListener('mouseleave', ()=>{ hoverRing(i,r,false); hideTooltip(); });
       svg.appendChild(path);
 
@@ -723,11 +723,13 @@ async function submitSurvey() {
     responseId:    responseId,
     productType:   document.getElementById('product-type').value,
     whyChosen:     document.getElementById('why-chosen').value,
-    feelings:      [...document.querySelectorAll('#feel-grid input:checked')].map(el=>el.value).join(', '),
     feelOther:     document.getElementById('feel-other').value,
     finalThoughts: document.getElementById('final-thoughts').value,
     imageUrl:      '',
   };
+  // One column per feeling (1 = selected, 0 = not selected)
+  const checkedFeelings = new Set([...document.querySelectorAll('#feel-grid input:checked')].map(el=>el.value));
+  feelings.forEach(f => { data['feeling_' + f.replace(/ /g,'_')] = checkedFeelings.has(f) ? 1 : 0; });
   wheelDimensions.forEach((dim, i) => {
     const r = wheelState[i];
     data[dim.name] = r !== null ? wheelDimensions[i].rings[r] : '';
@@ -894,112 +896,110 @@ function hideTooltip() {
   tooltipEl.classList.remove('visible');
 }
 
-// ── Pinch-to-zoom + pan for wheel ──
+// ── Wheel zoom: pinch on mobile only, no accidental desktop scroll zoom ──
 (function() {
   const container = document.getElementById('wheel-container');
   const svg = document.getElementById('wheel-svg');
   if (!container || !svg) return;
 
-  let scale = 1, minScale = 0.5, maxScale = 4;
-  let panX = 0, panY = 0;
-  let lastDist = null, lastPanX = null, lastPanY = null;
-  let isPanning = false, startPanX = 0, startPanY = 0, startX = 0, startY = 0;
+  let scale = 1, panX = 0, panY = 0;
+  const MIN = 0.8, MAX = 4;
 
-  function applyTransform() {
-    svg.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+  function apply() {
+    svg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
   }
 
-  function getDist(t) {
-    const dx = t[0].clientX - t[1].clientX;
-    const dy = t[0].clientY - t[1].clientY;
-    return Math.sqrt(dx*dx + dy*dy);
+  function dist(t) {
+    return Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY);
+  }
+  function mid(t) {
+    return [(t[0].clientX+t[1].clientX)/2,(t[0].clientY+t[1].clientY)/2];
   }
 
-  function getMidpoint(t) {
-    return [(t[0].clientX + t[1].clientX)/2, (t[0].clientY + t[1].clientY)/2];
-  }
+  let lastDist=null, lastMid=null, panning=false, startPan=[0,0], startXY=[0,0];
 
-  container.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-      lastDist = getDist(e.touches);
-      const mid = getMidpoint(e.touches);
-      lastPanX = mid[0]; lastPanY = mid[1];
-      isPanning = false;
-    } else if (e.touches.length === 1 && scale > 1) {
-      isPanning = true;
-      startX = e.touches[0].clientX; startY = e.touches[0].clientY;
-      startPanX = panX; startPanY = panY;
-    }
-  }, { passive: true });
-
-  container.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2) {
+  container.addEventListener('touchstart', e=>{
+    if(e.touches.length===2){
       e.preventDefault();
-      const dist = getDist(e.touches);
-      const mid = getMidpoint(e.touches);
-      if (lastDist !== null) {
-        const ratio = dist / lastDist;
-        scale = Math.min(maxScale, Math.max(minScale, scale * ratio));
-        panX += mid[0] - lastPanX;
-        panY += mid[1] - lastPanY;
+      lastDist=dist(e.touches);
+      lastMid=mid(e.touches);
+      panning=false;
+    } else if(e.touches.length===1 && scale>1.05){
+      panning=true;
+      startXY=[e.touches[0].clientX,e.touches[0].clientY];
+      startPan=[panX,panY];
+    }
+  },{passive:false});
+
+  container.addEventListener('touchmove', e=>{
+    if(e.touches.length===2){
+      e.preventDefault();
+      const d=dist(e.touches), m=mid(e.touches);
+      if(lastDist){
+        const ratio=d/lastDist;
+        scale=Math.min(MAX,Math.max(MIN,scale*ratio));
+        panX+=m[0]-lastMid[0];
+        panY+=m[1]-lastMid[1];
       }
-      lastDist = dist; lastPanX = mid[0]; lastPanY = mid[1];
-      applyTransform();
-    } else if (e.touches.length === 1 && isPanning) {
+      lastDist=d; lastMid=m;
+      apply();
+    } else if(e.touches.length===1 && panning){
       e.preventDefault();
-      panX = startPanX + (e.touches[0].clientX - startX);
-      panY = startPanY + (e.touches[0].clientY - startY);
-      applyTransform();
+      panX=startPan[0]+(e.touches[0].clientX-startXY[0]);
+      panY=startPan[1]+(e.touches[0].clientY-startXY[1]);
+      apply();
     }
-  }, { passive: false });
+  },{passive:false});
 
-  container.addEventListener('touchend', (e) => {
-    if (e.touches.length < 2) lastDist = null;
-    if (e.touches.length === 0) isPanning = false;
-    // Snap back if scale <= 1
-    if (scale <= 1) { scale = 1; panX = 0; panY = 0; applyTransform(); }
+  container.addEventListener('touchend', e=>{
+    if(e.touches.length<2) lastDist=null;
+    if(e.touches.length===0){
+      panning=false;
+      if(scale<=1.05){ scale=1; panX=0; panY=0; apply(); }
+    }
   });
 
   // Double-tap to reset
-  let lastTap = 0;
-  container.addEventListener('touchend', (e) => {
-    const now = Date.now();
-    if (now - lastTap < 300) { scale = 1; panX = 0; panY = 0; applyTransform(); }
-    lastTap = now;
+  let lastTap=0;
+  container.addEventListener('touchend', e=>{
+    const now=Date.now();
+    if(now-lastTap<300){ scale=1; panX=0; panY=0; apply(); }
+    lastTap=now;
   });
 
-  // Mouse wheel zoom for desktop
-  container.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? 0.9 : 1.1;
-    scale = Math.min(maxScale, Math.max(minScale, scale * delta));
-    applyTransform();
-  }, { passive: false });
+  // NO mouse wheel zoom — too easy to trigger accidentally on desktop
 })();
 
-// ── Mobile tap tooltip (touch devices) ──
-document.getElementById('wheel-svg').addEventListener('touchend', (e) => {
-  if (e.changedTouches.length !== 1) return;
-  const touch = e.changedTouches[0];
-  const target = document.elementFromPoint(touch.clientX, touch.clientY);
-  if (!target) return;
-  // Find if tapped element is a wseg
-  const wseg = target.closest ? target.closest('.wseg') : null;
-  if (wseg) {
-    const si = parseInt(wseg.dataset.spoke);
-    const ri = parseInt(wseg.dataset.ring);
-    if (wheelDimensions[si]) {
-      const label = wheelDimensions[si].rings[ri];
-      const def = ringDefs ? ringDefs[label] : null;
-      if (def) {
-        showTooltip(label, touch.clientX, touch.clientY);
-        setTimeout(hideTooltip, 3000);
+// ── Mobile: suppress hover tooltips on touch, show briefly on tap instead ──
+const isTouchDevice = () => window.matchMedia('(hover:none)').matches;
+
+document.getElementById('wheel-svg').addEventListener('touchend', e=>{
+  if(e.changedTouches.length!==1) return;
+  const t=e.changedTouches[0];
+  const el=document.elementFromPoint(t.clientX,t.clientY);
+  if(!el) return;
+  // Only show ring tooltip, not category — category tooltip is hover-only on desktop
+  if(el.classList && el.classList.contains('wseg')){
+    const si=parseInt(el.dataset.spoke), ri=parseInt(el.dataset.ring);
+    if(!isNaN(si) && !isNaN(ri) && wheelDimensions[si]){
+      const label=wheelDimensions[si].rings[ri];
+      const def=ringDefs && ringDefs[label];
+      if(def){
+        showTooltip(label,t.clientX,t.clientY);
+        setTimeout(hideTooltip,2500);
       }
     }
   }
-}, { passive: true });
+},{passive:true});
 
-// Positionality term tooltip
+// On touch devices, disable hover tooltip on category bands
+if(isTouchDevice()){
+  document.querySelectorAll('.wseg').forEach(el=>{
+    el.style.pointerEvents='auto';
+  });
+}
+
+// // Positionality term tooltip
 const posEl = document.querySelector('.positionality-term');
 if (posEl) {
   const posDefinition = 'Positionality refers to how your social identity — including dimensions like gender, race, class, and ability — shapes your perspective, your access to resources, and the obstacles you face in navigating the world.';
