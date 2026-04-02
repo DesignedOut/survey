@@ -396,6 +396,15 @@
   <p class="section-desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring represents facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.</p>
 
   <div class="wheel-wrap">
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:4px;">
+      <button id="zoom-out" disabled style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#8722;</button>
+      <button id="zoom-in"  style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#43;</button>
+    </div>
+    <p class="wheel-hint" style="margin-bottom:8px;">Use + and − to zoom in/out and drag to navigate.</p>
+    <div id="wheel-container" style="width:100%;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none;"><svg id="wheel-svg" width="100%" viewBox="0 0 960 960" style="max-width:820px;display:block;margin:0 auto;transform-origin:50% 50%;user-select:none;-webkit-user-select:none;"></svg></div>
+
+    <p class="wheel-hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.</p>
+
     <div class="wheel-legend">
       <span>fewer obstacles &amp; more privilege</span>
       <div class="legend-track">
@@ -405,15 +414,6 @@
       </div>
       <span>more obstacles &amp; marginalization</span>
     </div>
-
-    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:4px;">
-      <button id="zoom-out" disabled style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#8722;</button>
-      <button id="zoom-in"  style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#43;</button>
-    </div>
-    <p class="wheel-hint" style="margin-bottom:8px;">Use + and − to zoom in/out and drag to navigate.</p>
-    <div id="wheel-container" style="width:100%;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none;"><svg id="wheel-svg" width="100%" viewBox="0 0 960 960" style="max-width:820px;display:block;margin:0 auto;transform-origin:50% 50%;user-select:none;-webkit-user-select:none;"></svg></div>
-
-    <p class="wheel-hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.</p>
 
     <div class="pill-list" id="pill-list">
       <span class="wheel-hint">No dimensions marked yet</span>
