@@ -102,13 +102,15 @@
   input[type="text"]:focus, textarea:focus { border-color: var(--accent); background: #fff; }
   textarea { min-height: 80px; }
 
-  .feel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 7px; }
+  .feel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
   .feel-item { position: relative; }
   .feel-item input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
   .feel-item label { display: flex; align-items: center; gap: 9px; padding: 0.6rem 0.9rem; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; font-size: 14px; font-weight: 300; color: var(--ink-soft); background: var(--paper-warm); transition: all 0.12s; margin-bottom: 0; line-height: 1.3; }
   .feel-item label::before { content: ''; width: 13px; height: 13px; min-width: 13px; border: 1px solid var(--paper-mid); border-radius: 2px; background: #fff; transition: all 0.12s; }
   .feel-item input:checked + label { border-color: var(--purple-mid); background: var(--purple-light); color: var(--purple-dark); font-weight: 400; }
   .feel-item input:checked + label::before { background: var(--purple-mid); border-color: var(--purple-mid); background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: 9px; background-repeat: no-repeat; background-position: center; }
+  .feel-item input:disabled + label { opacity: 0.35; cursor: not-allowed; background: var(--paper-mid); border-color: transparent; color: var(--ink-faint); }
+  .feel-item input:disabled + label:hover { border-color: transparent; background: var(--paper-mid); color: var(--ink-faint); }
   .feel-item label:hover { border-color: var(--purple-mid); background: #f5f4fe; color: var(--ink); }
 
   .btn-row { display: flex; gap: 12px; margin-top: 2.5rem; align-items: center; }
@@ -133,7 +135,29 @@
   .thankyou p { color: var(--ink-soft); font-size: 15px; max-width: 400px; margin: 0 auto; line-height: 1.7; }
   .divider-mark { width: 32px; height: 2px; background: var(--accent); margin: 1.5rem auto; }
 
-  #zoom-out:disabled, #zoom-in:disabled {
+  .field-error input[type="text"],
+  .field-error textarea {
+    border-color: #c0392b;
+    background: #fdf0ef;
+  }
+  .field-error .upload-zone {
+    border-color: #c0392b;
+    background: #fdf0ef;
+  }
+  .field-error .feel-grid {
+    outline: 1.5px solid #c0392b;
+    border-radius: var(--radius);
+    background: #fdf0ef;
+    padding: 6px;
+  }
+  .field-error-msg {
+    display: none;
+    font-size: 12px;
+    color: #c0392b;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+  .field-error .field-error-msg { display: block; }
     opacity: 0.3;
     cursor: not-allowed;
   }
@@ -145,7 +169,7 @@
 
   @media (max-width: 500px) {
     .survey-header, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
-    .feel-grid { grid-template-columns: 1fr; }
+    .feel-grid { grid-template-columns: repeat(2, 1fr); }
     .wheel-hint { font-size: 13px; }
     #wheel-container { border-radius: 8px; }
   }
@@ -269,8 +293,13 @@
     transition: opacity 0.15s;
     z-index: 1000;
   }
-  .wheel-tooltip.visible { opacity: 1; }
-  .wheel-tooltip strong { font-weight: 500; display: block; margin-bottom: 3px; color: #fff; }
+  .highlight {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.05em 0.35em;
+    border-radius: 2px;
+    font-style: normal;
+  }
 </style>
 </head>
 <body>
@@ -286,8 +315,7 @@
 <!-- LANDING -->
 <section class="section active" id="s0">
   <h2 class="section-title">About this survey</h2>
-  <p class="section-desc">This survey collects examples of physical products — everyday objects — that communicate exclusion or discrimination through their formal aesthetic qualities: colour, material, shape, and form.</p>
-  <p class="section-desc">You will be asked to upload a photo or image of a product, share how it makes you feel, and optionally reflect on where you stand.</p>
+  <p class="section-desc">Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.</p>
   <p class="section-desc" style="color:var(--ink-faint);font-size:13px;">Estimated time: 5 minutes</p>
   <p class="survey-note">This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary. The survey is completely anonymous — a random ID is assigned to each response and cannot be traced back to you.</p>
   <div class="btn-row" style="margin-top:2rem;">
@@ -299,9 +327,9 @@
 <section class="section" id="s1">
   <div class="section-number">01 — The product</div>
   <h2 class="section-title">Show us the product</h2>
-  <p class="section-desc">Upload a photo or image of a physical product — an everyday object — that makes you feel discriminated against, excluded, or simply not considered as a user.</p>
+  <p class="section-desc">Have you ever encountered an object and felt it wasn't meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend's place, on social media, or anywhere online. Physical objects only.</p>
 
-  <div class="field">
+  <div class="field" id="field-image">
     <label>Upload image</label>
     <div class="upload-zone" id="upload-zone">
       <input type="file" id="img-input" accept="image/*">
@@ -316,11 +344,13 @@
       <div id="img-meta" style="margin-top:0.5rem;font-size:13px;color:var(--ink-soft);line-height:1.6;"></div>
       <button id="change-img" style="margin-top:0.6rem;font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:4px 14px;cursor:pointer;">Change image</button>
     </div>
+    <p class="field-error-msg">Please upload an image of the product.</p>
   </div>
 
-  <div class="field">
+  <div class="field" id="field-product-type">
     <label>What type of product is it?</label>
     <input type="text" id="product-type" placeholder="e.g. personal care, small appliance, sports equipment, medical device...">
+    <p class="field-error-msg">Please describe what type of product this is.</p>
   </div>
 
   <div class="field">
@@ -338,10 +368,14 @@
 <section class="section" id="s2">
   <div class="section-number">02 — Your experience</div>
   <h2 class="section-title">It makes me feel…</h2>
-  <p class="section-desc">Select all the feelings that apply to your experience with this product.</p>
+  <p class="section-desc">Select exactly 5 feelings that best describe your experience with this product.</p>
 
-  <div class="field">
+  <div id="sticky-selection" style="display:none;position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--border);padding:0.6rem 0;flex-wrap:wrap;gap:6px;margin-bottom:1rem;"></div>
+
+  <div class="field" id="field-feelings">
     <div class="feel-grid" id="feel-grid"></div>
+    <p id="feel-count" style="margin-top:0.8rem;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:0.05em;min-height:1.2em;"></p>
+    <p class="field-error-msg">Please select exactly 5 feelings before continuing.</p>
   </div>
 
   <div class="field" style="margin-top:0.5rem;">
@@ -359,7 +393,7 @@
 <section class="section" id="s3">
   <div class="section-number">03 — Your positionality</div>
   <h2 class="section-title">Where you stand</h2>
-  <p class="section-desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the innermost ring represents facing more obstacles and marginalization, the outermost fewer obstacles and more privilege. Select as many or as few categories as you feel comfortable with. This section is completely optional, anonymous, and no personal data is stored.</p>
+  <p class="section-desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring represents facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.</p>
 
   <div class="wheel-wrap">
     <div class="wheel-legend">
@@ -372,19 +406,42 @@
       <span>more obstacles &amp; marginalization</span>
     </div>
 
-    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:8px;">
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:4px;">
       <button id="zoom-out" disabled style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#8722;</button>
       <button id="zoom-in"  style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#43;</button>
     </div>
+    <p class="wheel-hint" style="margin-bottom:8px;">Use + and − to zoom in/out and drag to navigate.</p>
     <div id="wheel-container" style="width:100%;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none;"><svg id="wheel-svg" width="100%" viewBox="0 0 960 960" style="max-width:820px;display:block;margin:0 auto;transform-origin:50% 50%;user-select:none;-webkit-user-select:none;"></svg></div>
 
     <p class="wheel-hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.</p>
-    <p class="wheel-hint" style="margin-top:-0.5rem;">Use + and − to zoom in and drag to navigate.</p>
 
     <div class="pill-list" id="pill-list">
       <span class="wheel-hint">No dimensions marked yet</span>
     </div>
     <button class="btn-reset" onclick="resetWheel()">Reset</button>
+  </div>
+
+  <div class="field" style="margin-top:2rem;">
+    <label>Is there a dimension missing from the wheel? <span class="opt">optional</span></label>
+    <input type="text" id="missing-category" placeholder="e.g. religion, civil status, family structure, diet..." style="margin-bottom:0.6rem;">
+    <div id="custom-rings-wrap" style="display:none;">
+      <p style="font-size:13px;color:var(--ink-soft);margin:0.8rem 0 0.6rem;font-style:italic;">Describe the three positions within this dimension to add it to the wheel.</p>
+      <div id="custom-rings" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;">Inner ring <span style="font-weight:300;font-size:10px;">fewer obstacles</span></label>
+          <input type="text" id="custom-ring-0" placeholder="">
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;">Middle ring</label>
+          <input type="text" id="custom-ring-1" placeholder="">
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;">Outer ring <span style="font-weight:300;font-size:10px;">more obstacles</span></label>
+          <input type="text" id="custom-ring-2" placeholder="">
+        </div>
+      </div>
+      <p id="custom-hint" style="display:none;margin-top:0.7rem;font-size:12px;color:var(--ink-faint);font-style:italic;">Your dimension has been added to the wheel above — click a ring to mark your position.</p>
+    </div>
   </div>
 
   <div class="field" style="margin-top:2.5rem;">
@@ -402,13 +459,29 @@
   <div class="divider-mark"></div>
   <h2>Thank you.</h2>
   <p>Your response has been recorded. This research will contribute to a better understanding of how discrimination operates through everyday product design — and to opening new pathways towards more inclusive and sensitive design practice.</p>
+  <p style="margin-top:1.5rem;font-size:13px;color:var(--ink-faint);">If you'd like to be informed when findings from this research are published, <a href="YOUR_FORM_URL_HERE" target="_blank" style="color:var(--accent);text-decoration:underline;">leave your contact here</a>.</p>
 </div>
 
 <script>
 const feelings = [
-  "different","wrong","insecure","isolated","unvalued",
-  "like somebody else","pigeonholed","labelled","underestimated",
-  "invisible","unsafe","uncomfortable","unsettled","guilty","shameful"
+  "invisible","like an afterthought","like an exception","like somebody else",
+  "unwelcome","out of place","like a guest","erased",
+  "overlooked","simplified","predetermined","categorized",
+  "expected","labelled","pigeonholed","surveilled",
+  "profiled","tokenized","suspected","flagged",
+  "tolerated","overcorrected","assumed","pitied",
+  "othered","exposed","wrong","diminished",
+  "expendable","forgotten","overexplained","anticipated",
+  "familiar","taken care of","protected","noticed",
+  "seen","named","known","held",
+  "guided","helped","reminded","accommodated",
+  "represented","corrected","managed","warned",
+  "contained","small","childish","foreign",
+  "excessive","wrong-bodied","too much","not enough",
+  "strange","marginal","illegitimate","insecure",
+  "guilty","ashamed","unsettled","uncomfortable",
+  "unsafe","unvalued","underestimated","alienated",
+  "isolated","displaced","misunderstood","patronized"
 ];
 
 const wheelDimensions = [
@@ -438,15 +511,96 @@ wheelDimensions.forEach((_,i) => wheelState[i] = null);
 
 function buildFeelings() {
   const grid = document.getElementById('feel-grid');
+  const MAX = 5;
   feelings.forEach(f => {
     const item = document.createElement('div');
     item.className = 'feel-item';
-    item.innerHTML = `<input type="checkbox" id="f-${f.replace(/ /g,'-')}" value="${f}"><label for="f-${f.replace(/ /g,'-')}">${f}</label>`;
+    const id = 'f-' + f.replace(/ /g,'-');
+    item.innerHTML = `<input type="checkbox" id="${id}" value="${f}"><label for="${id}">${f}</label>`;
+    const cb = item.querySelector('input');
+    cb.addEventListener('change', () => {
+      const checked = grid.querySelectorAll('input:checked');
+      if (checked.length >= MAX) {
+        grid.querySelectorAll('input:not(:checked)').forEach(el => el.disabled = true);
+      } else {
+        grid.querySelectorAll('input').forEach(el => el.disabled = false);
+      }
+      const count = checked.length;
+      const countEl = document.getElementById('feel-count');
+      if (count === MAX) {
+        countEl.textContent = '5 / 5 — you can now continue';
+        countEl.style.color = 'var(--purple-dark)';
+        document.getElementById('field-feelings').classList.remove('field-error');
+      } else {
+        countEl.textContent = count > 0 ? `${count} / ${MAX} selected` : '';
+        countEl.style.color = 'var(--accent)';
+      }
+      // Update sticky selection display
+      updateStickySelection();
+    });
     grid.appendChild(item);
   });
 }
 
+function updateStickySelection() {
+  const sticky = document.getElementById('sticky-selection');
+  const checked = document.querySelectorAll('#feel-grid input:checked');
+  if (checked.length === 0) {
+    sticky.style.display = 'none';
+    return;
+  }
+  sticky.style.display = 'flex';
+  sticky.innerHTML = Array.from(checked).map(cb =>
+    `<span class="sel-pill" style="background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple-dark);">${cb.value}</span>`
+  ).join('');
+}
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+}
+
+function validateSection(n) {
+  clearErrors();
+  let valid = true;
+
+  if (n === 1) {
+    // Validate image upload
+    const imgInput = document.getElementById('img-input');
+    if (!imgInput.files || imgInput.files.length === 0) {
+      document.getElementById('field-image').classList.add('field-error');
+      valid = false;
+    }
+    // Validate product type
+    const productType = document.getElementById('product-type').value.trim();
+    if (!productType || productType === '.') {
+      document.getElementById('field-product-type').classList.add('field-error');
+      valid = false;
+    }
+  }
+
+  if (n === 2) {
+    // Validate exactly 5 feelings selected
+    const checked = document.querySelectorAll('#feel-grid input:checked');
+    if (checked.length !== 5) {
+      document.getElementById('field-feelings').classList.add('field-error');
+      valid = false;
+    }
+  }
+
+  return valid;
+}
+
 function goTo(n) {
+  // Only validate when moving forward
+  if (n > currentSection) {
+    if (!validateSection(currentSection)) {
+      // Scroll to first error
+      const firstError = document.querySelector('.field-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+  }
+  clearErrors();
   document.getElementById('s'+currentSection).classList.remove('active');
   currentSection = n;
   document.getElementById('s'+currentSection).classList.add('active');
@@ -916,6 +1070,49 @@ function resetWheel() {
   renderPills();
 }
 
+// ── Custom category ──
+const CUSTOM_SPOKE_INDEX = wheelDimensions.length; // always the last spoke
+let customDim = null;
+
+function updateCustomCategory() {
+  const name = document.getElementById('missing-category').value.trim();
+  const r0   = document.getElementById('custom-ring-0').value.trim() || '—';
+  const r1   = document.getElementById('custom-ring-1').value.trim() || '—';
+  const r2   = document.getElementById('custom-ring-2').value.trim() || '—';
+
+  // Show/hide ring inputs
+  document.getElementById('custom-rings-wrap').style.display = name ? 'block' : 'none';
+  // Show hint only when at least one ring label is filled
+  const anyRing = [0,1,2].some(n => document.getElementById(`custom-ring-${n}`).value.trim());
+  document.getElementById('custom-hint').style.display = (name && anyRing) ? 'block' : 'none';
+
+  // Remove previous custom spoke if any
+  if (customDim !== null) {
+    wheelDimensions.splice(CUSTOM_SPOKE_INDEX, 1);
+    delete wheelState[CUSTOM_SPOKE_INDEX];
+  }
+
+  if (name) {
+    customDim = { name, rings: [r0, r1, r2] };
+    wheelDimensions.push(customDim);
+    wheelState[CUSTOM_SPOKE_INDEX] = null;
+  } else {
+    customDim = null;
+  }
+
+  buildWheel();
+  renderWheel();
+  renderPills();
+}
+
+let customDebounce;
+['missing-category','custom-ring-0','custom-ring-1','custom-ring-2'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    clearTimeout(customDebounce);
+    customDebounce = setTimeout(updateCustomCategory, 400);
+  });
+});
+
 async function submitSurvey() {
   const btn = document.querySelector('#s3 .btn-next');
   btn.textContent = 'Sending…';
@@ -938,6 +1135,10 @@ async function submitSurvey() {
     const r = wheelState[i];
     data[dim.name] = r !== null ? wheelDimensions[i].rings[r] : '';
   });
+  data['custom_category_name']     = document.getElementById('missing-category').value.trim();
+  data['custom_category_ring_0']   = document.getElementById('custom-ring-0').value.trim();
+  data['custom_category_ring_1']   = document.getElementById('custom-ring-1').value.trim();
+  data['custom_category_ring_2']   = document.getElementById('custom-ring-2').value.trim();
 
   const imgInput = document.getElementById('img-input');
   const file = imgInput.files && imgInput.files[0];
@@ -1220,6 +1421,14 @@ if (posEl) {
     modalOverlayEl.classList.add('visible');
   });
 }
+
+// Clear error states on correction
+document.getElementById('img-input').addEventListener('change', () => {
+  document.getElementById('field-image').classList.remove('field-error');
+});
+document.getElementById('product-type').addEventListener('input', () => {
+  document.getElementById('field-product-type').classList.remove('field-error');
+});
 </script>
 </body>
 </html>
