@@ -418,7 +418,13 @@
     <div class="pill-list" id="pill-list">
       <span class="wheel-hint">No dimensions marked yet</span>
     </div>
-    <button class="btn-reset" onclick="resetWheel()">Reset</button>
+    <div style="display:flex;gap:8px;align-items:center;justify-content:center;">
+      <button class="btn-reset" onclick="resetWheel()">Reset</button>
+      <button class="btn-reset" onclick="downloadWheel()" title="Download wheel as image" style="display:flex;align-items:center;gap:5px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </button>
+    </div>
   </div>
 
   <div class="field" style="margin-top:2rem;">
@@ -1068,6 +1074,32 @@ function resetWheel() {
   wheelDimensions.forEach((_,i) => { wheelState[i] = null; });
   renderWheel();
   renderPills();
+}
+
+function downloadWheel() {
+  const svg = document.getElementById('wheel-svg');
+  const serializer = new XMLSerializer();
+  const svgStr = serializer.serializeToString(svg);
+  const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    const scale = 2;
+    canvas.width  = svg.viewBox.baseVal.width  * scale;
+    canvas.height = svg.viewBox.baseVal.height * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#faf9f7';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(scale, scale);
+    ctx.drawImage(img, 0, 0);
+    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.download = 'my-positionality-wheel.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+  img.src = url;
 }
 
 // ── Custom category ──
