@@ -761,7 +761,8 @@ function goTo(n) {
   document.getElementById('s'+currentSection).classList.remove('active');
   currentSection = n;
   document.getElementById('s'+currentSection).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   updateProgress();
 }
 
