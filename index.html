@@ -331,9 +331,10 @@
 <!-- SECTION 1 — HOW DID YOU FIND US -->
 <section class="section" id="s1">
   <div class="section-number">01 — Before we start</div>
-  <h2 class="section-title">How did you find this survey?</h2>
+  <h2 class="section-title">A couple of quick questions.</h2>
 
   <div class="field" id="field-referral">
+    <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;">How did you find this survey?</label>
     <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);" id="referral-grid">
       <div class="feel-item"><input type="radio" name="referral" id="ref-friend" value="Shared by a friend or colleague"><label for="ref-friend">Shared by a friend or colleague</label></div>
       <div class="feel-item"><input type="radio" name="referral" id="ref-social" value="Social media"><label for="ref-social">Social media</label></div>
@@ -345,6 +346,16 @@
     </div>
     <div id="referral-other-wrap" style="display:none;margin-top:0.6rem;">
       <input type="text" id="referral-other-detail" placeholder="Please specify...">
+    </div>
+    <p class="field-error-msg">Please select one option before continuing.</p>
+  </div>
+
+  <div class="field" id="field-design-bg" style="margin-top:2rem;">
+    <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;">Do you have a background in design?</label>
+    <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-yes" value="Yes — I work or have studied in design"><label for="bg-yes">Yes — I work or have studied in design</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-some" value="Somewhat — I have some design knowledge"><label for="bg-some">Somewhat — I have some design knowledge</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-no" value="No"><label for="bg-no">No</label></div>
     </div>
     <p class="field-error-msg">Please select one option before continuing.</p>
   </div>
@@ -701,6 +712,11 @@ function validateSection(n) {
         document.querySelector('#field-referral .field-error-msg').textContent = 'Please specify how you found the survey.';
         valid = false;
       }
+    }
+    const designBg = document.querySelector('input[name="design_bg"]:checked');
+    if (!designBg) {
+      document.getElementById('field-design-bg').classList.add('field-error');
+      valid = false;
     }
   }
 
@@ -1295,10 +1311,12 @@ async function submitSurvey() {
   const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
 
   const referralEl = document.querySelector('input[name="referral"]:checked');
+  const designBgEl = document.querySelector('input[name="design_bg"]:checked');
   const data = {
     responseId:           responseId,
     referral:             referralEl ? referralEl.value : '',
     referral_detail:      document.getElementById('referral-social-detail').value.trim() || document.getElementById('referral-other-detail').value.trim(),
+    design_background:    designBgEl ? designBgEl.value : '',
     productType:   document.getElementById('product-type').value,
     whyChosen:     document.getElementById('why-chosen').value,
     feelOther:     document.getElementById('feel-other').value,
@@ -1527,6 +1545,11 @@ document.querySelectorAll('input[name="referral"]').forEach(el => {
     document.getElementById('field-referral').classList.remove('field-error');
     document.getElementById('referral-social-wrap').style.display = el.value === 'Social media' ? 'block' : 'none';
     document.getElementById('referral-other-wrap').style.display  = el.value === 'Other'        ? 'block' : 'none';
+  });
+});
+document.querySelectorAll('input[name="design_bg"]').forEach(el => {
+  el.addEventListener('change', () => {
+    document.getElementById('field-design-bg').classList.remove('field-error');
   });
 });
 </script>
