@@ -1548,13 +1548,16 @@ function renderPills() {
     return;
   }
   entries.forEach(([i,r]) => {
+    const idx = Number(i);
+    const dim = wheelDimensions[idx];
+    if (!dim || r === null || !dim.rings[r]) return;
     const pill = document.createElement('span');
     pill.className = 'sel-pill';
     pill.style.background  = ringColors[r];
     pill.style.color       = ringTextColors[r];
     pill.style.borderColor = ringBorders[r];
-    pill.title = wheelDimensions[i].rings[r];
-    pill.textContent = `${wheelDimensions[i].name}: ${wheelDimensions[i].rings[r]}`;
+    pill.title = dim.rings[r];
+    pill.textContent = `${dim.name}: ${dim.rings[r]}`;
     list.appendChild(pill);
   });
 }
@@ -1658,7 +1661,7 @@ async function submitSurvey() {
   data['survey_language'] = currentLang;
   wheelDimensions.forEach((dim, i) => {
     const r = wheelState[i];
-    data[dim.name] = r !== null ? wheelDimensions[i].rings[r] : '';
+    if (dim && r !== null) data[dim.name] = dim.rings[r];
   });
   data['custom_category_name']     = document.getElementById('missing-category').value.trim();
   data['custom_category_impact']   = document.getElementById('missing-impact').value.trim();
@@ -1755,6 +1758,7 @@ buildFeelings();
 buildWheel();
 renderWheel();
 renderPills();
+setLanguage('en');
 
 // ── Wheel: zoom + pan ──
 (function() {
