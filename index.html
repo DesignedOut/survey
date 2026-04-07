@@ -89,6 +89,7 @@
   .field { margin-bottom: 2rem; }
   .field label { display: block; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.5rem; }
   .field label .opt { font-weight: 300; color: var(--ink-faint); font-size: 12px; margin-left: 6px; letter-spacing: 0; }
+  .field-hint { font-size: 12px; color: var(--ink-soft); font-style: italic; margin: 0.3rem 0 0.6rem; line-height: 1.5; }
 
   .upload-zone { border: 1.5px dashed var(--paper-mid); border-radius: var(--radius); padding: 2.5rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--paper-warm); position: relative; }
   .upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: var(--accent-soft); }
@@ -342,24 +343,7 @@
   <div class="section-number" data-i18n="s1_num">01 — Before we start</div>
   <h2 class="section-title" data-i18n="s1_title">A couple of quick questions.</h2>
 
-  <div class="field" id="field-referral">
-    <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;" data-i18n="s1_referral_label">How did you find this survey?</label>
-    <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);" id="referral-grid">
-      <div class="feel-item"><input type="radio" name="referral" id="ref-friend" value="Shared by a friend or colleague"><label for="ref-friend" data-i18n="ref_friend">Shared by a friend or colleague</label></div>
-      <div class="feel-item"><input type="radio" name="referral" id="ref-social" value="Social media"><label for="ref-social" data-i18n="ref_social">Social media</label></div>
-      <div class="feel-item"><input type="radio" name="referral" id="ref-qr" value="QR code on university campus"><label for="ref-qr" data-i18n="ref_qr">QR code on university campus</label></div>
-      <div class="feel-item"><input type="radio" name="referral" id="ref-other" value="Other"><label for="ref-other" data-i18n="ref_other">Other</label></div>
-    </div>
-    <div id="referral-social-wrap" style="display:none;margin-top:0.6rem;">
-      <input type="text" id="referral-social-detail" data-i18n-placeholder="ref_social_ph" placeholder="Which platform? e.g. Instagram, LinkedIn, X...">
-    </div>
-    <div id="referral-other-wrap" style="display:none;margin-top:0.6rem;">
-      <input type="text" id="referral-other-detail" data-i18n-placeholder="ref_other_ph" placeholder="Please specify...">
-    </div>
-    <p class="field-error-msg" data-i18n="err_select">Please select one option before continuing.</p>
-  </div>
-
-  <div class="field" id="field-design-bg" style="margin-top:2rem;">
+  <div class="field" id="field-design-bg">
     <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;" data-i18n="s1_design_label">Do you have a background in design?</label>
     <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);">
       <div class="feel-item"><input type="radio" name="design_bg" id="bg-yes" value="Yes — I work or have studied in design"><label for="bg-yes" data-i18n="bg_yes">Yes — I work or have studied in design</label></div>
@@ -407,6 +391,7 @@
 
   <div class="field">
     <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
+    <p class="field-hint" data-i18n="s2_why_hint">Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.</p>
     <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
   </div>
 
@@ -445,7 +430,7 @@
 <section class="section" id="s4">
   <div class="section-number" data-i18n="s4_num">04 — Your positionality</div>
   <h2 class="section-title" data-i18n="s4_title">Where you stand</h2>
-  <p class="section-desc" data-i18n="s4_desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring represents facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.</p>
+  <p class="section-desc" data-i18n="s4_desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.</p>
 
   <div class="wheel-wrap">
     <p class="wheel-hint" data-i18n="wheel_hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.</p>
@@ -481,6 +466,7 @@
   <div class="field" style="margin-top:2rem;">
     <label data-i18n="s4_missing_label">Is there a dimension missing from the wheel? <span class="opt" data-i18n="opt">optional</span></label>
     <input type="text" id="missing-category" data-i18n-placeholder="s4_missing_ph" placeholder="e.g. religion, civil status, family structure, diet..." style="margin-bottom:0.6rem;">
+    <textarea id="missing-impact" data-i18n-placeholder="s4_impact_ph" placeholder="How does this dimension impact you?" style="margin-top:0.4rem;margin-bottom:0.6rem;"></textarea>
     <div id="custom-rings-wrap" style="display:none;">
       <p style="font-size:13px;color:var(--ink-soft);margin:0.8rem 0 0.6rem;font-style:italic;" data-i18n="s4_custom_desc">Describe the three positions within this dimension to add it to the wheel.</p>
       <div id="custom-rings" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
@@ -755,30 +741,31 @@ const translations = {
     landing_title: 'About this survey',
     landing_desc: 'Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.',
     landing_time: 'Estimated time: 5 minutes',
-    landing_note: 'This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary. The survey is completely anonymous — a random ID is assigned to each response and cannot be traced back to you.',
+    landing_note: 'This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older. Your responses will be anonymous to the extent possible with internet platforms.',
     btn_start: 'Start survey →', btn_back: '← Back', btn_continue: 'Continue →', btn_submit: 'Submit →', btn_reset: 'Reset', btn_download: 'Download',
     opt: 'optional',
-    s1_num: '01 — Before we start', s1_title: 'A couple of quick questions.',
+    s1_num: '01 — About you', s1_title: 'Your relation to design.',
     s1_referral_label: 'How did you find this survey?',
     ref_friend: 'Shared by a friend or colleague', ref_social: 'Social media', ref_qr: 'QR code on university campus', ref_other: 'Other',
     ref_social_ph: 'Which platform? e.g. Instagram, LinkedIn, X...', ref_other_ph: 'Please specify...',
     s1_design_label: 'Do you have a background in design?',
     bg_yes: 'Yes — I work or have studied in design', bg_some: 'Somewhat — I have some design knowledge', bg_no: 'No',
     s2_num: '02 — The product', s2_title: 'Show us the product',
-    s2_desc: 'Have you ever encountered an object and felt it wasn\'t meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend\'s place, on social media, or anywhere online. Physical objects only.',
+    s2_desc: 'Have you ever encountered an object and felt it wasn\'t meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend\'s place, on social media, or anywhere online. Physical objects only — for example, a laptop is a physical object, while an app interface is not.',
     s2_upload_label: 'Upload image', s2_upload_text: 'Click to upload or drag an image here', s2_change_img: 'Change image',
     s2_type_label: 'What type of product is it?', s2_type_ph: 'e.g. personal care, small appliance, sports equipment, medical device...',
-    s2_why_label: 'In a few words, what about this product made you choose it?', s2_why_ph: 'Describe what struck you...',
+    s2_why_label: 'In a few words, what about this product made you choose it?', s2_why_ph: 'Describe what struck you...', s2_why_hint: 'Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.',
+
     s3_num: '03 — Your experience', s3_title: 'It makes me feel…',
     s3_desc: 'Select exactly 5 feelings that best describe your experience with this product.',
     s3_other_label: 'Anything else you\'d like to say about how it makes you feel?', s3_other_ph: 'In your own words...',
     feel_count: (n, max) => n === max ? `${max} / ${max} — you can now continue` : `${n} / ${max} selected`,
     s4_num: '04 — Your positionality', s4_title: 'Where you stand',
-    s4_desc: 'This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring represents facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.',
+    s4_desc: 'This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.',
     wheel_hint: 'Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.',
     legend_fewer: 'fewer obstacles & more privilege', legend_more: 'more obstacles & marginalization',
     no_dims: 'No dimensions marked yet',
-    s4_missing_label: 'Is there a dimension missing from the wheel?', s4_missing_ph: 'e.g. religion, civil status, family structure, diet...',
+    s4_missing_label: 'Is there a dimension missing from the wheel?', s4_missing_ph: 'e.g. religion, civil status, family structure, diet...', s4_impact_ph: 'How does this dimension impact you?',
     s4_custom_desc: 'Describe the three positions within this dimension to add it to the wheel.',
     ring_inner: 'Inner ring', ring_inner_sub: 'fewer obstacles', ring_mid: 'Middle ring', ring_outer: 'Outer ring', ring_outer_sub: 'more obstacles',
     custom_hint: 'Your dimension has been added to the wheel above — click a ring to mark your position.',
@@ -810,30 +797,30 @@ const translations = {
     landing_title: 'Sobre esta encuesta',
     landing_desc: 'Todo objeto tiene un lenguaje. Habla a través del color, la forma, el material y la textura — y esas decisiones llevan suposiciones silenciosas sobre para quién fue diseñado. Esta encuesta recoge ejemplos de objetos cotidianos que comunican exclusión o discriminación a través de su <em><strong>lenguaje de producto</strong></em>.',
     landing_time: 'Tiempo estimado: 5 minutos',
-    landing_note: 'Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria. La encuesta es totalmente anónima — se asigna un ID aleatorio a cada respuesta que no puede vincularse a ninguna persona.',
+    landing_note: 'Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria y los participantes deben tener 18 años o más. Tus respuestas serán anónimas en la medida de lo posible con las plataformas de internet.',
     btn_start: 'Comenzar →', btn_back: '← Atrás', btn_continue: 'Continuar →', btn_submit: 'Enviar →', btn_reset: 'Reiniciar', btn_download: 'Descargar',
     opt: 'opcional',
-    s1_num: '01 — Antes de empezar', s1_title: 'Dos preguntas rápidas.',
+    s1_num: '01 — Sobre ti', s1_title: 'Tu relación con el diseño.',
     s1_referral_label: '¿Cómo encontraste esta encuesta?',
     ref_friend: 'Compartido por un amigo o colega', ref_social: 'Redes sociales', ref_qr: 'Código QR en el campus universitario', ref_other: 'Otro',
     ref_social_ph: '¿Qué plataforma? p.ej. Instagram, LinkedIn, X...', ref_other_ph: 'Por favor especifica...',
     s1_design_label: '¿Tienes formación en diseño?',
     bg_yes: 'Sí — trabajo o he estudiado diseño', bg_some: 'En parte — tengo algunos conocimientos de diseño', bg_no: 'No',
     s2_num: '02 — El producto', s2_title: 'Muéstranos el producto',
-    s2_desc: '¿Alguna vez has encontrado un objeto y sentiste que no era para ti? Sube una foto de cualquier producto que te haya hecho sentir así.<br><br>Puede ser algo que poseas, uses, te hayan regalado, hayas visto en una tienda, en casa de alguien, en redes sociales o en cualquier lugar online. Solo objetos físicos.',
+    s2_desc: '¿Alguna vez has encontrado un objeto y sentiste que no era para ti? Sube una foto de cualquier producto que te haya hecho sentir así.<br><br>Puede ser algo que poseas, uses, te hayan regalado, hayas visto en una tienda, en casa de alguien, en redes sociales o en cualquier lugar online. Solo objetos físicos — por ejemplo, un ordenador portátil es un objeto físico, mientras que una interfaz de aplicación no lo es.',
     s2_upload_label: 'Subir imagen', s2_upload_text: 'Haz clic para subir o arrastra una imagen aquí', s2_change_img: 'Cambiar imagen',
     s2_type_label: '¿Qué tipo de producto es?', s2_type_ph: 'p.ej. cuidado personal, electrodoméstico pequeño, equipo deportivo, dispositivo médico...',
-    s2_why_label: 'En pocas palabras, ¿qué te llevó a elegir este producto?', s2_why_ph: 'Describe lo que te llamó la atención...',
+    s2_why_label: 'En pocas palabras, ¿qué te llevó a elegir este producto?', s2_why_ph: 'Describe lo que te llamó la atención...', s2_why_hint: 'Piensa en su <em>lenguaje de producto</em> — las cualidades formales que comunican significado: su forma, color, material, textura u otros elementos estéticos.',
     s3_num: '03 — Tu experiencia', s3_title: 'Me hace sentir…',
     s3_desc: 'Selecciona exactamente 5 sentimientos que mejor describan tu experiencia con este producto.',
     s3_other_label: '¿Algo más que quieras añadir sobre cómo te hace sentir?', s3_other_ph: 'Con tus propias palabras...',
     feel_count: (n, max) => n === max ? `${max} / ${max} — puedes continuar` : `${n} / ${max} seleccionados`,
     s4_num: '04 — Tu posicionalidad', s4_title: 'Tu posición',
-    s4_desc: 'Esta rueda representa tu <span class="positionality-term" tabindex="0">posicionalidad</span> — el conjunto de dimensiones sociales que dan forma a tu experiencia en el mundo. Para cada dimensión, haz clic en el anillo que mejor refleje tu posición: el anillo exterior representa más obstáculos y marginalización, el interior menos obstáculos y más privilegio. Esta sección es completamente opcional — responde solo lo que te haga sentir cómodo/a. Tus respuestas son completamente anónimas y no se almacena ningún dato personal.',
+    s4_desc: 'Esta rueda representa tu <span class="positionality-term" tabindex="0">posicionalidad</span> — el conjunto de dimensiones sociales que dan forma a tu experiencia en el mundo. Para cada dimensión, haz clic en el anillo que mejor refleje tu posición: el anillo exterior puede representar más obstáculos y marginalización, el interior menos obstáculos y más privilegio. Esta sección es completamente opcional — responde solo lo que te haga sentir cómodo/a. Tus respuestas son completamente anónimas y no se almacena ningún dato personal.',
     wheel_hint: 'Haz clic en un anillo para marcar tu posición. Haz clic de nuevo para deseleccionar.<br>Usa + y − para acercar/alejar y arrastra para navegar.',
     legend_fewer: 'menos obstáculos y más privilegio', legend_more: 'más obstáculos y marginalización',
     no_dims: 'Ninguna dimensión marcada todavía',
-    s4_missing_label: '¿Falta alguna dimensión en la rueda?', s4_missing_ph: 'p.ej. religión, estado civil, estructura familiar, dieta...',
+    s4_missing_label: '¿Falta alguna dimensión en la rueda?', s4_missing_ph: 'p.ej. religión, estado civil, estructura familiar, dieta...', s4_impact_ph: '¿Cómo te impacta esta dimensión?',
     s4_custom_desc: 'Describe las tres posiciones dentro de esta dimensión para añadirla a la rueda.',
     ring_inner: 'Anillo interior', ring_inner_sub: 'menos obstáculos', ring_mid: 'Anillo medio', ring_outer: 'Anillo exterior', ring_outer_sub: 'más obstáculos',
     custom_hint: 'Tu dimensión ha sido añadida a la rueda — haz clic en un anillo para marcar tu posición.',
@@ -865,30 +852,30 @@ const translations = {
     landing_title: 'Su questo sondaggio',
     landing_desc: 'Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.',
     landing_time: 'Tempo stimato: 5 minuti',
-    landing_note: 'Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria. Il sondaggio è totalmente anonimo — a ogni risposta viene assegnato un ID casuale che non può essere ricondotto a nessuna persona.',
+    landing_note: 'Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più. Le tue risposte saranno anonime nella misura in cui le piattaforme internet lo consentono.',
     btn_start: 'Inizia →', btn_back: '← Indietro', btn_continue: 'Continua →', btn_submit: 'Invia →', btn_reset: 'Reimposta', btn_download: 'Scarica',
     opt: 'opzionale',
-    s1_num: '01 — Prima di iniziare', s1_title: 'Due domande veloci.',
+    s1_num: '01 — Su di te', s1_title: 'Il tuo rapporto con il design.',
     s1_referral_label: 'Come hai trovato questo sondaggio?',
     ref_friend: 'Condiviso da un amico o collega', ref_social: 'Social media', ref_qr: 'Codice QR nel campus universitario', ref_other: 'Altro',
     ref_social_ph: 'Quale piattaforma? es. Instagram, LinkedIn, X...', ref_other_ph: 'Per favore specifica...',
     s1_design_label: 'Hai una formazione in design?',
     bg_yes: 'Sì — lavoro o ho studiato design', bg_some: 'In parte — ho alcune conoscenze di design', bg_no: 'No',
     s2_num: '02 — Il prodotto', s2_title: 'Mostraci il prodotto',
-    s2_desc: 'Hai mai incontrato un oggetto e sentito che non era pensato per te? Carica una foto di qualsiasi prodotto che ti abbia fatto sentire così.<br><br>Può essere qualcosa che possiedi, usi, ti è stato regalato, che hai visto in un negozio, a casa di qualcuno, sui social media o ovunque online. Solo oggetti fisici.',
+    s2_desc: 'Hai mai incontrato un oggetto e sentito che non era pensato per te? Carica una foto di qualsiasi prodotto che ti abbia fatto sentire così.<br><br>Può essere qualcosa che possiedi, usi, ti è stato regalato, che hai visto in un negozio, a casa di qualcuno, sui social media o ovunque online. Solo oggetti fisici — per esempio, un laptop è un oggetto fisico, mentre un\'interfaccia di un\'app non lo è.',
     s2_upload_label: 'Carica immagine', s2_upload_text: 'Clicca per caricare o trascina un\'immagine qui', s2_change_img: 'Cambia immagine',
     s2_type_label: 'Che tipo di prodotto è?', s2_type_ph: 'es. cura personale, piccolo elettrodomestico, attrezzatura sportiva, dispositivo medico...',
-    s2_why_label: 'In poche parole, cosa ti ha spinto a scegliere questo prodotto?', s2_why_ph: 'Descrivi cosa ti ha colpito...',
+    s2_why_label: 'In poche parole, cosa ti ha spinto a scegliere questo prodotto?', s2_why_ph: 'Descrivi cosa ti ha colpito...', s2_why_hint: 'Pensa al suo <em>linguaggio del prodotto</em> — le qualità formali che comunicano significato: la sua forma, il colore, il materiale, la texture o altri elementi estetici.',
     s3_num: '03 — La tua esperienza', s3_title: 'Mi fa sentire…',
     s3_desc: 'Seleziona esattamente 5 emozioni che descrivono meglio la tua esperienza con questo prodotto.',
     s3_other_label: 'Vuoi aggiungere qualcosa su come ti fa sentire?', s3_other_ph: 'Con le tue parole...',
     feel_count: (n, max) => n === max ? `${max} / ${max} — puoi continuare` : `${n} / ${max} selezionati`,
     s4_num: '04 — La tua posizionalità', s4_title: 'La tua posizione',
-    s4_desc: 'Questa ruota rappresenta la tua <span class="positionality-term" tabindex="0">posizionalità</span> — l\'insieme delle dimensioni sociali che plasmano la tua esperienza nel mondo. Per ogni dimensione, clicca sull\'anello che meglio riflette la tua posizione: l\'anello esterno rappresenta più ostacoli e marginalizzazione, quello interno meno ostacoli e più privilegio. Questa sezione è completamente opzionale — rispondi solo a ciò con cui ti senti a tuo agio. Le tue risposte sono completamente anonime e non vengono memorizzati dati personali.',
+    s4_desc: 'Questa ruota rappresenta la tua <span class="positionality-term" tabindex="0">posizionalità</span> — l\'insieme delle dimensioni sociali che plasmano la tua esperienza nel mondo. Per ogni dimensione, clicca sull\'anello che meglio riflette la tua posizione: l\'anello esterno può rappresentare più ostacoli e marginalizzazione, quello interno meno ostacoli e più privilegio. Questa sezione è completamente opzionale — rispondi solo a ciò con cui ti senti a tuo agio. Le tue risposte sono completamente anonime e non vengono memorizzati dati personali.',
     wheel_hint: 'Clicca su un anello per segnare la tua posizione. Clicca di nuovo per deselezionare.<br>Usa + e − per ingrandire/ridurre e trascina per navigare.',
     legend_fewer: 'meno ostacoli e più privilegio', legend_more: 'più ostacoli e marginalizzazione',
     no_dims: 'Nessuna dimensione selezionata',
-    s4_missing_label: 'Manca qualche dimensione nella ruota?', s4_missing_ph: 'es. religione, stato civile, struttura familiare, dieta...',
+    s4_missing_label: 'Manca qualche dimensione nella ruota?', s4_missing_ph: 'es. religione, stato civile, struttura familiare, dieta...', s4_impact_ph: 'Come ti impatta questa dimensione?',
     s4_custom_desc: 'Descrivi le tre posizioni all\'interno di questa dimensione per aggiungerla alla ruota.',
     ring_inner: 'Anello interno', ring_inner_sub: 'meno ostacoli', ring_mid: 'Anello medio', ring_outer: 'Anello esterno', ring_outer_sub: 'più ostacoli',
     custom_hint: 'La tua dimensione è stata aggiunta alla ruota — clicca su un anello per segnare la tua posizione.',
@@ -1017,26 +1004,6 @@ function validateSection(n) {
   const t = translations[currentLang];
 
   if (n === 1) {
-    const selected = document.querySelector('input[name="referral"]:checked');
-    if (!selected) {
-      document.getElementById('field-referral').classList.add('field-error');
-      document.querySelector('#field-referral .field-error-msg').textContent = t.err_select;
-      valid = false;
-    } else if (selected.id === 'ref-social') {
-      const detail = document.getElementById('referral-social-detail').value.trim();
-      if (!detail) {
-        document.getElementById('field-referral').classList.add('field-error');
-        document.querySelector('#field-referral .field-error-msg').textContent = t.err_platform;
-        valid = false;
-      }
-    } else if (selected.id === 'ref-other') {
-      const detail = document.getElementById('referral-other-detail').value.trim();
-      if (!detail) {
-        document.getElementById('field-referral').classList.add('field-error');
-        document.querySelector('#field-referral .field-error-msg').textContent = t.err_specify;
-        valid = false;
-      }
-    }
     const designBg = document.querySelector('input[name="design_bg"]:checked');
     if (!designBg) {
       document.getElementById('field-design-bg').classList.add('field-error');
@@ -1674,12 +1641,9 @@ async function submitSurvey() {
 
   const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
 
-  const referralEl = document.querySelector('input[name="referral"]:checked');
   const designBgEl = document.querySelector('input[name="design_bg"]:checked');
   const data = {
     responseId:           responseId,
-    referral:             referralEl ? referralEl.value : '',
-    referral_detail:      document.getElementById('referral-social-detail').value.trim() || document.getElementById('referral-other-detail').value.trim(),
     design_background:    designBgEl ? designBgEl.value : '',
     productType:   document.getElementById('product-type').value,
     whyChosen:     document.getElementById('why-chosen').value,
@@ -1697,6 +1661,7 @@ async function submitSurvey() {
     data[dim.name] = r !== null ? wheelDimensions[i].rings[r] : '';
   });
   data['custom_category_name']     = document.getElementById('missing-category').value.trim();
+  data['custom_category_impact']   = document.getElementById('missing-impact').value.trim();
   data['custom_category_ring_0']   = document.getElementById('custom-ring-0').value.trim();
   data['custom_category_ring_1']   = document.getElementById('custom-ring-1').value.trim();
   data['custom_category_ring_2']   = document.getElementById('custom-ring-2').value.trim();
@@ -1908,13 +1873,6 @@ document.getElementById('img-input').addEventListener('change', () => {
 });
 document.getElementById('product-type').addEventListener('input', () => {
   document.getElementById('field-product-type').classList.remove('field-error');
-});
-document.querySelectorAll('input[name="referral"]').forEach(el => {
-  el.addEventListener('change', () => {
-    document.getElementById('field-referral').classList.remove('field-error');
-    document.getElementById('referral-social-wrap').style.display = el.id === 'ref-social' ? 'block' : 'none';
-    document.getElementById('referral-other-wrap').style.display  = el.id === 'ref-other'  ? 'block' : 'none';
-  });
 });
 document.querySelectorAll('input[name="design_bg"]').forEach(el => {
   el.addEventListener('change', () => {
