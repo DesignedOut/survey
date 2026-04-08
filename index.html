@@ -89,6 +89,23 @@
   .field { margin-bottom: 2rem; }
   .field label { display: block; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.5rem; }
   .field label .opt { font-weight: 300; color: var(--ink-faint); font-size: 12px; margin-left: 6px; letter-spacing: 0; }
+
+  .consent-block { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .consent-check { display: flex; align-items: flex-start; gap: 0.7rem; margin-top: 1rem; cursor: pointer; }
+  .consent-check input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; min-width: 16px; accent-color: var(--accent); cursor: pointer; }
+  .consent-check label { font-size: 13px; color: var(--ink); line-height: 1.5; cursor: pointer; }
+  .consent-check label strong { font-weight: 500; }
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; }
+  .info-accordion { margin-top: 1.2rem; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .info-accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; background: var(--paper-warm); cursor: pointer; font-size: 12px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.04em; user-select: none; }
+  .info-accordion-header:hover { color: var(--ink); }
+  .info-accordion-body { display: none; padding: 1rem; font-size: 12px; color: var(--ink-soft); line-height: 1.7; border-top: 1px solid var(--border); }
+  .info-accordion-body p { margin-bottom: 0.6rem; }
+  .info-accordion-body p:last-child { margin-bottom: 0; }
+  .info-accordion.open .info-accordion-body { display: block; }
+  .info-accordion.open .info-accordion-header .acc-arrow { transform: rotate(180deg); }
+  .acc-arrow { transition: transform 0.2s; display: inline-block; }
+
   .field-hint { font-size: 12px; color: var(--ink-soft); font-style: italic; margin: 0.3rem 0 0.6rem; line-height: 1.5; }
 
   .upload-zone { border: 1.5px dashed var(--paper-mid); border-radius: var(--radius); padding: 2.5rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--paper-warm); position: relative; }
@@ -331,10 +348,35 @@
 <section class="section active" id="s0">
   <h2 class="section-title" data-i18n="landing_title">About this survey</h2>
   <p class="section-desc" data-i18n="landing_desc">Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.</p>
-  <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 5 minutes</p>
-  <p class="survey-note" data-i18n="landing_note">This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary. The survey is completely anonymous — a random ID is assigned to each response and cannot be traced back to you.</p>
+  <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 7–10 minutes</p>
+
+  <div class="info-accordion" id="info-accordion">
+    <div class="info-accordion-header" onclick="document.getElementById('info-accordion').classList.toggle('open')">
+      <span data-i18n="info_toggle">About this research — read before participating</span>
+      <span class="acc-arrow">▾</span>
+    </div>
+    <div class="info-accordion-body" data-i18n="info_body">
+      <p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026).</p>
+      <p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p>
+      <p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p>
+      <p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p>
+      <p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above. For further information, contact <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>
+    </div>
+  </div>
+
+  <div class="consent-block">
+    <div class="consent-check">
+      <input type="checkbox" id="consent-age" onchange="updateStartBtn()">
+      <label for="consent-age" data-i18n="consent_age">I declare that I am <strong>18 years of age or older.</strong></label>
+    </div>
+    <div class="consent-check">
+      <input type="checkbox" id="consent-info" onchange="updateStartBtn()">
+      <label for="consent-info" data-i18n="consent_info">I have read the information about this research project and I consent to my anonymous responses being used for the purposes described.</label>
+    </div>
+  </div>
+
   <div class="btn-row" style="margin-top:2rem;">
-    <button class="btn-next" onclick="goTo(1)" style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;" data-i18n="btn_start">Start survey →</button>
+    <button class="btn-next" id="btn-start" onclick="goTo(1)" disabled style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;" data-i18n="btn_start">Start survey →</button>
   </div>
 </section>
 
@@ -466,7 +508,6 @@
   <div class="field" style="margin-top:2rem;">
     <label data-i18n="s4_missing_label">Is there a dimension missing from the wheel? <span class="opt" data-i18n="opt">optional</span></label>
     <input type="text" id="missing-category" data-i18n-placeholder="s4_missing_ph" placeholder="e.g. religion, civil status, family structure, diet..." style="margin-bottom:0.6rem;">
-    <textarea id="missing-impact" data-i18n-placeholder="s4_impact_ph" placeholder="How does this dimension impact you?" style="margin-top:0.4rem;margin-bottom:0.6rem;"></textarea>
     <div id="custom-rings-wrap" style="display:none;">
       <p style="font-size:13px;color:var(--ink-soft);margin:0.8rem 0 0.6rem;font-style:italic;" data-i18n="s4_custom_desc">Describe the three positions within this dimension to add it to the wheel.</p>
       <div id="custom-rings" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
@@ -484,6 +525,7 @@
         </div>
       </div>
       <p id="custom-hint" style="display:none;margin-top:0.7rem;font-size:12px;color:var(--ink-faint);font-style:italic;" data-i18n="custom_hint">Your dimension has been added to the wheel above — click a ring to mark your position.</p>
+      <textarea id="missing-impact" data-i18n-placeholder="s4_impact_ph" placeholder="How does this dimension impact you?" style="margin-top:1rem;"></textarea>
     </div>
   </div>
 
@@ -727,6 +769,12 @@ const modalEl = document.createElement('div');
 modalEl.className = 'modal-box';
 document.body.appendChild(modalEl);
 
+function updateStartBtn() {
+  const age = document.getElementById('consent-age').checked;
+  const info = document.getElementById('consent-info').checked;
+  document.getElementById('btn-start').disabled = !(age && info);
+}
+
 function hideModal() {
   modalEl.classList.remove('visible');
   modalOverlayEl.classList.remove('visible');
@@ -741,8 +789,12 @@ const translations = {
     landing_title: 'About this survey',
     landing_desc: 'Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.',
     landing_time: 'Estimated time: 7–10 minutes',
-    landing_note: 'This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older. Your responses will be anonymous to the extent possible with internet platforms.',
-    btn_start: 'Start survey →', btn_back: '← Back', btn_continue: 'Continue →', btn_submit: 'Submit →', btn_reset: 'Reset', btn_download: 'Download',
+    landing_note: 'This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older.',
+    btn_start: 'Start survey →',
+    info_toggle: 'ℹ️ Privacy Notice and Research Information',
+    info_body: '<p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026).</p><p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p><p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p><p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p><p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above. For further information, contact <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
+    consent_age: 'I declare that I am <strong>18 years of age or older.</strong>',
+    consent_info: 'I have read the <strong>Privacy Notice and Research Information</strong> and I consent to my anonymous responses being used for the purposes described.', btn_back: '← Back', btn_continue: 'Continue →', btn_submit: 'Submit →', btn_reset: 'Reset', btn_download: 'Download',
     opt: 'optional',
     s1_num: '01 — About you', s1_title: 'Your relation to design.',
     s1_referral_label: 'How did you find this survey?',
@@ -797,8 +849,12 @@ const translations = {
     landing_title: 'Sobre esta encuesta',
     landing_desc: 'Todo objeto tiene un lenguaje. Habla a través del color, la forma, el material y la textura — y esas decisiones llevan suposiciones silenciosas sobre para quién fue diseñado. Esta encuesta recoge ejemplos de objetos cotidianos que comunican exclusión o discriminación a través de su <em><strong>lenguaje de producto</strong></em>.',
     landing_time: 'Tiempo estimado: 7–10 minutos',
-    landing_note: 'Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria y los participantes deben tener 18 años o más. Tus respuestas serán anónimas en la medida de lo posible con las plataformas de internet.',
-    btn_start: 'Comenzar →', btn_back: '← Atrás', btn_continue: 'Continuar →', btn_submit: 'Enviar →', btn_reset: 'Reiniciar', btn_download: 'Descargar',
+    landing_note: 'Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria y los participantes deben tener 18 años o más.',
+    btn_start: 'Comenzar →',
+    info_toggle: 'ℹ️ Aviso de privacidad e información sobre la investigación',
+    info_body: '<p><strong>Quién realiza esta investigación</strong><br>Esta encuesta forma parte de un proyecto de investigación doctoral realizado por Martina Labarta Labrador en el Departamento de Diseño del Politecnico di Milano (Italia), actualmente desarrollado durante una estancia de investigación visitante en Virginia Tech (EE.UU., marzo–junio 2026).</p><p><strong>De qué trata esta investigación</strong><br>La investigación estudia cómo las cualidades visuales y estéticas de los productos de consumo cotidiano — incluyendo su forma, color, material y otras propiedades formales — pueden comunicar suposiciones implícitas sobre para quién está diseñado un producto, y al hacerlo pueden excluir o discriminar a ciertos grupos de personas. El objetivo es desarrollar un marco práctico para ayudar a los diseñadores a identificar y evitar estos patrones discriminatorios.</p><p><strong>Qué se te pide</strong><br>Se te invita a enviar una foto de un producto físico que hayas encontrado y que te haya hecho sentir excluido/a, discriminado/a o no considerado/a como usuario/a. Luego se te pedirá que selecciones palabras que describan cómo te hace sentir ese producto y, opcionalmente, que reflexiones sobre tu propia posición social.</p><p><strong>Datos y anonimato</strong><br>Esta encuesta no recoge ninguna información personal identificable — ni nombres, ni correos electrónicos, ni datos de contacto. A cada respuesta se le asigna un código anónimo generado aleatoriamente que no puede vincularse a ninguna persona. Los datos se utilizarán exclusivamente con fines de investigación académica y cualquier resultado publicado presentará los datos de forma agregada y anonimizada.</p><p><strong>Participación voluntaria</strong><br>La participación es completamente voluntaria. Puedes detenerte en cualquier momento sin consecuencias. Al continuar, consientes que tus respuestas anónimas se utilicen para los fines descritos. Para más información, contacta a <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
+    consent_age: 'Declaro que tengo <strong>18 años o más.</strong>',
+    consent_info: 'He leído el <strong>Aviso de privacidad e información sobre la investigación</strong> y consiento que mis respuestas anónimas se utilicen para los fines descritos.', btn_back: '← Atrás', btn_continue: 'Continuar →', btn_submit: 'Enviar →', btn_reset: 'Reiniciar', btn_download: 'Descargar',
     opt: 'opcional',
     s1_num: '01 — Sobre ti', s1_title: 'Tu relación con el diseño.',
     s1_referral_label: '¿Cómo encontraste esta encuesta?',
@@ -852,8 +908,12 @@ const translations = {
     landing_title: 'Su questo sondaggio',
     landing_desc: 'Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.',
     landing_time: 'Tempo stimato: 7–10 minuti',
-    landing_note: 'Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più. Le tue risposte saranno anonime nella misura in cui le piattaforme internet lo consentono.',
-    btn_start: 'Inizia →', btn_back: '← Indietro', btn_continue: 'Continua →', btn_submit: 'Invia →', btn_reset: 'Reimposta', btn_download: 'Scarica',
+    landing_note: 'Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più.',
+    btn_start: 'Inizia →',
+    info_toggle: 'ℹ️ Informativa sulla privacy e informazioni sulla ricerca',
+    info_body: '<p><strong>Chi conduce questa ricerca</strong><br>Questo sondaggio fa parte di un progetto di ricerca dottorale condotto da Martina Labarta Labrador presso il Dipartimento di Design del Politecnico di Milano (Italia), attualmente sviluppato durante un periodo di ricerca visitante presso la Virginia Tech (USA, marzo–giugno 2026).</p><p><strong>Di cosa tratta questa ricerca</strong><br>La ricerca indaga come le qualità visive ed estetiche dei prodotti di consumo quotidiani — tra cui la forma, il colore, il materiale e altre proprietà formali — possano comunicare assunzioni implicite su chi è destinatario di un prodotto, e in questo modo escludere o discriminare determinati gruppi di persone. L\'obiettivo è sviluppare un framework pratico per aiutare i designer a identificare ed evitare questi schemi discriminatori.</p><p><strong>Cosa ti viene chiesto</strong><br>Sei invitato/a a inviare una foto di un prodotto fisico che hai incontrato e che ti ha fatto sentire escluso/a, discriminato/a o non considerato/a come utente. Ti verrà poi chiesto di selezionare parole che descrivono come ti fa sentire quel prodotto e, facoltativamente, di riflettere sulla tua posizione sociale.</p><p><strong>Dati e anonimato</strong><br>Questo sondaggio non raccoglie alcuna informazione personale identificabile — né nomi, né indirizzi email, né dati di contatto. A ogni risposta viene assegnato un codice anonimo generato casualmente che non può essere ricondotto a nessuna persona. I dati verranno utilizzati esclusivamente per scopi di ricerca accademica e qualsiasi risultato pubblicato presenterà i dati in forma aggregata e anonimizzata.</p><p><strong>Partecipazione volontaria</strong><br>La partecipazione è completamente volontaria. Puoi interrompere in qualsiasi momento senza conseguenze. Procedendo, acconsenti all\'utilizzo delle tue risposte anonime per gli scopi descritti. Per ulteriori informazioni, scrivi a <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
+    consent_age: 'Dichiaro di avere <strong>18 anni o più.</strong>',
+    consent_info: 'Ho letto l\'<strong>Informativa sulla privacy e le informazioni sulla ricerca</strong> e acconsento all\'utilizzo delle mie risposte anonime per gli scopi descritti.', btn_back: '← Indietro', btn_continue: 'Continua →', btn_submit: 'Invia →', btn_reset: 'Reimposta', btn_download: 'Scarica',
     opt: 'opzionale',
     s1_num: '01 — Su di te', s1_title: 'Il tuo rapporto con il design.',
     s1_referral_label: 'Come hai trovato questo sondaggio?',
@@ -928,6 +988,14 @@ function setLanguage(lang) {
     const key = el.dataset.i18nPlaceholder;
     if (t[key]) el.placeholder = t[key];
   });
+
+  // Re-bind consent checkbox labels (since innerHTML replaced them)
+  const ageLabel = document.querySelector('label[for="consent-age"]');
+  if (ageLabel) ageLabel.innerHTML = t.consent_age;
+  const infoLabel = document.querySelector('label[for="consent-info"]');
+  if (infoLabel) infoLabel.innerHTML = t.consent_info;
+  // Keep start button state consistent with checkbox state
+  updateStartBtn();
 
   // Update progress label
   const labelEl = document.getElementById('progress-label');
