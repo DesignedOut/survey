@@ -1727,15 +1727,26 @@ async function submitSurvey() {
   const checkedIndices = new Set([...document.querySelectorAll('#feel-grid input:checked')].map(el => el.id.replace('f-','')));
   enFeelings.forEach((f, idx) => { data['feeling_' + f.replace(/ /g,'_')] = checkedIndices.has(String(idx)) ? 1 : 0; });
   data['survey_language'] = currentLang;
+  const enDims = translations.en.wheel_dims;
   wheelDimensions.forEach((dim, i) => {
     const r = wheelState[i];
-    if (dim && r !== null) data[dim.name] = dim.rings[r];
+    if (dim && r !== null) {
+      // Always store under English dimension name for consistent column mapping
+      const enName = enDims[i] ? enDims[i].name : dim.name;
+      data[enName] = dim.rings[r];
+    }
   });
   data['custom_category_name']     = document.getElementById('missing-category').value.trim();
   data['custom_category_impact']   = document.getElementById('missing-impact').value.trim();
   data['custom_category_ring_0']   = document.getElementById('custom-ring-0').value.trim();
   data['custom_category_ring_1']   = document.getElementById('custom-ring-1').value.trim();
   data['custom_category_ring_2']   = document.getElementById('custom-ring-2').value.trim();
+  // Store custom dimension selected ring value under its name for Apps Script lookup
+  const customName = document.getElementById('missing-category').value.trim();
+  if (customName && wheelState[translations.en.wheel_dims.length] !== null) {
+    const customDimEntry = wheelDimensions[translations.en.wheel_dims.length];
+    if (customDimEntry) data[customName] = customDimEntry.rings[wheelState[translations.en.wheel_dims.length]];
+  }
 
   const imgInput = document.getElementById('img-input');
   const file = imgInput.files && imgInput.files[0];
