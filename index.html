@@ -1018,12 +1018,24 @@ function buildFeelings() {
   const grid = document.getElementById('feel-grid');
   const t = translations[currentLang];
   const MAX = 5;
+
+  // If grid already has items, just update labels (preserves checked state)
+  const existing = grid.querySelectorAll('.feel-item');
+  if (existing.length === t.feelings.length) {
+    t.feelings.forEach((f, idx) => {
+      const label = grid.querySelector(`label[for="f-${idx}"]`);
+      if (label) label.textContent = f;
+    });
+    return;
+  }
+
+  // First build — create checkboxes from scratch
   grid.innerHTML = '';
   t.feelings.forEach((f, idx) => {
     const item = document.createElement('div');
     item.className = 'feel-item';
     const id = 'f-' + idx;
-    item.innerHTML = `<input type="checkbox" id="${id}" value="${f}"><label for="${id}">${f}</label>`;
+    item.innerHTML = `<input type="checkbox" id="${id}" value="${idx}"><label for="${id}">${f}</label>`;
     const cb = item.querySelector('input');
     cb.addEventListener('change', () => {
       const checked = grid.querySelectorAll('input:checked');
@@ -1056,10 +1068,12 @@ function updateStickySelection() {
     sticky.style.display = 'none';
     return;
   }
-  sticky.style.display = 'flex';
-  sticky.innerHTML = Array.from(checked).map(cb =>
-    `<span class="sel-pill" style="background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple-dark);">${cb.value}</span>`
-  ).join('');
+  sticky.display = 'flex';
+  sticky.innerHTML = Array.from(checked).map(cb => {
+    const label = document.querySelector(`label[for="${cb.id}"]`);
+    const text = label ? label.textContent : cb.value;
+    return `<span class="sel-pill" style="background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple-dark);">${text}</span>`;
+  }).join('');
 }
 
 function clearErrors() {
@@ -1725,8 +1739,7 @@ async function submitSurvey() {
   // One column per feeling (1 = selected, 0 = not selected) — always stored as English labels
   const enFeelings = translations.en.feelings;
   const allChecked = [...document.querySelectorAll('#feel-grid input:checked')];
-  console.log('Checked feelings count:', allChecked.length, 'IDs:', allChecked.map(el => el.id));
-  const checkedIndices = new Set(allChecked.map(el => el.id.replace('f-','')));
+  const checkedIndices = new Set(allChecked.map(el => el.value));
   enFeelings.forEach((f, idx) => { data['feeling_' + f.replace(/ /g,'_')] = checkedIndices.has(String(idx)) ? 1 : 0; });
   data['survey_language'] = currentLang;
   const enDims = translations.en.wheel_dims;
