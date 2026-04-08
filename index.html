@@ -1003,12 +1003,23 @@ function setLanguage(lang) {
     labelEl.textContent = t.progress(currentSection, 4);
   }
 
-  // Rebuild feelings grid in new language
+  // Rebuild feelings grid in new language (preserves checked state)
   buildFeelings();
 
-  // Update wheel dimensions and rebuild
+  // Update wheel dimensions — preserve custom dimension and wheelState
+  const savedWheelState = Object.assign({}, wheelState);
   wheelDimensions.length = 0;
   t.wheel_dims.forEach(d => wheelDimensions.push(d));
+  // Re-add custom dimension if it exists
+  if (customDim !== null) {
+    wheelDimensions.push(customDim);
+    // Restore custom rings wrap visibility
+    document.getElementById('custom-rings-wrap').style.display = 'block';
+    const anyRing = [0,1,2].some(n => document.getElementById('custom-ring-' + n).value.trim());
+    document.getElementById('custom-hint').style.display = anyRing ? 'block' : 'none';
+  }
+  // Restore wheelState
+  Object.keys(savedWheelState).forEach(k => { wheelState[k] = savedWheelState[k]; });
   buildWheel();
   renderWheel();
   renderPills();
@@ -1068,7 +1079,7 @@ function updateStickySelection() {
     sticky.style.display = 'none';
     return;
   }
-  sticky.display = 'flex';
+  sticky.style.display = 'flex';
   sticky.innerHTML = Array.from(checked).map(cb => {
     const label = document.querySelector(`label[for="${cb.id}"]`);
     const text = label ? label.textContent : cb.value;
