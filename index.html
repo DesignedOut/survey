@@ -1731,9 +1731,9 @@ async function submitSurvey() {
   wheelDimensions.forEach((dim, i) => {
     const r = wheelState[i];
     if (dim && r !== null) {
-      // Always store under English dimension name for consistent column mapping
       const enName = enDims[i] ? enDims[i].name : dim.name;
-      data[enName] = dim.rings[r];
+      const enRingLabel = enDims[i] ? enDims[i].rings[r] : dim.rings[r];
+      data[enName] = enRingLabel;
     }
   });
   data['custom_category_name']     = document.getElementById('missing-category').value.trim();
