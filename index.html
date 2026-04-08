@@ -1724,7 +1724,9 @@ async function submitSurvey() {
   };
   // One column per feeling (1 = selected, 0 = not selected) — always stored as English labels
   const enFeelings = translations.en.feelings;
-  const checkedIndices = new Set([...document.querySelectorAll('#feel-grid input:checked')].map(el => el.id.replace('f-','')));
+  const allChecked = [...document.querySelectorAll('#feel-grid input:checked')];
+  console.log('Checked feelings count:', allChecked.length, 'IDs:', allChecked.map(el => el.id));
+  const checkedIndices = new Set(allChecked.map(el => el.id.replace('f-','')));
   enFeelings.forEach((f, idx) => { data['feeling_' + f.replace(/ /g,'_')] = checkedIndices.has(String(idx)) ? 1 : 0; });
   data['survey_language'] = currentLang;
   const enDims = translations.en.wheel_dims;
