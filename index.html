@@ -1397,7 +1397,8 @@ function buildWheel() {
       'Monolingüe no anglófono/a': ['Monolingüe', 'no anglófono/a'],
       'Monolingue non anglofonə': ['Monolingue', 'non anglofono/a'],
       'Colore della pelle': ['della pelle', 'Colore'],
-      'Affitto / Ospitatə': ['Ospitatə', 'In affitto /'],
+      'Toni intermedi': ['Toni', 'intermedi']
+      'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
       'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
@@ -1495,7 +1496,13 @@ function buildWheel() {
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
-    const radialOverride = ['Documented','Tonos intermedios','Bachillerato','Discapacidad leve'];
+    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi','Discapacidad leve',
+  'Scuola sup. di 3º grado','Scuola sup. di 2º grado',
+  'Neurodiversità significativa','Disabilità significativa',
+  'Neurodiversidad significativa','Discapacidad significativa',
+  'Lesbica, bi, pan, asessuale','Lesbiana, bi, pan, asexual',
+  'Monolingue non anglofonə','Monolingüe no anglófono/a',
+  'Popolazione indigene'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
