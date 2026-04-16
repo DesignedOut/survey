@@ -279,7 +279,7 @@
 <section class="section active" id="s0">
   <h2 class="section-title" data-i18n="landing_title">About this survey</h2>
   <p class="section-desc" data-i18n="landing_desc">Every object has a language.</p>
-  <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 7–10 minutes</p>
+  <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 5 minutes</p>
 
   <div class="info-accordion" id="info-accordion">
     <div class="info-accordion-header" onclick="document.getElementById('info-accordion').classList.toggle('open')">
@@ -514,6 +514,8 @@ const translations = {
     btn_download: "Download",
     opt:          "optional",
     progress:     (n, t) => `Section ${n} of ${t}`,
+    progress_complete: "Complete",
+    btn_sending:       "Sending…",
 
     // ── ERROR MESSAGES ────────────────────────────────────────────────────────
     err_upload:   "Please upload an image of the product.",
@@ -593,7 +595,7 @@ const translations = {
     // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
     s4_num:               "04 — Your positionality",
     s4_title:             "Where you stand",
-    s4_desc:              "This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.",
+    s4_desc:              "This wheel maps your <span class=\"positionality-term\" tabindex=\"0\">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.",
     wheel_hint:           "Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.",
     legend_fewer:         "fewer obstacles & more privilege",
     legend_more:          "more obstacles & marginalization",
@@ -649,6 +651,8 @@ const translations = {
     btn_download: "Descargar",
     opt:          "opcional",
     progress:     (n, t) => `Sección ${n} de ${t}`,
+    progress_complete: "Completado",
+    btn_sending:       "Enviando…",
 
     // ── ERROR MESSAGES ────────────────────────────────────────────────────────
     err_upload:   "Por favor, sube una imagen del producto.",
@@ -780,6 +784,8 @@ const translations = {
     btn_download: "Scarica",
     opt:          "opzionale",
     progress:     (n, t) => `Sezione ${n} di ${t}`,
+    progress_complete: "Completato",
+    btn_sending:       "Invio in corso…",
 
     // ── ERROR MESSAGES ────────────────────────────────────────────────────────
     err_upload:   "Per favore carica un'immagine del prodotto.",
@@ -792,7 +798,7 @@ const translations = {
     // ── LANDING PAGE ──────────────────────────────────────────────────────────
     landing_title: "Su questo sondaggio",
     landing_desc:  "Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.",
-    landing_time:  "Tempo stimato: 7–10 minuti",
+    landing_time:  "Tempo stimato: 5 minuti",
     landing_note:  "Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più.",
 
     // Privacy notice — accordion label
@@ -1821,7 +1827,7 @@ let customDebounce;
 
 async function submitSurvey() {
   const btn = document.querySelector('#s4 .btn-next');
-  btn.textContent = 'Sending…';
+  btn.textContent = translations[currentLang].btn_sending || 'Sending…';
   btn.disabled = true;
 
   const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
@@ -1879,7 +1885,7 @@ async function submitSurvey() {
     .then(() => {
       ['s0','s1','s2','s3','s4'].forEach(id => { document.getElementById(id).style.display='none'; });
       document.getElementById('progress').style.width = '100%';
-      document.getElementById('progress-label').textContent = 'Complete';
+      document.getElementById('progress-label').textContent = translations[currentLang].progress_complete || 'Complete';
       document.getElementById('thankyou').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     })
