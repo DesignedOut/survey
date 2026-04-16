@@ -116,7 +116,6 @@
   .upload-text { font-size: 14px; color: var(--ink-soft); }
   .upload-subtext { font-size: 12px; color: var(--ink-faint); margin-top: 0.3rem; }
 
-
   input[type="text"], textarea { width: 100%; font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink); background: var(--paper-warm); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1rem; outline: none; transition: border-color 0.2s; resize: vertical; }
   input[type="text"]:focus, textarea:focus { border-color: var(--accent); background: #fff; }
   textarea { min-height: 80px; }
@@ -157,36 +156,13 @@
   .divider-mark { width: 32px; height: 2px; background: var(--accent); margin: 1.5rem auto; }
 
   .field-error input[type="text"],
-  .field-error textarea {
-    border-color: #c0392b;
-    background: #fdf0ef;
-  }
-  .field-error .upload-zone {
-    border-color: #c0392b;
-    background: #fdf0ef;
-  }
-  .field-error .feel-grid {
-    outline: 1.5px solid #c0392b;
-    border-radius: var(--radius);
-    background: #fdf0ef;
-    padding: 6px;
-  }
-  .field-error-msg {
-    display: none;
-    font-size: 12px;
-    color: #c0392b;
-    margin-top: 0.4rem;
-    font-style: italic;
-  }
+  .field-error textarea { border-color: #c0392b; background: #fdf0ef; }
+  .field-error .upload-zone { border-color: #c0392b; background: #fdf0ef; }
+  .field-error .feel-grid { outline: 1.5px solid #c0392b; border-radius: var(--radius); background: #fdf0ef; padding: 6px; }
+  .field-error-msg { display: none; font-size: 12px; color: #c0392b; margin-top: 0.4rem; font-style: italic; }
   .field-error .field-error-msg { display: block; }
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
 
-  .section--landing {
-    border-bottom: none;
-    padding-top: 0.5rem;
-  }
+  .section--landing { border-bottom: none; padding-top: 0.5rem; }
 
   @media (max-width: 500px) {
     .survey-header, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
@@ -194,8 +170,6 @@
     .wheel-hint { font-size: 13px; }
     #wheel-container { border-radius: 8px; }
   }
-
-
 
   @keyframes glitch-main {
     0%,1.9%,4.1%,6%,59.9%,62.1%,64%,74.9%,76.1%,78%,100% { transform:translate(0) skewX(0); }
@@ -232,60 +206,34 @@
     76%      { clip-path:inset(0 0 100% 0);  opacity:0; }
   }
   .glitch-t {
-    display: inline-block;
-    position: relative;
-    font-style: italic;
+    display: inline-block; position: relative; font-style: italic;
     animation: glitch-main 5s steps(1) infinite;
-    background: none;
-    -webkit-text-fill-color: #1a1814;
-    color: #1a1814;
+    background: none; -webkit-text-fill-color: #1a1814; color: #1a1814;
   }
   .glitch-t::before, .glitch-t::after {
-    content: attr(data-char);
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    content: attr(data-char); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   }
-  .glitch-t::before {
-    color: #0ea5e9;
-    -webkit-text-fill-color: #0ea5e9;
-    animation: glitch-r 5s steps(1) infinite;
-    clip-path: inset(0 0 100% 0);
-  }
-  .glitch-t::after {
-    color: #f43f5e;
-    animation: glitch-b 5s steps(1) infinite;
-    clip-path: inset(0 0 100% 0);
-  }
+  .glitch-t::before { color: #0ea5e9; -webkit-text-fill-color: #0ea5e9; animation: glitch-r 5s steps(1) infinite; clip-path: inset(0 0 100% 0); }
+  .glitch-t::after  { color: #f43f5e; animation: glitch-b 5s steps(1) infinite; clip-path: inset(0 0 100% 0); }
 
-  .positionality-term {
-    border-bottom: 1px dashed var(--ink-soft);
-    cursor: help;
-    display: inline;
-  }
+  .positionality-term { border-bottom: 1px dashed var(--ink-soft); cursor: help; display: inline; }
   .positionality-term:hover { border-bottom-color: var(--accent); color: var(--accent); }
 
   .wheel-tooltip-overlay { display: none; }
 
   .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 999; opacity: 0;
-    pointer-events: none; transition: opacity 0.2s;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.2s;
   }
   .modal-overlay.visible { opacity: 1; pointer-events: auto; }
   .modal-box {
     position: fixed; top: 50%; left: 50%;
     transform: translate(-50%,-50%) scale(0.97);
     width: 80vw; max-width: 480px;
-    background: #1a1814;
-    color: #faf9f7;
-    font-family: var(--sans);
-    font-size: 15px; font-weight: 300; line-height: 1.7;
-    padding: 2rem 2rem 1.5rem;
-    border-radius: 12px;
-    z-index: 1000; opacity: 0;
-    pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+    background: #1a1814; color: #faf9f7;
+    font-family: var(--sans); font-size: 15px; font-weight: 300; line-height: 1.7;
+    padding: 2rem 2rem 1.5rem; border-radius: 12px;
+    z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
   }
   .modal-box.visible { opacity: 1; pointer-events: auto; transform: translate(-50%,-50%) scale(1); }
   .modal-box strong { font-weight: 500; font-size: 17px; display: block; margin-bottom: 0.6rem; color: #fff; }
@@ -293,39 +241,23 @@
     display: block; margin-top: 1.2rem; margin-left: auto;
     background: none; border: 1px solid rgba(255,255,255,0.25);
     color: rgba(255,255,255,0.7); font-size: 13px;
-    font-family: var(--sans); padding: 5px 16px;
-    border-radius: 20px; cursor: pointer;
+    font-family: var(--sans); padding: 5px 16px; border-radius: 20px; cursor: pointer;
   }
   .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
   .wheel-tooltip {
-    position: fixed;
-    background: #1a1814;
-    color: #faf9f7;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.55;
-    padding: 10px 14px;
-    border-radius: 6px;
-    max-width: 240px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.15s;
-    z-index: 1000;
+    position: fixed; background: #1a1814; color: #faf9f7;
+    font-family: var(--sans); font-size: 13px; font-weight: 300; line-height: 1.55;
+    padding: 10px 14px; border-radius: 6px; max-width: 240px;
+    pointer-events: none; opacity: 0; transition: opacity 0.15s; z-index: 1000;
   }
   .wheel-tooltip.visible { opacity: 1; }
   .wheel-tooltip strong { font-weight: 500; display: block; margin-bottom: 3px; color: #fff; }
+
   .lang-switcher { display: flex; gap: 6px; justify-content: flex-end; padding: 0.8rem 2rem 0; max-width: 680px; margin: 0 auto; }
   .lang-btn { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink-faint); background: none; border: none; cursor: pointer; padding: 2px 4px; letter-spacing: 0.04em; transition: color 0.15s; }
   .lang-btn:hover { color: var(--ink-soft); }
   .lang-btn.active { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent); }
-    background: var(--accent);
-    color: #fff;
-    padding: 0.05em 0.35em;
-    border-radius: 2px;
-    font-style: normal;
-  }
 </style>
 </head>
 <body>
@@ -339,7 +271,6 @@
 <header class="survey-header">
   <h1>Designed Ou<span class="glitch-t" data-char="t">t</span></h1>
   <p class="h1-sub" data-i18n="subtitle">Discrimination in product language</p>
-
   <div class="progress-bar" style="display:none;"><div class="progress-fill" id="progress"></div></div>
   <p class="progress-label" id="progress-label" style="display:none;"></p>
 </header>
@@ -347,65 +278,59 @@
 <!-- LANDING -->
 <section class="section active" id="s0">
   <h2 class="section-title" data-i18n="landing_title">About this survey</h2>
-  <p class="section-desc" data-i18n="landing_desc">Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.</p>
+  <p class="section-desc" data-i18n="landing_desc">Every object has a language.</p>
   <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 7–10 minutes</p>
 
   <div class="info-accordion" id="info-accordion">
     <div class="info-accordion-header" onclick="document.getElementById('info-accordion').classList.toggle('open')">
-      <span data-i18n="info_toggle">About this research — read before participating</span>
-      <span class="acc-arrow">▾</span>
+      <span data-i18n="info_toggle">About this research</span>
+      <span class="acc-arrow">&#9662;</span>
     </div>
-    <div class="info-accordion-body" data-i18n="info_body">
-      <p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026).</p>
-      <p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p>
-      <p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p>
-      <p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p>
-      <p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above. For further information, contact <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>
-    </div>
+    <div class="info-accordion-body" data-i18n="info_body"></div>
   </div>
 
   <div class="consent-block">
     <div class="consent-check">
       <input type="checkbox" id="consent-age" onchange="updateStartBtn()">
-      <label for="consent-age" data-i18n="consent_age">I declare that I am <strong>18 years of age or older.</strong></label>
+      <label for="consent-age" data-i18n="consent_age">I declare that I am 18 years of age or older.</label>
     </div>
     <div class="consent-check">
       <input type="checkbox" id="consent-info" onchange="updateStartBtn()">
-      <label for="consent-info" data-i18n="consent_info">I have read the information about this research project and I consent to my anonymous responses being used for the purposes described.</label>
+      <label for="consent-info" data-i18n="consent_info">I have read the information and consent.</label>
     </div>
   </div>
 
   <div class="btn-row" style="margin-top:2rem;">
-    <button class="btn-next" id="btn-start" onclick="goTo(1)" disabled style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;" data-i18n="btn_start">Start survey →</button>
+    <button class="btn-next" id="btn-start" onclick="goTo(1)" disabled style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;" data-i18n="btn_start">Start survey &#8594;</button>
   </div>
 </section>
 
-<!-- SECTION 1 — HOW DID YOU FIND US -->
+<!-- SECTION 1 -->
 <section class="section" id="s1">
-  <div class="section-number" data-i18n="s1_num">01 — Before we start</div>
+  <div class="section-number" data-i18n="s1_num">01 &#8212; Before we start</div>
   <h2 class="section-title" data-i18n="s1_title">A couple of quick questions.</h2>
 
   <div class="field" id="field-design-bg">
     <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;" data-i18n="s1_design_label">Do you have a background in design?</label>
     <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="feel-item"><input type="radio" name="design_bg" id="bg-yes" value="Yes — I work or have studied in design"><label for="bg-yes" data-i18n="bg_yes">Yes — I work or have studied in design</label></div>
-      <div class="feel-item"><input type="radio" name="design_bg" id="bg-some" value="Somewhat — I have some design knowledge"><label for="bg-some" data-i18n="bg_some">Somewhat — I have some design knowledge</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-yes" value="Yes -- I work or have studied in design"><label for="bg-yes" data-i18n="bg_yes">Yes &#8212; I work or have studied in design</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-some" value="Somewhat -- I have some design knowledge"><label for="bg-some" data-i18n="bg_some">Somewhat &#8212; I have some design knowledge</label></div>
       <div class="feel-item"><input type="radio" name="design_bg" id="bg-no" value="No"><label for="bg-no" data-i18n="bg_no">No</label></div>
     </div>
     <p class="field-error-msg" data-i18n="err_select">Please select one option before continuing.</p>
   </div>
 
   <div class="btn-row">
-    <button class="btn-back" onclick="goTo(0)" data-i18n="btn_back">← Back</button>
-    <button class="btn-next" onclick="goTo(2)" data-i18n="btn_continue">Continue →</button>
+    <button class="btn-back" onclick="goTo(0)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(2)" data-i18n="btn_continue">Continue &#8594;</button>
   </div>
 </section>
 
 <!-- SECTION 2 -->
 <section class="section" id="s2">
-  <div class="section-number" data-i18n="s2_num">02 — The product</div>
+  <div class="section-number" data-i18n="s2_num">02 &#8212; The product</div>
   <h2 class="section-title" data-i18n="s2_title">Show us the product</h2>
-  <p class="section-desc" data-i18n="s2_desc">Have you ever encountered an object and felt it wasn't meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend's place, on social media, or anywhere online. Physical objects only.</p>
+  <p class="section-desc" data-i18n="s2_desc">Have you ever encountered an object...</p>
 
   <div class="field" id="field-image">
     <label data-i18n="s2_upload_label">Upload image</label>
@@ -427,26 +352,26 @@
 
   <div class="field" id="field-product-type">
     <label data-i18n="s2_type_label">What type of product is it?</label>
-    <input type="text" id="product-type" data-i18n-placeholder="s2_type_ph" placeholder="e.g. personal care, small appliance, sports equipment, medical device...">
+    <input type="text" id="product-type" data-i18n-placeholder="s2_type_ph" placeholder="e.g. personal care...">
     <p class="field-error-msg" data-i18n="err_type">Please describe what type of product this is.</p>
   </div>
 
   <div class="field">
     <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
-    <p class="field-hint" data-i18n="s2_why_hint">Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.</p>
+    <p class="field-hint" data-i18n="s2_why_hint">Think about its product language...</p>
     <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
   </div>
 
   <div class="btn-row">
-    <button class="btn-back" onclick="goTo(1)" data-i18n="btn_back">← Back</button>
-    <button class="btn-next" onclick="goTo(3)" data-i18n="btn_continue">Continue →</button>
+    <button class="btn-back" onclick="goTo(1)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(3)" data-i18n="btn_continue">Continue &#8594;</button>
   </div>
 </section>
 
 <!-- SECTION 3 -->
 <section class="section" id="s3">
-  <div class="section-number" data-i18n="s3_num">03 — Your experience</div>
-  <h2 class="section-title" data-i18n="s3_title">It makes me feel…</h2>
+  <div class="section-number" data-i18n="s3_num">03 &#8212; Your experience</div>
+  <h2 class="section-title" data-i18n="s3_title">It makes me feel&#8230;</h2>
   <p class="section-desc" data-i18n="s3_desc">Select exactly 5 feelings that best describe your experience with this product.</p>
 
   <div id="sticky-selection" style="display:none;position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--border);padding:0.6rem 0;flex-wrap:wrap;gap:6px;margin-bottom:1rem;"></div>
@@ -458,24 +383,24 @@
   </div>
 
   <div class="field" style="margin-top:0.5rem;">
-    <label data-i18n="s3_other_label">Anything else you'd like to say about how it makes you feel? <span class="opt" data-i18n="opt">optional</span></label>
+    <label data-i18n="s3_other_label">Anything else you'd like to say? <span class="opt" data-i18n="opt">optional</span></label>
     <textarea id="feel-other" data-i18n-placeholder="s3_other_ph" placeholder="In your own words..."></textarea>
   </div>
 
   <div class="btn-row">
-    <button class="btn-back" onclick="goTo(2)" data-i18n="btn_back">← Back</button>
-    <button class="btn-next" onclick="goTo(4)" data-i18n="btn_continue">Continue →</button>
+    <button class="btn-back" onclick="goTo(2)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(4)" data-i18n="btn_continue">Continue &#8594;</button>
   </div>
 </section>
 
 <!-- SECTION 4 -->
 <section class="section" id="s4">
-  <div class="section-number" data-i18n="s4_num">04 — Your positionality</div>
+  <div class="section-number" data-i18n="s4_num">04 &#8212; Your positionality</div>
   <h2 class="section-title" data-i18n="s4_title">Where you stand</h2>
-  <p class="section-desc" data-i18n="s4_desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span> — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.</p>
+  <p class="section-desc" data-i18n="s4_desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span>...</p>
 
   <div class="wheel-wrap">
-    <p class="wheel-hint" data-i18n="wheel_hint">Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.</p>
+    <p class="wheel-hint" data-i18n="wheel_hint">Click a ring within a spoke to mark your position.</p>
     <div style="display:flex;justify-content:center;gap:8px;margin-bottom:0;">
       <button id="zoom-out" disabled style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#8722;</button>
       <button id="zoom-in"  style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#43;</button>
@@ -507,7 +432,7 @@
 
   <div class="field" style="margin-top:2rem;">
     <label data-i18n="s4_missing_label">Is there a dimension missing from the wheel? <span class="opt" data-i18n="opt">optional</span></label>
-    <input type="text" id="missing-category" data-i18n-placeholder="s4_missing_ph" placeholder="e.g. religion, civil status, family structure, diet..." style="margin-bottom:0.6rem;">
+    <input type="text" id="missing-category" data-i18n-placeholder="s4_missing_ph" placeholder="e.g. religion..." style="margin-bottom:0.6rem;">
     <div id="custom-rings-wrap" style="display:none;">
       <p style="font-size:13px;color:var(--ink-soft);margin:0.8rem 0 0.6rem;font-style:italic;" data-i18n="s4_custom_desc">Describe the three positions within this dimension to add it to the wheel.</p>
       <div id="custom-rings" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
@@ -524,7 +449,7 @@
           <input type="text" id="custom-ring-2" placeholder="">
         </div>
       </div>
-      <p id="custom-hint" style="display:none;margin-top:0.7rem;font-size:12px;color:var(--ink-faint);font-style:italic;" data-i18n="custom_hint">Your dimension has been added to the wheel above — click a ring to mark your position.</p>
+      <p id="custom-hint" style="display:none;margin-top:0.7rem;font-size:12px;color:var(--ink-faint);font-style:italic;" data-i18n="custom_hint">Your dimension has been added to the wheel above.</p>
       <textarea id="missing-impact" data-i18n-placeholder="s4_impact_ph" placeholder="How does this dimension impact you?" style="margin-top:1rem;"></textarea>
     </div>
   </div>
@@ -535,18 +460,447 @@
   </div>
 
   <div class="btn-row">
-    <button class="btn-back" onclick="goTo(3)" data-i18n="btn_back">← Back</button>
-    <button class="btn-next" onclick="submitSurvey()" style="background:var(--accent);" data-i18n="btn_submit">Submit →</button>
+    <button class="btn-back" onclick="goTo(3)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="submitSurvey()" style="background:var(--accent);" data-i18n="btn_submit">Submit &#8594;</button>
   </div>
 </section>
 
 <div class="thankyou" id="thankyou">
   <div class="divider-mark"></div>
   <h2 data-i18n="ty_title">Thank you.</h2>
-  <p data-i18n="ty_desc">Your response has been recorded. This research will contribute to a better understanding of how discrimination operates through everyday product design — and to opening new pathways towards more inclusive and sensitive design practice.</p>
+  <p data-i18n="ty_desc">Your response has been recorded.</p>
 </div>
 
 <script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ▌ ALL SURVEY TEXT — edit here, in all 3 languages
+// ═══════════════════════════════════════════════════════════════════════════
+//
+//  HOW TO EDIT:
+//  • Change the text on the RIGHT side of the colon only
+//  • Never change key names (left side)
+//  • Strings use double quotes — apostrophes are fine inside (don't need escaping)
+//  • HTML tags like <strong>, <em>, <br> are allowed inside string values
+//
+//  SECTIONS (same structure in en / es / it):
+//    GLOBAL         → subtitle, buttons, error messages (used throughout)
+//    LANDING PAGE   → intro text, privacy notice, consent checkboxes
+//    SECTION 1      → design background question
+//    SECTION 2      → product upload
+//    SECTION 3      → feelings (72-word array — keep order and count)
+//    SECTION 4      → positionality wheel
+//    THANK YOU      → completion page
+//    WHEEL DIMS     → 13 identity categories with 3 ring labels each
+//
+//  ⚠  Keep exactly 72 items in each feelings array
+//  ⚠  Keep exactly 13 entries in each wheel_dims array
+// ═══════════════════════════════════════════════════════════════════════════
+
+const translations = {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ENGLISH
+  // ─────────────────────────────────────────────────────────────────────────
+  en: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "Discrimination in product language",
+    btn_start:    "Start survey →",
+    btn_back:     "← Back",
+    btn_continue: "Continue →",
+    btn_submit:   "Submit →",
+    btn_reset:    "Reset",
+    btn_download: "Download",
+    opt:          "optional",
+    progress:     (n, t) => `Section ${n} of ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Please upload an image of the product.",
+    err_type:     "Please describe what type of product this is.",
+    err_select:   "Please select one option before continuing.",
+    err_platform: "Please tell us which platform.",
+    err_specify:  "Please specify how you found the survey.",
+    err_feelings: "Please select exactly 5 feelings before continuing.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "About this survey",
+    landing_desc:  "Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.",
+    landing_time:  "Estimated time: 7–10 minutes",
+    landing_note:  "This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older.",
+
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Privacy Notice and Research Information",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026). For further information, contact <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p><p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p><p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p><p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p><p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above.</p>",
+
+    // Consent checkboxes
+    consent_age:  "I declare that I am <strong>18 years of age or older.</strong>",
+    consent_info: "I have read the <strong>Privacy Notice and Research Information</strong> and I consent to my anonymous responses being used for the purposes described.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — About you",
+    s1_title:        "Your relation to design.",
+    s1_design_label: "Do you have a background in design?",
+    bg_yes:          "Yes — I work or have studied in design",
+    bg_some:         "Somewhat — I have some design knowledge",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — The product",
+    s2_title:        "Show us the product",
+    s2_desc:         "Have you ever encountered an object and felt it wasn't meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend's place, on social media, or anywhere online. Physical objects only — for example, a laptop is a physical object, while an app interface is not.",
+    s2_upload_label: "Upload image",
+    s2_upload_text:  "Click to upload or drag an image here",
+    s2_change_img:   "Change image",
+    s2_type_label:   "What type of product is it?",
+    s2_type_ph:      "e.g. personal care, small appliance, sports equipment, medical device...",
+    s2_why_label:    "In a few words, what about this product made you choose it?",
+    s2_why_ph:       "Describe what struck you...",
+    s2_why_hint:     "Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — Your experience",
+    s3_title:        "It makes me feel…",
+    s3_desc:         "Select exactly 5 feelings that best describe your experience with this product.",
+    s3_other_label:  "Anything else you'd like to say about how it makes you feel?",
+    s3_other_ph:     "In your own words...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — you can now continue` : `${n} / ${max} selected`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisible",         "like an afterthought", "like an exception",  "like somebody else",
+      "unwelcome",         "out of place",         "like a guest",       "erased",
+      "overlooked",        "simplified",           "predetermined",      "categorized",
+      "expected",          "labelled",             "pigeonholed",        "surveilled",
+      "profiled",          "tokenized",            "suspected",          "flagged",
+      "tolerated",         "overcorrected",        "assumed",            "pitied",
+      "othered",           "exposed",              "wrong",              "diminished",
+      "expendable",        "forgotten",            "overexplained",      "anticipated",
+      "familiar",          "taken care of",        "protected",          "noticed",
+      "seen",              "named",                "known",              "held",
+      "guided",            "helped",               "reminded",           "accommodated",
+      "represented",       "corrected",            "managed",            "warned",
+      "contained",         "small",                "childish",           "foreign",
+      "excessive",         "wrong-bodied",         "too much",           "not enough",
+      "strange",           "marginal",             "illegitimate",       "insecure",
+      "guilty",            "ashamed",              "unsettled",          "uncomfortable",
+      "unsafe",            "unvalued",             "underestimated",     "alienated",
+      "isolated",          "displaced",            "misunderstood",      "patronized"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — Your positionality",
+    s4_title:             "Where you stand",
+    s4_desc:              "This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.",
+    wheel_hint:           "Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.",
+    legend_fewer:         "fewer obstacles & more privilege",
+    legend_more:          "more obstacles & marginalization",
+    no_dims:              "No dimensions marked yet",
+    s4_missing_label:     "Is there a dimension missing from the wheel?",
+    s4_missing_ph:        "e.g. religion, civil status, family structure, diet...",
+    s4_impact_ph:         "How does this dimension impact you?",
+    s4_custom_desc:       "Describe the three positions within this dimension to add it to the wheel.",
+    ring_inner:           "Inner ring",
+    ring_inner_sub:       "fewer obstacles",
+    ring_mid:             "Middle ring",
+    ring_outer:           "Outer ring",
+    ring_outer_sub:       "more obstacles",
+    custom_hint:          "Your dimension has been added to the wheel above — click a ring to mark your position.",
+    s4_reflections_label: "Any final reflections?",
+    s4_reflections_ph:    "Anything else about your experience or context...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Thank you.",
+    ty_desc:  "Your response has been recorded. This research will contribute to a better understanding of how discrimination operates through everyday product design — and to opening new pathways towards more inclusive and sensitive design practice.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    // Format: { name: "Category", rings: ["inner (fewer obstacles)", "middle", "outer (more obstacles)"] }
+    wheel_dims: [
+      { name: "Gender",           rings: ["Cisgender men",      "Cisgender women",        "Trans, Intersex, non-binary"] },
+      { name: "Citizenship",      rings: ["Citizen",            "Documented",             "Undocumented"] },
+      { name: "Skin Colour",      rings: ["White",              "Different shades",       "Dark"] },
+      { name: "Formal Education", rings: ["Post-secondary",     "High school",            "Elementary"] },
+      { name: "Ability",          rings: ["Able-bodied",        "Some disability",        "Significant disability"] },
+      { name: "Neurodiversity",   rings: ["Neuro-typical",      "Neuro-atypical",         "Significant neurodiversity"] },
+      { name: "Age",              rings: ["Middle age",         "Youth",                  "Elderly"] },
+      { name: "Body Size",        rings: ["Slim",               "Average",                "Large"] },
+      { name: "Housing",          rings: ["Owns property",      "Renting / Sheltered",    "Homeless"] },
+      { name: "Wealth",           rings: ["Rich",               "Middle class",           "Poor"] },
+      { name: "Language",         rings: ["English",            "Learned English",        "Non-English monolingual"] },
+      { name: "Sexuality",        rings: ["Hetero-sexual",      "Gay men",                "Lesbian, bi, pan, asexual"] },
+      { name: "Origin",           rings: ["Global North",       "Global South",           "Indigenous nation"] }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ESPAÑOL
+  // ─────────────────────────────────────────────────────────────────────────
+  es: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "Discriminación en el lenguaje de producto",
+    btn_start:    "Comenzar →",
+    btn_back:     "← Atrás",
+    btn_continue: "Continuar →",
+    btn_submit:   "Enviar →",
+    btn_reset:    "Reiniciar",
+    btn_download: "Descargar",
+    opt:          "opcional",
+    progress:     (n, t) => `Sección ${n} de ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Por favor, sube una imagen del producto.",
+    err_type:     "Por favor, describe qué tipo de producto es.",
+    err_select:   "Por favor, selecciona una opción antes de continuar.",
+    err_feelings: "Por favor, selecciona al menos 3 opciones antes de continuar.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "Sobre esta encuesta",
+    landing_desc:  "Cada objeto tiene un lenguaje. Se comunica a través de colores, formas y materiales—elecciones que conllevan prejuicios silenciosos sobre para quién fue diseñado. Esta encuesta recoge ejemplos de objectos cotidianos que comunican exclusion o discriminación precisamente a través de estas elecciones: de su <em><strong>lenguaje de producto</strong></em>.",
+    landing_time:  "Tiempo estimado: 5 minutos",
+    
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Aviso de privacidad e información sobre la investigación",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Quién realiza esta investigación</strong><br>Esta encuesta forma parte de un proyecto de investigación doctoral realizado por Martina Labarta Labrador en el Departamento de Diseño del Politecnico di Milano (Italia), actualmente desarrollado durante una estancia de investigación en Virginia Tech (EE.UU., marzo–junio 2026). </p><p><strong>De qué trata esta investigación</strong><br>La investigación estudia cómo las cualidades visuales y estéticas de los productos de consumo cotidiano — incluyendo su forma, color, material y otras propiedades formales — pueden comunicar suposiciones implícitas sobre para quién está diseñado un producto, y al hacerlo pueden excluir o discriminar a ciertos grupos de personas. El objetivo es desarrollar un marco práctico para ayudar a los diseñadores a identificar y evitar estos patrones discriminatorios.</p><p><strong>Cómo puedes contribuir</strong><br>Te invitamos a enviar una foto o imagen de un producto físico con el que te hayas encontrado y que te haya hecho sentir excluido/a, discriminado/a o no considerado/a como usuario/a. Te pediremos que selecciones palabras que describan cómo te ha hecho sentir ese producto y, opcionalmente, que reflexiones sobre tu propia posición social.</p><p><strong>Datos y anonimato</strong><br>Esta encuesta no recoge ninguna información personal identificable — ni nombres, ni correos electrónicos, ni datos de contacto. A cada respuesta se le asigna un código anónimo generado aleatoriamente que no puede vincularse a ninguna persona. Los datos se utilizarán exclusivamente con fines de investigación académica y cualquier resultado publicado presentará los datos de forma agregada y anonimizada.</p><p><strong>Participación voluntaria</strong><br>La participación es completamente voluntaria. Puedes decidir abandonar la encuesta en cualquier momento sin consecuencia alguna. Al continuar, confirmas que aceptas que tus respuestas anónimas sean utilizadas para los propósitos descritos.</p> Para más información, contacta a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.",
+
+    // Consent checkboxes
+    consent_age:  "Declaro que tengo <strong>18 años o más.</strong>",
+    consent_info: "He leído el <strong>Aviso de privacidad e información sobre la investigación</strong> y consiento que mis respuestas anónimas se utilicen para los fines descritos.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — Sobre ti",
+    s1_title:        "Tu relación con el diseño.",
+    s1_design_label: "¿Tienes formación en diseño?",
+    bg_yes:          "Sí, trabajo o he estudiado en el campo del diseño",
+    bg_some:         "En parte, tengo algunos conocimientos de diseño",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — El producto",
+    s2_title:        "Muéstranos el producto",
+    s2_desc:         "¿Alguna vez has encontrado un producto y has sentido que no era para ti? ¿Que no te representaba o que tenías que adaptarte a él en lugar de que él se adaptara a ti? Sube una foto de cualquier producto que te haya hecho sentir así.<br><br>Puede ser algo que tengas, uses, te hayan regalado, hayas visto en una tienda, en casa de alguien, en redes sociales o en cualquier lugar online. Solo objetos físicos — por ejemplo, un ordenador portátil es un objeto físico, mientras que una interfaz de aplicación no lo es.",
+    s2_upload_label: "Subir imagen",
+    s2_upload_text:  "Haz clic para subir o arrastra una imagen aquí",
+    s2_change_img:   "Sustituir imagen",
+    s2_type_label:   "¿Qué tipo de producto es?",
+    s2_type_ph:      "p.ej. cuidado personal, electrodoméstico pequeño, equipo deportivo, dispositivo médico...",
+    s2_why_label:    "¿Qué te ha llevado a elegir este producto?",
+    s2_why_ph:       "Describe lo que te llamó la atención...",
+    s2_why_hint:     "Piensa en su <em>lenguaje de producto</em> — las cualidades formales que comunican significado: <strong>su forma, color, material, textura u otros elementos estéticos</strong>.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — Tu experiencia",
+    s3_title:        "Me hace sentir…",
+    s3_desc:         "Selecciona de 3 a 5 opciones que mejor describan tu experiencia con este producto.",
+    s3_other_label:  "¿Algo más que quieras añadir sobre cómo te hace sentir?",
+    s3_other_ph:     "Con tus propias palabras...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — puedes continuar` : `${n} / ${max} seleccionados`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisible",              "como si yo fuera un añadido", "como una excepción",       "como otra persona",
+      "indeaseado/a",           "fuera de lugar",             "como un/a invitado/a",       "borrado/a",
+      "pasado/a por alto",      "simplificado/a",             "predeterminado/a",         "categorizado/a",
+      "presionado/a",           "etiquetado/a",               "encasillado/a",            "vigilado/a",
+      "perfilado/a",            "tokenizado/a",               "sospechado/a",             "señalado/a",
+      "tolerado/a",             "sobrecorregido/a",           "dado/a por sentado/a",     "compadecido/a",
+      "excluido/a de lo 'normal'", "expuesto/a",              "incorrecto/a",             "menospreciado/a",
+      "prescindible",           "olvidado/a",                 "sobreexplicado/a",         "anticipado/a",
+      "familiar",               "cuidado/a",                  "protegido/a",              "notado/a",
+      "visto/a",                "nombrado/a",                 "conocido/a",               "sostenido/a",
+      "guiado/a",               "ayudado/a",                  "reconocido/a",             "acomodado/a",
+      "representado/a",         "corregido/a",                "manejado/a",               "advertido/a",
+      "contenido/a",            "pequeño/a",                  "infantilizado/a",          "extranjero/a",
+      "excesivo/a",             "con el cuerpo equivocado",   "que soy demasiado/a",      "que no soy suficiente",
+      "extraño/a",              "marginal",                   "ilegítimo/a",              "inseguro/a",
+      "culpable",               "avergonzado/a",              "perturbado/a",             "incómodo/a",
+      "desprotegido/a",         "infravalorado/a",            "subestimado/a",            "alienado/a",
+      "aislado/a",              "desplazado/a",               "incomprendido/a",          "condescendido/a"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — Tu posicionalidad",
+    s4_title:             "Dónde te posicionas",
+    s4_desc:              "Esta rueda representa tu <span class=\"positionality-term\" tabindex=\"0\">posicionalidad</span> — el conjunto de dimensiones sociales que dan forma a tu experiencia en el mundo. Para cada dimensión, haz clic en el anillo que mejor refleje tu posición: el anillo exterior puede representar más obstáculos y marginalización, el interior menos obstáculos y más privilegio. Esta sección es completamente opcional — responde solo lo que te haga sentir cómodo/a. Tus respuestas son completamente anónimas y no se almacena ningún dato personal.",
+    wheel_hint:           "Haz clic en un anillo para marcar tu posición. Haz clic de nuevo para deseleccionar.<br>Usa + y − para acercar/alejar y arrastra para navegar.",
+    legend_fewer:         "menos obstáculos y más privilegio",
+    legend_more:          "más obstáculos y marginalización",
+    no_dims:              "Ninguna dimensión marcada todavía",
+    s4_missing_label:     "¿Falta alguna dimensión en la rueda?",
+    s4_missing_ph:        "p.ej. religión, estado civil, estructura familiar, dieta...",
+    s4_impact_ph:         "¿Cómo te impacta esta dimensión?",
+    s4_custom_desc:       "Describe las tres posiciones dentro de esta dimensión para añadirla a la rueda.",
+    ring_inner:           "Anillo interior",
+    ring_inner_sub:       "<strong>menos obstáculos</strong>",
+    ring_mid:             "Anillo intermedio",
+    ring_outer:           "Anillo exterior",
+    ring_outer_sub:       "<strong>más obstáculos</strong>",
+    custom_hint:          "<strong>Tu dimensión ha sido añadida a la rueda</strong> — haz clic en un anillo para marcar tu posición.",
+    s4_reflections_label: "¿Alguna reflexión final?",
+    s4_reflections_ph:    "Algo más sobre tu experiencia o contexto...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Gracias.",
+    ty_desc:  "Tu respuesta ha sido registrada. Esta investigación contribuirá a una mejor comprensión de cómo opera la discriminación a través del diseño de productos cotidianos — y a abrir nuevos caminos hacia una práctica de diseño más inclusiva y sensible.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    wheel_dims: [
+      { name: "Género",           rings: ["Hombres cisgénero",  "Mujeres cisgénero",         "Trans, intersex, no binario"] },
+      { name: "Ciudadanía",       rings: ["Ciudadano/a",        "Documentado/a",             "Indocumentado/a"] },
+      { name: "Color de piel",    rings: ["Blanco",             "Tonos intermedios",         "Oscuro"] },
+      { name: "Educación formal", rings: ["Universitaria",      "Secundaria / Bachillerato", "Primaria"] },
+      { name: "Habilidad",        rings: ["Sin discapacidad",   "Cierta discapacidad",       "Discapacidad significativa"] },
+      { name: "Neurodiversidad",  rings: ["Neurotípico/a",      "Neuroatípico/a",            "Neurodiversidad significativa"] },
+      { name: "Edad",             rings: ["Mediana edad",       "Juventud",                  "Vejez"] },
+      { name: "Complexión",       rings: ["Delgado/a",          "Promedio",                  "Grande"] },
+      { name: "Vivienda",         rings: ["Propietario/a",      "Alquiler / Hospedado/a",    "Sin hogar"] },
+      { name: "Riqueza",          rings: ["Rico/a",             "Clase media",               "Pobre"] },
+      { name: "Idioma",           rings: ["Inglés",             "Inglés aprendido",          "Monolingüe no anglófono/a"] },
+      { name: "Sexualidad",       rings: ["Heterosexual",       "Hombres gay",               "Lesbianas, bi, pan, asexual"] },
+      { name: "Origen",           rings: ["Norte global",       "Sur global",                "Pueblo indígena"] }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ITALIANO
+  // ─────────────────────────────────────────────────────────────────────────
+  it: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "DISCRIMINAZIONE NEL LINGUAGGIO DI PRODOTTO",
+    btn_start:    "Inizia →",
+    btn_back:     "← Indietro",
+    btn_continue: "Continua →",
+    btn_submit:   "Invia →",
+    btn_reset:    "Reimposta",
+    btn_download: "Scarica",
+    opt:          "opzionale",
+    progress:     (n, t) => `Sezione ${n} di ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Per favore carica un'immagine del prodotto.",
+    err_type:     "Per favore descrivi che tipo di prodotto è.",
+    err_select:   "Per favore seleziona un'opzione prima di continuare.",
+    err_platform: "Per favore indicaci quale piattaforma.",
+    err_specify:  "Per favore specifica come hai trovato il sondaggio.",
+    err_feelings: "Per favore seleziona esattamente 5 emozioni prima di continuare.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "Su questo sondaggio",
+    landing_desc:  "Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.",
+    landing_time:  "Tempo stimato: 7–10 minuti",
+    landing_note:  "Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più.",
+
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Informativa sulla privacy e informazioni sulla ricerca",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Chi conduce questa ricerca</strong><br>Questo sondaggio fa parte di un progetto di ricerca dottorale condotto da Martina Labarta Labrador presso il Dipartimento di Design del Politecnico di Milano (Italia), attualmente sviluppato durante un periodo di ricerca visitante presso la Virginia Tech (USA, marzo–giugno 2026). Per ulteriori informazioni, scrivi a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p><p><strong>Di cosa tratta questa ricerca</strong><br>La ricerca indaga come le qualità visive ed estetiche dei prodotti di consumo quotidiani — tra cui la forma, il colore, il materiale e altre proprietà formali — possano comunicare assunzioni implicite su chi è destinatario di un prodotto, e in questo modo escludere o discriminare determinati gruppi di persone. L'obiettivo è sviluppare un framework pratico per aiutare i designer a identificare ed evitare questi schemi discriminatori.</p><p><strong>Cosa ti viene chiesto</strong><br>Sei invitato/a a inviare una foto di un prodotto fisico che hai incontrato e che ti ha fatto sentire escluso/a, discriminato/a o non considerato/a come utente. Ti verrà poi chiesto di selezionare parole che descrivono come ti fa sentire quel prodotto e, facoltativamente, di riflettere sulla tua posizione sociale.</p><p><strong>Dati e anonimato</strong><br>Questo sondaggio non raccoglie alcuna informazione personale identificabile — né nomi, né indirizzi email, né dati di contatto. A ogni risposta viene assegnato un codice anonimo generato casualmente che non può essere ricondotto a nessuna persona. I dati verranno utilizzati esclusivamente per scopi di ricerca accademica e qualsiasi risultato pubblicato presenterà i dati in forma aggregata e anonimizzata.</p><p><strong>Partecipazione volontaria</strong><br>La partecipazione è completamente volontaria. Puoi interrompere in qualsiasi momento senza conseguenze. Procedendo, acconsenti all'utilizzo delle tue risposte anonime per gli scopi descritti. Per ulteriori informazioni, scrivi a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p>",
+
+    // Consent checkboxes
+    consent_age:  "Dichiaro di avere <strong>18 anni o più.</strong>",
+    consent_info: "Ho letto l'<strong>Informativa sulla privacy e le informazioni sulla ricerca</strong> e acconsento all'utilizzo delle mie risposte anonime per gli scopi descritti.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — Su di te",
+    s1_title:        "Il tuo rapporto con il design.",
+    s1_design_label: "Hai una formazione in design?",
+    bg_yes:          "Sì — lavoro o ho studiato design",
+    bg_some:         "In parte — ho alcune conoscenze di design",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — Il prodotto",
+    s2_title:        "Mostraci il prodotto",
+    s2_desc:         "Hai mai incontrato un oggetto e sentito che non era pensato per te? Carica una foto di qualsiasi prodotto che ti abbia fatto sentire così.<br><br>Può essere qualcosa che possiedi, usi, ti è stato regalato, che hai visto in un negozio, a casa di qualcuno, sui social media o ovunque online. Solo oggetti fisici — per esempio, un laptop è un oggetto fisico, mentre un'interfaccia di un'app non lo è.",
+    s2_upload_label: "Carica immagine",
+    s2_upload_text:  "Clicca per caricare o trascina un'immagine qui",
+    s2_change_img:   "Cambia immagine",
+    s2_type_label:   "Che tipo di prodotto è?",
+    s2_type_ph:      "es. cura personale, piccolo elettrodomestico, attrezzatura sportiva, dispositivo medico...",
+    s2_why_label:    "In poche parole, cosa ti ha spinto a scegliere questo prodotto?",
+    s2_why_ph:       "Descrivi cosa ti ha colpito...",
+    s2_why_hint:     "Pensa al suo <em>linguaggio del prodotto</em> — le qualità formali che comunicano significato: la sua forma, il colore, il materiale, la texture o altri elementi estetici.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — La tua esperienza",
+    s3_title:        "Mi fa sentire…",
+    s3_desc:         "Seleziona esattamente 5 emozioni che descrivono meglio la tua esperienza con questo prodotto.",
+    s3_other_label:  "Vuoi aggiungere qualcosa su come ti fa sentire?",
+    s3_other_ph:     "Con le tue parole...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — puoi continuare` : `${n} / ${max} selezionati`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisibile",              "come un ripensamento",      "come un'eccezione",        "come qualcun altro",
+      "sgradito/a",              "fuori posto",               "come un ospite",            "cancellato/a",
+      "trascurato/a",            "semplificato/a",            "predeterminato/a",          "categorizzato/a",
+      "atteso/a",                "etichettato/a",             "incasellato/a",             "sorvegliato/a",
+      "profilato/a",             "ridotto/a a simbolo",       "sospettato/a",              "segnalato/a",
+      "tollerato/a",             "ipercorretto/a",            "dato/a per scontato/a",     "compatito/a",
+      "trattato/a come l'altro", "esposto/a",                "sbagliato/a",               "diminuito/a",
+      "sacrificabile",           "dimenticato/a",             "iperspiegato/a",            "anticipato/a",
+      "familiare",               "accudito/a",                "protetto/a",                "notato/a",
+      "visto/a",                 "nominato/a",                "conosciuto/a",              "contenuto/a",
+      "guidato/a",               "aiutato/a",                 "ricordato/a",               "accomodato/a",
+      "rappresentato/a",         "corretto/a",                "gestito/a",                 "avvisato/a",
+      "contenuto/a",             "piccolo/a",                 "infantilizzato/a",          "straniero/a",
+      "eccessivo/a",             "con il corpo sbagliato",    "troppo/a",                  "insufficiente",
+      "strano/a",                "marginale",                 "illegittimo/a",             "insicuro/a",
+      "colpevole",               "vergognoso/a",              "disorientato/a",            "a disagio",
+      "a rischio",               "svalutato/a",               "sottovalutato/a",           "alienato/a",
+      "isolato/a",               "spostato/a",                "incompreso/a",              "condisceso/a"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — La tua posizionalità",
+    s4_title:             "La tua posizione",
+    s4_desc:              "Questa ruota rappresenta la tua <span class=\"positionality-term\" tabindex=\"0\">posizionalità</span> — l'insieme delle dimensioni sociali che plasmano la tua esperienza nel mondo. Per ogni dimensione, clicca sull'anello che meglio riflette la tua posizione: l'anello esterno può rappresentare più ostacoli e marginalizzazione, quello interno meno ostacoli e più privilegio. Questa sezione è completamente opzionale — rispondi solo a ciò con cui ti senti a tuo agio. Le tue risposte sono completamente anonime e non vengono memorizzati dati personali.",
+    wheel_hint:           "Clicca su un anello per segnare la tua posizione. Clicca di nuovo per deselezionare.<br>Usa + e − per ingrandire/ridurre e trascina per navigare.",
+    legend_fewer:         "meno ostacoli e più privilegio",
+    legend_more:          "più ostacoli e marginalizzazione",
+    no_dims:              "Nessuna dimensione selezionata",
+    s4_missing_label:     "Manca qualche dimensione nella ruota?",
+    s4_missing_ph:        "es. religione, stato civile, struttura familiare, dieta...",
+    s4_impact_ph:         "Come ti impatta questa dimensione?",
+    s4_custom_desc:       "Descrivi le tre posizioni all'interno di questa dimensione per aggiungerla alla ruota.",
+    ring_inner:           "Anello interno",
+    ring_inner_sub:       "meno ostacoli",
+    ring_mid:             "Anello medio",
+    ring_outer:           "Anello esterno",
+    ring_outer_sub:       "più ostacoli",
+    custom_hint:          "La tua dimensione è stata aggiunta alla ruota — clicca su un anello per segnare la tua posizione.",
+    s4_reflections_label: "Qualche riflessione finale?",
+    s4_reflections_ph:    "Qualcos'altro sulla tua esperienza o contesto...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Grazie.",
+    ty_desc:  "La tua risposta è stata registrata. Questa ricerca contribuirà a una migliore comprensione di come la discriminazione opera attraverso il design dei prodotti quotidiani — e ad aprire nuovi percorsi verso una pratica del design più inclusiva e sensibile.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    wheel_dims: [
+      { name: "Genere",             rings: ["Uomini cisgender",   "Donne cisgender",          "Trans, intersex, non binario"] },
+      { name: "Cittadinanza",       rings: ["Cittadino/a",        "Documentato/a",            "Non documentato/a"] },
+      { name: "Colore della pelle", rings: ["Bianco",             "Tonalità intermedie",      "Scuro"] },
+      { name: "Istruzione",         rings: ["Universitaria",      "Scuola superiore",         "Scuola elementare"] },
+      { name: "Abilità",            rings: ["Senza disabilità",   "Qualche disabilità",       "Disabilità significativa"] },
+      { name: "Neurodiversità",     rings: ["Neurotipico/a",      "Neuroatipico/a",           "Neurodiversità significativa"] },
+      { name: "Età",                rings: ["Mezza età",          "Gioventù",                 "Anzianità"] },
+      { name: "Taglia corporea",    rings: ["Magro/a",            "Nella media",              "Grande"] },
+      { name: "Abitazione",         rings: ["Proprietario/a",     "In affitto / Ospitato/a",  "Senza tetto"] },
+      { name: "Ricchezza",          rings: ["Ricco/a",            "Ceto medio",               "Povero/a"] },
+      { name: "Lingua",             rings: ["Inglese",            "Inglese imparato",         "Monolingue non anglofono/a"] },
+      { name: "Sessualità",         rings: ["Eterosessuale",      "Uomini gay",               "Lesbiche, bi, pan, asessuale"] },
+      { name: "Origine",            rings: ["Nord globale",       "Sud globale",              "Popolo indigeno"] }
+    ]
+  },
+
+};
+
 const wheelDimensions = [
   { name: "Gender",           rings: ["Cisgender men", "Cisgender women", "Trans, Intersex, non-binary"] },
   { name: "Citizenship",      rings: ["Citizen", "Documented", "Undocumented"] },
@@ -612,51 +966,48 @@ const ringDefs = {
   'Global North':                'Countries in North America, Europe, and other high-income regions.',
   'Global South':                'Countries in Africa, Latin America, Asia, and other lower-income regions.',
   'Indigenous nation':           'People belonging to indigenous communities native to their territory.',
-  // Spanish
   'Hombres cisgénero':           'Personas cuya identidad de género es masculina y coincide con el sexo asignado al nacer.',
   'Mujeres cisgénero':           'Personas cuya identidad de género es femenina y coincide con el sexo asignado al nacer.',
   'Trans, intersex, no binario': 'Personas cuya identidad de género o características sexuales no se ajustan al binario masculino/femenino.',
   'Ciudadano/a':                 'Personas con ciudadanía legal plena en el país donde residen.',
   'Documentado/a':               'Personas con residencia legal o visado, pero sin ciudadanía plena.',
   'Indocumentado/a':             'Personas que viven sin estatus migratorio legal reconocido.',
-  'Blanco/a':                    'Personas clasificadas socialmente como blancas en su contexto racial local.',
-  'Tonos intermedios':           'Personas de clasificación racial mixta o ambigua en su contexto social.',
-  'Oscuro/a':                    'Personas con tonos de piel más oscuros en su contexto social.',
+  'Blanco/a':                    'Personas clasificadas socialmente como blancas en su contexto socio-cultural.',
+  'Tonos intermedios':           'Personas de clasificación racial mixta o ambigua en su contexto socio-cultural.',
+  'Oscuro/a':                    'Personas con tonos de piel más oscuros en su contexto socio-cultural.',
   'Universitaria':               'Personas que han completado estudios universitarios o equivalentes.',
-  'Bachillerato':                'Personas cuyo nivel educativo más alto es la educación secundaria.',
+  'Secundaria / Bachillerato':   'Personas cuyo nivel educativo más alto es la educación secundaria.',
   'Primaria':                    'Personas cuyo nivel educativo más alto es la educación primaria.',
-  'Blanco':                      'Personas clasificadas socialmente como blancas en su contexto racial local.',
-  'Oscuro':                      'Personas con tonos de piel más oscuros en su contexto social.',
-  'Alquiler / Hospedado/a':      'Personas que viven en una vivienda de alquiler o con apoyo institucional.',
-  'Habilidad':                   'La presencia o ausencia de discapacidades físicas o sensoriales.',
+  'Blanco':                      'Personas clasificadas socialmente como blancas en su contexto socio-cultural.',
+  'Oscuro':                      'Personas con tonos de piel más oscuros en su contexto socio-cultural.',
+  'Alquiler / Hospedado/a':      'Personas que viven en una vivienda de alquiler o con apoyo institucional o familiar.',
   'Sin discapacidad':            'Personas sin discapacidades físicas o sensoriales.',
-  'Alguna discapacidad':         'Personas que viven con una discapacidad que afecta aspectos de su vida diaria.',
+  'Cierta discapacidad':         'Personas que viven con una discapacidad que afecta aspectos de su vida diaria.',
   'Discapacidad significativa':  'Personas que viven con una discapacidad que afecta sustancialmente su funcionamiento diario.',
   'Neurotípico/a':               'Personas cuyo desarrollo y funcionamiento neurológico está dentro del rango típico.',
-  'Neuroatípico/a':              'Personas con algunas diferencias neurológicas respecto al rango típico.',
+  'Neuroatípico/a':              'Personas con algunas diferencias neurológicas respecto al rango típico normativo.',
   'Neurodiversidad significativa': 'Personas con diferencias neurológicas sustanciales, como autismo, TDAH o dislexia.',
   'Mediana edad':                'Adultos de entre aproximadamente 35 y 65 años.',
   'Juventud':                    'Niños, adolescentes y adultos jóvenes.',
   'Vejez':                       'Personas mayores, generalmente por encima de los 65 años.',
-  'Delgado/a':                   'Personas cuyo tamaño corporal está por debajo de la media.',
-  'Promedio':                    'Personas cuyo tamaño corporal está cerca de la media estadística.',
-  'Grande':                      'Personas cuyo tamaño corporal está por encima de la media.',
+  'Delgado/a':                   'Personas cuya complexión está por debajo de la media en el contexto en el que viven.',
+  'Promedio':                    'Personas cuya complexión está cerca de la media estadística en el contexto en el que viven.',
+  'Grande':                      'Personas cuya complexión está por encima de la media en el contexto en el que viven.',
   'Propietario/a':               'Personas que son dueñas del hogar o propiedad donde viven.',
-  'Acogido/a':                   'Personas que viven en una vivienda de alquiler o con apoyo institucional.',
+  'Acogido/a':                   'Personas que viven en una vivienda de alquiler o con apoyo institucional o familiar.',
   'Sin hogar':                   'Personas sin un lugar estable o permanente donde vivir.',
   'Rico/a':                      'Personas con altos ingresos y/o riqueza acumulada significativa.',
   'Clase media':                 'Personas con ingresos moderados y estables y un nivel de vida medio.',
   'Pobre':                       'Personas con bajos ingresos y recursos económicos limitados.',
-  'Inglés':                      'Personas cuya primera lengua es el inglés.',
-  'Inglés aprendido':            'Personas que hablan inglés como segunda lengua adquirida.',
-  'Monolingüe no anglófono/a':   'Personas que hablan solo una lengua distinta del inglés.',
+  'Inglés':                      'Personas cuyo primer idioma es el inglés.',
+  'Inglés aprendido':            'Personas que hablan inglés como segundo idioma adquirido.',
+  'Monolingüe no anglófono/a':   'Personas que hablan solo un idioma distinto del inglés.',
   'Heterosexual':                'Personas atraídas por personas de otro género.',
   'Hombres gay':                 'Hombres atraídos por otros hombres.',
   'Lesbianas, bi, pan, asexual': 'Mujeres atraídas por mujeres, personas atraídas por más de un género, o personas con poca o ninguna atracción sexual.',
-  'Norte global':                'Países de América del Norte, Europa y otras regiones de altos ingresos.',
-  'Sur global':                  'Países de África, América Latina, Asia y otras regiones de bajos ingresos.',
+  'Norte global':                'Países de América del Norte y Europa, así como países del Cáucaso, Israel, Turquía, Japón, Taiwán, Singapur, Kazajistán, Corea del Sur, Australia y Nueva Zelanda.',
+  'Sur global':                  'Países en África, América Latina y el Caribe, Asia (excluidos Israel,Singapur, Japón y Corea del Sur) y Oceanía (excluidos Australia y Nueva Zelanda).',
   'Pueblo indígena':             'Personas pertenecientes a comunidades indígenas nativas de su territorio.',
-  // Italian
   'Uomini cisgender':            'Persone la cui identità di genere è maschile e corrisponde al sesso assegnato alla nascita.',
   'Donne cisgender':             'Persone la cui identità di genere è femminile e corrisponde al sesso assegnato alla nascita.',
   'Trans, intersex, non binario':'Persone la cui identità di genere o caratteristiche sessuali non rientrano nel binario maschio/femmina.',
@@ -666,10 +1017,8 @@ const ringDefs = {
   'Bianco/a':                    'Persone classificate socialmente come bianche nel loro contesto razziale locale.',
   'Tonalità intermedie':         'Persone di classificazione razziale mista o ambigua nel loro contesto sociale.',
   'Scuro/a':                     'Persone con tonalità di pelle più scure nel loro contesto sociale.',
-  'Scuola superiore':           'Persone il cui livello di istruzione più alto è la scuola superiore.',
-  'Scuola elementare':          'Persone il cui livello di istruzione più alto è la scuola elementare.',
-  'Capacità':                   'Persone senza disabilità fisiche o sensoriali.',
-  'Capacidad':                   'Personas sin discapacidades físicas o sensoriales.',
+  'Scuola superiore':            'Persone il cui livello di istruzione più alto è la scuola superiore.',
+  'Scuola elementare':           'Persone il cui livello di istruzione più alto è la scuola elementare.',
   'Abilità':                     'Presenza o assenza di disabilità fisiche o sensoriali.',
   'In affitto / Ospitato/a':     'Persone che vivono in affitto o in un alloggio assistito.',
   'Bianco':                      'Persone classificate socialmente come bianche nel loro contesto razziale locale.',
@@ -677,8 +1026,8 @@ const ringDefs = {
   'Senza disabilità':            'Persone senza disabilità fisiche o sensoriali.',
   'Qualche disabilità':          'Persone che vivono con una disabilità che influenza aspetti della vita quotidiana.',
   'Disabilità significativa':    'Persone che vivono con una disabilità che influenza sostanzialmente il funzionamento quotidiano.',
-  'Neurotipico/a':               'Persone il cui sviluppo e funzionamento neurologico rientra nell\'intervallo tipico.',
-  'Neuroatipico/a':              'Persone con alcune differenze neurologiche rispetto all\'intervallo tipico.',
+  'Neurotipico/a':               "Persone il cui sviluppo e funzionamento neurologico rientra nell'intervallo tipico.",
+  'Neuroatipico/a':              "Persone con alcune differenze neurologiche rispetto all'intervallo tipico.",
   'Neurodiversità significativa':'Persone con differenze neurologiche sostanziali, come autismo, ADHD o dislessia.',
   'Mezza età':                   'Adulti generalmente tra i 35 e i 65 anni.',
   'Gioventù':                    'Bambini, adolescenti e giovani adulti.',
@@ -691,33 +1040,32 @@ const ringDefs = {
   'Ricco/a':                     'Persone con reddito elevato e/o ricchezza accumulata significativa.',
   'Ceto medio':                  'Persone con reddito moderato e stabile e un tenore di vita medio.',
   'Povero/a':                    'Persone con basso reddito e risorse economiche limitate.',
-  'Inglese':                     'Persone la cui prima lingua è l\'inglese.',
+  'Inglese':                     "Persone la cui prima lingua è l'inglese.",
   'Inglese imparato':            'Persone che parlano inglese come seconda lingua acquisita.',
-  'Monolingue non anglofono/a':  'Persone che parlano solo una lingua diversa dall\'inglese.',
+  'Monolingue non anglofono/a':  "Persone che parlano solo una lingua diversa dall'inglese.",
   'Eterosessuale':               'Persone attratte da persone di un altro genere.',
   'Uomini gay':                  'Uomini attratti da altri uomini.',
   'Lesbiche, bi, pan, asessuale':'Donne attratte da donne, persone attratte da più di un genere, o persone con poca o nessuna attrazione sessuale.',
   'Nord globale':                'Paesi del Nord America, Europa e altre regioni ad alto reddito.',
-  'Sud globale':                 'Paesi dell\'Africa, America Latina, Asia e altre regioni a basso reddito.',
+  'Sud globale':                 "Paesi dell'Africa, America Latina, Asia e altre regioni a basso reddito.",
   'Popolo indigeno':             'Persone appartenenti a comunità indigene native del loro territorio.',
 };
 
 const categoryDefs = {
   'Positionality':    'Positionality refers to how your social identity — including dimensions like gender, race, class, and ability — shapes your perspective, your access to resources, and the obstacles you face in navigating the world.',
-  'Gender':           'The social and personal sense of being a man, woman, or another gender.',
+  'Gender':           "The social and personal sense of being a man, woman, or another gender.",
   'Citizenship':      'Legal membership of a nation-state and the status it confers.',
-  'Skin Colour':      'The tone or pigmentation of a person\'s skin as a social category.',
+  'Skin Colour':      "The tone or pigmentation of a person's skin as a social category.",
   'Formal Education': 'The highest level of schooling a person has completed.',
   'Ability':          'The presence or absence of physical or sensory impairments.',
-  'Neurodiversity':   'The range of differences in how people\'s brains function and process information.',
+  'Neurodiversity':   "The range of differences in how people's brains function and process information.",
   'Age':              'A person\'s age and the life stage they occupy.',
-  'Body Size':        'The physical size and shape of a person\'s body.',
-  'Housing':          'The type and stability of a person\'s living situation.',
+  'Body Size':        "The physical size and shape of a person's body.",
+  'Housing':          "The type and stability of a person's living situation.",
   'Wealth':           'The level of financial resources and economic security a person has.',
   'Language':         'The language or languages a person speaks and their fluency in dominant ones.',
-  'Sexuality':        'A person\'s sexual orientation and patterns of attraction.',
+  'Sexuality':        "A person's sexual orientation and patterns of attraction.",
   'Origin':           'The geographic and geopolitical region a person comes from.',
-  // Spanish
   'Posicionalidad':   'La posicionalidad se refiere a cómo tu identidad social — incluyendo dimensiones como el género, la raza, la clase y la capacidad — moldea tu perspectiva, tu acceso a los recursos y los obstáculos que enfrentas en el mundo.',
   'Género':           'El sentido social y personal de ser hombre, mujer u otro género.',
   'Ciudadanía':       'La pertenencia legal a un estado-nación y el estatus que ello confiere.',
@@ -733,21 +1081,19 @@ const categoryDefs = {
   'Idioma':           'La lengua o lenguas que habla una persona y su fluidez en las dominantes.',
   'Sexualidad':       'La orientación sexual y los patrones de atracción de una persona.',
   'Origen':           'La región geográfica y geopolítica de la que proviene una persona.',
-  // Italian
-  'Posizionalità':    'La posizionalità si riferisce a come la tua identità sociale — incluse dimensioni come il genere, la razza, la classe e le capacità — plasma la tua prospettiva, il tuo accesso alle risorse e gli ostacoli che affronti nel mondo.',
-  'Genere':           'Il senso sociale e personale di essere uomo, donna o un altro genere.',
-  'Cittadinanza':     'L\'appartenenza legale a uno stato-nazione e lo status che ne deriva.',
+  'Posizionalità':    "La posizionalità si riferisce a come la tua identità sociale — incluse dimensioni come il genere, la razza, la classe e le capacità — plasma la tua prospettiva, il tuo accesso alle risorse e gli ostacoli che affronti nel mondo.",
+  'Genere':           "Il senso sociale e personale di essere uomo, donna o un altro genere.",
+  'Cittadinanza':     "L'appartenenza legale a uno stato-nazione e lo status che ne deriva.",
   'Colore della pelle': 'Il tono o la pigmentazione della pelle di una persona come categoria sociale.',
   'Istruzione':       'Il livello più alto di istruzione completato da una persona.',
-  'Abilità':          'La presenza o assenza di disabilità fisiche o sensoriali.',
-  'Capacità':         'La presenza o assenza di disabilità fisiche o sensoriali.',
+  "Abilità":          'La presenza o assenza di disabilità fisiche o sensoriali.',
   'Neurodiversità':   'La gamma di differenze nel modo in cui il cervello delle persone funziona ed elabora le informazioni.',
-  'Età':              'L\'età di una persona e la fase della vita che occupa.',
+  'Età':              "L'età di una persona e la fase della vita che occupa.",
   'Taglia corporea':  'Le dimensioni e la forma fisica del corpo di una persona.',
   'Abitazione':       'Il tipo e la stabilità della situazione abitativa di una persona.',
   'Ricchezza':        'Il livello di risorse economiche e sicurezza finanziaria di una persona.',
   'Lingua':           'La lingua o le lingue parlate da una persona e la sua padronanza di quelle dominanti.',
-  'Sessualità':       'L\'orientamento sessuale e i pattern di attrazione di una persona.',
+  'Sessualità':       "L'orientamento sessuale e i pattern di attrazione di una persona.",
   'Origine':          'La regione geografica e geopolitica da cui proviene una persona.',
 };
 
@@ -780,192 +1126,9 @@ function hideModal() {
   modalOverlayEl.classList.remove('visible');
 }
 
-// ── Internationalisation ──
 let currentLang = 'en';
 
-const translations = {
-  en: {
-    subtitle: 'Discrimination in product language',
-    landing_title: 'About this survey',
-    landing_desc: 'Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.',
-    landing_time: 'Estimated time: 7–10 minutes',
-    landing_note: 'This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older.',
-    btn_start: 'Start survey →',
-    info_toggle: 'ℹ️ Privacy Notice and Research Information',
-    info_body: '<p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026).</p><p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p><p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p><p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p><p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above. For further information, contact <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
-    consent_age: 'I declare that I am <strong>18 years of age or older.</strong>',
-    consent_info: 'I have read the <strong>Privacy Notice and Research Information</strong> and I consent to my anonymous responses being used for the purposes described.', btn_back: '← Back', btn_continue: 'Continue →', btn_submit: 'Submit →', btn_reset: 'Reset', btn_download: 'Download',
-    opt: 'optional',
-    s1_num: '01 — About you', s1_title: 'Your relation to design.',
-    s1_referral_label: 'How did you find this survey?',
-    ref_friend: 'Shared by a friend or colleague', ref_social: 'Social media', ref_qr: 'QR code on university campus', ref_other: 'Other',
-    ref_social_ph: 'Which platform? e.g. Instagram, LinkedIn, X...', ref_other_ph: 'Please specify...',
-    s1_design_label: 'Do you have a background in design?',
-    bg_yes: 'Yes — I work or have studied in design', bg_some: 'Somewhat — I have some design knowledge', bg_no: 'No',
-    s2_num: '02 — The product', s2_title: 'Show us the product',
-    s2_desc: 'Have you ever encountered an object and felt it wasn\'t meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend\'s place, on social media, or anywhere online. Physical objects only — for example, a laptop is a physical object, while an app interface is not.',
-    s2_upload_label: 'Upload image', s2_upload_text: 'Click to upload or drag an image here', s2_change_img: 'Change image',
-    s2_type_label: 'What type of product is it?', s2_type_ph: 'e.g. personal care, small appliance, sports equipment, medical device...',
-    s2_why_label: 'In a few words, what about this product made you choose it?', s2_why_ph: 'Describe what struck you...', s2_why_hint: 'Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.',
-
-    s3_num: '03 — Your experience', s3_title: 'It makes me feel…',
-    s3_desc: 'Select exactly 5 feelings that best describe your experience with this product.',
-    s3_other_label: 'Anything else you\'d like to say about how it makes you feel?', s3_other_ph: 'In your own words...',
-    feel_count: (n, max) => n === max ? `${max} / ${max} — you can now continue` : `${n} / ${max} selected`,
-    s4_num: '04 — Your positionality', s4_title: 'Where you stand',
-    s4_desc: 'This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.',
-    wheel_hint: 'Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.',
-    legend_fewer: 'fewer obstacles & more privilege', legend_more: 'more obstacles & marginalization',
-    no_dims: 'No dimensions marked yet',
-    s4_missing_label: 'Is there a dimension missing from the wheel?', s4_missing_ph: 'e.g. religion, civil status, family structure, diet...', s4_impact_ph: 'How does this dimension impact you?',
-    s4_custom_desc: 'Describe the three positions within this dimension to add it to the wheel.',
-    ring_inner: 'Inner ring', ring_inner_sub: 'fewer obstacles', ring_mid: 'Middle ring', ring_outer: 'Outer ring', ring_outer_sub: 'more obstacles',
-    custom_hint: 'Your dimension has been added to the wheel above — click a ring to mark your position.',
-    s4_reflections_label: 'Any final reflections?', s4_reflections_ph: 'Anything else about your experience or context...',
-    ty_title: 'Thank you.', ty_desc: 'Your response has been recorded. This research will contribute to a better understanding of how discrimination operates through everyday product design — and to opening new pathways towards more inclusive and sensitive design practice.',
-    progress: (n, t) => `Section ${n} of ${t}`,
-    err_upload: 'Please upload an image of the product.', err_type: 'Please describe what type of product this is.',
-    err_select: 'Please select one option before continuing.', err_platform: 'Please tell us which platform.',
-    err_specify: 'Please specify how you found the survey.', err_feelings: 'Please select exactly 5 feelings before continuing.',
-    feelings: ["invisible","like an afterthought","like an exception","like somebody else","unwelcome","out of place","like a guest","erased","overlooked","simplified","predetermined","categorized","expected","labelled","pigeonholed","surveilled","profiled","tokenized","suspected","flagged","tolerated","overcorrected","assumed","pitied","othered","exposed","wrong","diminished","expendable","forgotten","overexplained","anticipated","familiar","taken care of","protected","noticed","seen","named","known","held","guided","helped","reminded","accommodated","represented","corrected","managed","warned","contained","small","childish","foreign","excessive","wrong-bodied","too much","not enough","strange","marginal","illegitimate","insecure","guilty","ashamed","unsettled","uncomfortable","unsafe","unvalued","underestimated","alienated","isolated","displaced","misunderstood","patronized"],
-    wheel_dims: [
-      { name: "Gender", rings: ["Cisgender men","Cisgender women","Trans, Intersex, non-binary"] },
-      { name: "Citizenship", rings: ["Citizen","Documented","Undocumented"] },
-      { name: "Skin Colour", rings: ["White","Different shades","Dark"] },
-      { name: "Formal Education", rings: ["Post-secondary","High school","Elementary"] },
-      { name: "Ability", rings: ["Able-bodied","Some disability","Significant disability"] },
-      { name: "Neurodiversity", rings: ["Neuro-typical","Neuro-atypical","Significant neurodiversity"] },
-      { name: "Age", rings: ["Middle age","Youth","Elderly"] },
-      { name: "Body Size", rings: ["Slim","Average","Large"] },
-      { name: "Housing", rings: ["Owns property","Renting / Sheltered","Homeless"] },
-      { name: "Wealth", rings: ["Rich","Middle class","Poor"] },
-      { name: "Language", rings: ["English","Learned English","Non-English monolingual"] },
-      { name: "Sexuality", rings: ["Hetero-sexual","Gay men","Lesbian, bi, pan, asexual"] },
-      { name: "Origin", rings: ["Global North","Global South","Indigenous nation"] }
-    ]
-  },
-  es: {
-    subtitle: 'Discriminación en el lenguaje de producto',
-    landing_title: 'Sobre esta encuesta',
-    landing_desc: 'Todo objeto tiene un lenguaje. Habla a través del color, la forma, el material y la textura — y esas decisiones llevan suposiciones silenciosas sobre para quién fue diseñado. Esta encuesta recoge ejemplos de objetos cotidianos que comunican exclusión o discriminación a través de su <em><strong>lenguaje de producto</strong></em>.',
-    landing_time: 'Tiempo estimado: 7–10 minutos',
-    landing_note: 'Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria y los participantes deben tener 18 años o más.',
-    btn_start: 'Comenzar →',
-    info_toggle: 'ℹ️ Aviso de privacidad e información sobre la investigación',
-    info_body: '<p><strong>Quién realiza esta investigación</strong><br>Esta encuesta forma parte de un proyecto de investigación doctoral realizado por Martina Labarta Labrador en el Departamento de Diseño del Politecnico di Milano (Italia), actualmente desarrollado durante una estancia de investigación visitante en Virginia Tech (EE.UU., marzo–junio 2026).</p><p><strong>De qué trata esta investigación</strong><br>La investigación estudia cómo las cualidades visuales y estéticas de los productos de consumo cotidiano — incluyendo su forma, color, material y otras propiedades formales — pueden comunicar suposiciones implícitas sobre para quién está diseñado un producto, y al hacerlo pueden excluir o discriminar a ciertos grupos de personas. El objetivo es desarrollar un marco práctico para ayudar a los diseñadores a identificar y evitar estos patrones discriminatorios.</p><p><strong>Qué se te pide</strong><br>Se te invita a enviar una foto de un producto físico que hayas encontrado y que te haya hecho sentir excluido/a, discriminado/a o no considerado/a como usuario/a. Luego se te pedirá que selecciones palabras que describan cómo te hace sentir ese producto y, opcionalmente, que reflexiones sobre tu propia posición social.</p><p><strong>Datos y anonimato</strong><br>Esta encuesta no recoge ninguna información personal identificable — ni nombres, ni correos electrónicos, ni datos de contacto. A cada respuesta se le asigna un código anónimo generado aleatoriamente que no puede vincularse a ninguna persona. Los datos se utilizarán exclusivamente con fines de investigación académica y cualquier resultado publicado presentará los datos de forma agregada y anonimizada.</p><p><strong>Participación voluntaria</strong><br>La participación es completamente voluntaria. Puedes detenerte en cualquier momento sin consecuencias. Al continuar, consientes que tus respuestas anónimas se utilicen para los fines descritos. Para más información, contacta a <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
-    consent_age: 'Declaro que tengo <strong>18 años o más.</strong>',
-    consent_info: 'He leído el <strong>Aviso de privacidad e información sobre la investigación</strong> y consiento que mis respuestas anónimas se utilicen para los fines descritos.', btn_back: '← Atrás', btn_continue: 'Continuar →', btn_submit: 'Enviar →', btn_reset: 'Reiniciar', btn_download: 'Descargar',
-    opt: 'opcional',
-    s1_num: '01 — Sobre ti', s1_title: 'Tu relación con el diseño.',
-    s1_referral_label: '¿Cómo encontraste esta encuesta?',
-    ref_friend: 'Compartido por un amigo o colega', ref_social: 'Redes sociales', ref_qr: 'Código QR en el campus universitario', ref_other: 'Otro',
-    ref_social_ph: '¿Qué plataforma? p.ej. Instagram, LinkedIn, X...', ref_other_ph: 'Por favor especifica...',
-    s1_design_label: '¿Tienes formación en diseño?',
-    bg_yes: 'Sí — trabajo o he estudiado diseño', bg_some: 'En parte — tengo algunos conocimientos de diseño', bg_no: 'No',
-    s2_num: '02 — El producto', s2_title: 'Muéstranos el producto',
-    s2_desc: '¿Alguna vez has encontrado un objeto y sentiste que no era para ti? Sube una foto de cualquier producto que te haya hecho sentir así.<br><br>Puede ser algo que poseas, uses, te hayan regalado, hayas visto en una tienda, en casa de alguien, en redes sociales o en cualquier lugar online. Solo objetos físicos — por ejemplo, un ordenador portátil es un objeto físico, mientras que una interfaz de aplicación no lo es.',
-    s2_upload_label: 'Subir imagen', s2_upload_text: 'Haz clic para subir o arrastra una imagen aquí', s2_change_img: 'Cambiar imagen',
-    s2_type_label: '¿Qué tipo de producto es?', s2_type_ph: 'p.ej. cuidado personal, electrodoméstico pequeño, equipo deportivo, dispositivo médico...',
-    s2_why_label: 'En pocas palabras, ¿qué te llevó a elegir este producto?', s2_why_ph: 'Describe lo que te llamó la atención...', s2_why_hint: 'Piensa en su <em>lenguaje de producto</em> — las cualidades formales que comunican significado: su forma, color, material, textura u otros elementos estéticos.',
-    s3_num: '03 — Tu experiencia', s3_title: 'Me hace sentir…',
-    s3_desc: 'Selecciona exactamente 5 sentimientos que mejor describan tu experiencia con este producto.',
-    s3_other_label: '¿Algo más que quieras añadir sobre cómo te hace sentir?', s3_other_ph: 'Con tus propias palabras...',
-    feel_count: (n, max) => n === max ? `${max} / ${max} — puedes continuar` : `${n} / ${max} seleccionados`,
-    s4_num: '04 — Tu posicionalidad', s4_title: 'Tu posición',
-    s4_desc: 'Esta rueda representa tu <span class="positionality-term" tabindex="0">posicionalidad</span> — el conjunto de dimensiones sociales que dan forma a tu experiencia en el mundo. Para cada dimensión, haz clic en el anillo que mejor refleje tu posición: el anillo exterior puede representar más obstáculos y marginalización, el interior menos obstáculos y más privilegio. Esta sección es completamente opcional — responde solo lo que te haga sentir cómodo/a. Tus respuestas son completamente anónimas y no se almacena ningún dato personal.',
-    wheel_hint: 'Haz clic en un anillo para marcar tu posición. Haz clic de nuevo para deseleccionar.<br>Usa + y − para acercar/alejar y arrastra para navegar.',
-    legend_fewer: 'menos obstáculos y más privilegio', legend_more: 'más obstáculos y marginalización',
-    no_dims: 'Ninguna dimensión marcada todavía',
-    s4_missing_label: '¿Falta alguna dimensión en la rueda?', s4_missing_ph: 'p.ej. religión, estado civil, estructura familiar, dieta...', s4_impact_ph: '¿Cómo te impacta esta dimensión?',
-    s4_custom_desc: 'Describe las tres posiciones dentro de esta dimensión para añadirla a la rueda.',
-    ring_inner: 'Anillo interior', ring_inner_sub: 'menos obstáculos', ring_mid: 'Anillo medio', ring_outer: 'Anillo exterior', ring_outer_sub: 'más obstáculos',
-    custom_hint: 'Tu dimensión ha sido añadida a la rueda — haz clic en un anillo para marcar tu posición.',
-    s4_reflections_label: '¿Alguna reflexión final?', s4_reflections_ph: 'Algo más sobre tu experiencia o contexto...',
-    ty_title: 'Gracias.', ty_desc: 'Tu respuesta ha sido registrada. Esta investigación contribuirá a una mejor comprensión de cómo opera la discriminación a través del diseño de productos cotidianos — y a abrir nuevos caminos hacia una práctica de diseño más inclusiva y sensible.',
-    progress: (n, t) => `Sección ${n} de ${t}`,
-    err_upload: 'Por favor sube una imagen del producto.', err_type: 'Por favor describe qué tipo de producto es.',
-    err_select: 'Por favor selecciona una opción antes de continuar.', err_platform: 'Por favor indícanos qué plataforma.',
-    err_specify: 'Por favor especifica cómo encontraste la encuesta.', err_feelings: 'Por favor selecciona exactamente 5 sentimientos antes de continuar.',
-    feelings: ["invisible","como una ocurrencia tardía","como una excepción","como otra persona","no bienvenido/a","fuera de lugar","como un invitado/a","borrado/a","ignorado/a","simplificado/a","predeterminado/a","categorizado/a","esperado/a","etiquetado/a","encasillado/a","vigilado/a","perfilado/a","reducido/a a símbolo","sospechado/a","marcado/a","tolerado/a","sobrec orregido/a","dado/a por sentado/a","compadecido/a","tratado/a como el otro","expuesto/a","equivocado/a","disminuido/a","prescindible","olvidado/a","sobreexplicado/a","anticipado/a","familiar","cuidado/a","protegido/a","notado/a","visto/a","nombrado/a","conocido/a","contenido/a","guiado/a","ayudado/a","recordado/a","acomodado/a","representado/a","corregido/a","gestionado/a","advertido/a","contenido/a","pequeño/a","infantilizado/a","extranjero/a","excesivo/a","con el cuerpo equivocado","demasiado/a","insuficiente","extraño/a","marginal","ilegítimo/a","inseguro/a","culpable","avergonzado/a","desorientado/a","incómodo/a","inseguro/a","infravalorado/a","subestimado/a","alienado/a","aislado/a","desplazado/a","incomprendido/a","condescendido/a"],
-    wheel_dims: [
-      { name: "Género", rings: ["Hombres cisgénero","Mujeres cisgénero","Trans, intersex, no binario"] },
-      { name: "Ciudadanía", rings: ["Ciudadano/a","Documentado/a","Indocumentado/a"] },
-      { name: "Color de piel", rings: ["Blanco","Tonos intermedios","Oscuro"] },
-      { name: "Educación formal", rings: ["Universitaria","Bachillerato","Primaria"] },
-      { name: "Habilidad", rings: ["Sin discapacidad","Alguna discapacidad","Discapacidad significativa"] },
-      { name: "Neurodiversidad", rings: ["Neurotípico/a","Neuroatípico/a","Neurodiversidad significativa"] },
-      { name: "Edad", rings: ["Mediana edad","Juventud","Vejez"] },
-      { name: "Tamaño corporal", rings: ["Delgado/a","Promedio","Grande"] },
-      { name: "Vivienda", rings: ["Propietario/a","Alquiler / Hospedado/a","Sin hogar"] },
-      { name: "Riqueza", rings: ["Rico/a","Clase media","Pobre"] },
-      { name: "Idioma", rings: ["Inglés","Inglés aprendido","Monolingüe no anglófono/a"] },
-      { name: "Sexualidad", rings: ["Heterosexual","Hombres gay","Lesbianas, bi, pan, asexual"] },
-      { name: "Origen", rings: ["Norte global","Sur global","Pueblo indígena"] }
-    ]
-  },
-  it: {
-    subtitle: 'DISCRIMINAZIONE NEL LINGUAGGIO DI PRODOTTO',
-    landing_title: 'Su questo sondaggio',
-    landing_desc: 'Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.',
-    landing_time: 'Tempo stimato: 7–10 minuti',
-    landing_note: 'Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più.',
-    btn_start: 'Inizia →',
-    info_toggle: 'ℹ️ Informativa sulla privacy e informazioni sulla ricerca',
-    info_body: '<p><strong>Chi conduce questa ricerca</strong><br>Questo sondaggio fa parte di un progetto di ricerca dottorale condotto da Martina Labarta Labrador presso il Dipartimento di Design del Politecnico di Milano (Italia), attualmente sviluppato durante un periodo di ricerca visitante presso la Virginia Tech (USA, marzo–giugno 2026).</p><p><strong>Di cosa tratta questa ricerca</strong><br>La ricerca indaga come le qualità visive ed estetiche dei prodotti di consumo quotidiani — tra cui la forma, il colore, il materiale e altre proprietà formali — possano comunicare assunzioni implicite su chi è destinatario di un prodotto, e in questo modo escludere o discriminare determinati gruppi di persone. L\'obiettivo è sviluppare un framework pratico per aiutare i designer a identificare ed evitare questi schemi discriminatori.</p><p><strong>Cosa ti viene chiesto</strong><br>Sei invitato/a a inviare una foto di un prodotto fisico che hai incontrato e che ti ha fatto sentire escluso/a, discriminato/a o non considerato/a come utente. Ti verrà poi chiesto di selezionare parole che descrivono come ti fa sentire quel prodotto e, facoltativamente, di riflettere sulla tua posizione sociale.</p><p><strong>Dati e anonimato</strong><br>Questo sondaggio non raccoglie alcuna informazione personale identificabile — né nomi, né indirizzi email, né dati di contatto. A ogni risposta viene assegnato un codice anonimo generato casualmente che non può essere ricondotto a nessuna persona. I dati verranno utilizzati esclusivamente per scopi di ricerca accademica e qualsiasi risultato pubblicato presenterà i dati in forma aggregata e anonimizzata.</p><p><strong>Partecipazione volontaria</strong><br>La partecipazione è completamente volontaria. Puoi interrompere in qualsiasi momento senza conseguenze. Procedendo, acconsenti all\'utilizzo delle tue risposte anonime per gli scopi descritti. Per ulteriori informazioni, scrivi a <a href="mailto:martinamaria.labarta@polimi.it" style="color:var(--accent)">martinamaria.labarta@polimi.it</a>.</p>',
-    consent_age: 'Dichiaro di avere <strong>18 anni o più.</strong>',
-    consent_info: 'Ho letto l\'<strong>Informativa sulla privacy e le informazioni sulla ricerca</strong> e acconsento all\'utilizzo delle mie risposte anonime per gli scopi descritti.', btn_back: '← Indietro', btn_continue: 'Continua →', btn_submit: 'Invia →', btn_reset: 'Reimposta', btn_download: 'Scarica',
-    opt: 'opzionale',
-    s1_num: '01 — Su di te', s1_title: 'Il tuo rapporto con il design.',
-    s1_referral_label: 'Come hai trovato questo sondaggio?',
-    ref_friend: 'Condiviso da un amico o collega', ref_social: 'Social media', ref_qr: 'Codice QR nel campus universitario', ref_other: 'Altro',
-    ref_social_ph: 'Quale piattaforma? es. Instagram, LinkedIn, X...', ref_other_ph: 'Per favore specifica...',
-    s1_design_label: 'Hai una formazione in design?',
-    bg_yes: 'Sì — lavoro o ho studiato design', bg_some: 'In parte — ho alcune conoscenze di design', bg_no: 'No',
-    s2_num: '02 — Il prodotto', s2_title: 'Mostraci il prodotto',
-    s2_desc: 'Hai mai incontrato un oggetto e sentito che non era pensato per te? Carica una foto di qualsiasi prodotto che ti abbia fatto sentire così.<br><br>Può essere qualcosa che possiedi, usi, ti è stato regalato, che hai visto in un negozio, a casa di qualcuno, sui social media o ovunque online. Solo oggetti fisici — per esempio, un laptop è un oggetto fisico, mentre un\'interfaccia di un\'app non lo è.',
-    s2_upload_label: 'Carica immagine', s2_upload_text: 'Clicca per caricare o trascina un\'immagine qui', s2_change_img: 'Cambia immagine',
-    s2_type_label: 'Che tipo di prodotto è?', s2_type_ph: 'es. cura personale, piccolo elettrodomestico, attrezzatura sportiva, dispositivo medico...',
-    s2_why_label: 'In poche parole, cosa ti ha spinto a scegliere questo prodotto?', s2_why_ph: 'Descrivi cosa ti ha colpito...', s2_why_hint: 'Pensa al suo <em>linguaggio del prodotto</em> — le qualità formali che comunicano significato: la sua forma, il colore, il materiale, la texture o altri elementi estetici.',
-    s3_num: '03 — La tua esperienza', s3_title: 'Mi fa sentire…',
-    s3_desc: 'Seleziona esattamente 5 emozioni che descrivono meglio la tua esperienza con questo prodotto.',
-    s3_other_label: 'Vuoi aggiungere qualcosa su come ti fa sentire?', s3_other_ph: 'Con le tue parole...',
-    feel_count: (n, max) => n === max ? `${max} / ${max} — puoi continuare` : `${n} / ${max} selezionati`,
-    s4_num: '04 — La tua posizionalità', s4_title: 'La tua posizione',
-    s4_desc: 'Questa ruota rappresenta la tua <span class="positionality-term" tabindex="0">posizionalità</span> — l\'insieme delle dimensioni sociali che plasmano la tua esperienza nel mondo. Per ogni dimensione, clicca sull\'anello che meglio riflette la tua posizione: l\'anello esterno può rappresentare più ostacoli e marginalizzazione, quello interno meno ostacoli e più privilegio. Questa sezione è completamente opzionale — rispondi solo a ciò con cui ti senti a tuo agio. Le tue risposte sono completamente anonime e non vengono memorizzati dati personali.',
-    wheel_hint: 'Clicca su un anello per segnare la tua posizione. Clicca di nuovo per deselezionare.<br>Usa + e − per ingrandire/ridurre e trascina per navigare.',
-    legend_fewer: 'meno ostacoli e più privilegio', legend_more: 'più ostacoli e marginalizzazione',
-    no_dims: 'Nessuna dimensione selezionata',
-    s4_missing_label: 'Manca qualche dimensione nella ruota?', s4_missing_ph: 'es. religione, stato civile, struttura familiare, dieta...', s4_impact_ph: 'Come ti impatta questa dimensione?',
-    s4_custom_desc: 'Descrivi le tre posizioni all\'interno di questa dimensione per aggiungerla alla ruota.',
-    ring_inner: 'Anello interno', ring_inner_sub: 'meno ostacoli', ring_mid: 'Anello medio', ring_outer: 'Anello esterno', ring_outer_sub: 'più ostacoli',
-    custom_hint: 'La tua dimensione è stata aggiunta alla ruota — clicca su un anello per segnare la tua posizione.',
-    s4_reflections_label: 'Qualche riflessione finale?', s4_reflections_ph: 'Qualcos\'altro sulla tua esperienza o contesto...',
-    ty_title: 'Grazie.', ty_desc: 'La tua risposta è stata registrata. Questa ricerca contribuirà a una migliore comprensione di come la discriminazione opera attraverso il design dei prodotti quotidiani — e ad aprire nuovi percorsi verso una pratica del design più inclusiva e sensibile.',
-    progress: (n, t) => `Sezione ${n} di ${t}`,
-    err_upload: 'Per favore carica un\'immagine del prodotto.', err_type: 'Per favore descrivi che tipo di prodotto è.',
-    err_select: 'Per favore seleziona un\'opzione prima di continuare.', err_platform: 'Per favore indicaci quale piattaforma.',
-    err_specify: 'Per favore specifica come hai trovato il sondaggio.', err_feelings: 'Per favore seleziona esattamente 5 emozioni prima di continuare.',
-    feelings: ["invisibile","come un ripensamento","come un'eccezione","come qualcun altro","sgradito/a","fuori posto","come un ospite","cancellato/a","trascurato/a","semplificato/a","predeterminato/a","categorizzato/a","atteso/a","etichettato/a","incasellato/a","sorvegliato/a","profilato/a","ridotto/a a simbolo","sospettato/a","segnalato/a","tollerato/a","ipercorretto/a","dato/a per scontato/a","compatito/a","trattato/a come l'altro","esposto/a","sbagliato/a","diminuito/a","sacrificabile","dimenticato/a","iperspiegato/a","anticipato/a","familiare","accudito/a","protetto/a","notato/a","visto/a","nominato/a","conosciuto/a","contenuto/a","guidato/a","aiutato/a","ricordato/a","accomodato/a","rappresentato/a","corretto/a","gestito/a","avvisato/a","contenuto/a","piccolo/a","infantilizzato/a","straniero/a","eccessivo/a","con il corpo sbagliato","troppo/a","insufficiente","strano/a","marginale","illegittimo/a","insicuro/a","colpevole","vergognoso/a","disorientato/a","a disagio","a rischio","svalutato/a","sottovalutato/a","alienato/a","isolato/a","spostato/a","incompreso/a","condisceso/a"],
-    wheel_dims: [
-      { name: "Genere", rings: ["Uomini cisgender","Donne cisgender","Trans, intersex, non binario"] },
-      { name: "Cittadinanza", rings: ["Cittadino/a","Documentato/a","Non documentato/a"] },
-      { name: "Colore della pelle", rings: ["Bianco","Tonalità intermedie","Scuro"] },
-      { name: "Istruzione", rings: ["Universitaria","Scuola superiore","Scuola elementare"] },
-      { name: "Abilità", rings: ["Senza disabilità","Qualche disabilità","Disabilità significativa"] },
-      { name: "Neurodiversità", rings: ["Neurotipico/a","Neuroatipico/a","Neurodiversità significativa"] },
-      { name: "Età", rings: ["Mezza età","Gioventù","Anzianità"] },
-      { name: "Taglia corporea", rings: ["Magro/a","Nella media","Grande"] },
-      { name: "Abitazione", rings: ["Proprietario/a","In affitto / Ospitato/a","Senza tetto"] },
-      { name: "Ricchezza", rings: ["Ricco/a","Ceto medio","Povero/a"] },
-      { name: "Lingua", rings: ["Inglese","Inglese imparato","Monolingue non anglofono/a"] },
-      { name: "Sessualità", rings: ["Eterosessuale","Uomini gay","Lesbiche, bi, pan, asessuale"] },
-      { name: "Origine", rings: ["Nord globale","Sud globale","Popolo indigeno"] }
-    ]
-  },
-
-};
-
-const CUSTOM_SPOKE_INDEX = wheelDimensions.length; // always the last spoke
+const CUSTOM_SPOKE_INDEX = wheelDimensions.length;
 let customDim = null;
 
 function setLanguage(lang) {
@@ -973,12 +1136,10 @@ function setLanguage(lang) {
   const t = translations[lang];
   document.documentElement.lang = lang;
 
-  // Update active button
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
   });
 
-  // Update all data-i18n elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if (t[key] !== undefined && typeof t[key] === 'string') {
@@ -986,42 +1147,33 @@ function setLanguage(lang) {
     }
   });
 
-  // Update placeholders
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.dataset.i18nPlaceholder;
     if (t[key]) el.placeholder = t[key];
   });
 
-  // Re-bind consent checkbox labels (since innerHTML replaced them)
   const ageLabel = document.querySelector('label[for="consent-age"]');
   if (ageLabel) ageLabel.innerHTML = t.consent_age;
   const infoLabel = document.querySelector('label[for="consent-info"]');
   if (infoLabel) infoLabel.innerHTML = t.consent_info;
-  // Keep start button state consistent with checkbox state
   updateStartBtn();
 
-  // Update progress label
   const labelEl = document.getElementById('progress-label');
   if (labelEl && labelEl.textContent) {
     labelEl.textContent = t.progress(currentSection, 4);
   }
 
-  // Rebuild feelings grid in new language (preserves checked state)
   buildFeelings();
 
-  // Update wheel dimensions — preserve custom dimension and wheelState
   const savedWheelState = Object.assign({}, wheelState);
   wheelDimensions.length = 0;
   t.wheel_dims.forEach(d => wheelDimensions.push(d));
-  // Re-add custom dimension if it exists
   if (customDim !== null) {
     wheelDimensions.push(customDim);
-    // Restore custom rings wrap visibility
     document.getElementById('custom-rings-wrap').style.display = 'block';
     const anyRing = [0,1,2].some(n => document.getElementById('custom-ring-' + n).value.trim());
     document.getElementById('custom-hint').style.display = anyRing ? 'block' : 'none';
   }
-  // Restore wheelState
   Object.keys(savedWheelState).forEach(k => { wheelState[k] = savedWheelState[k]; });
   buildWheel();
   renderWheel();
@@ -1033,7 +1185,6 @@ function buildFeelings() {
   const t = translations[currentLang];
   const MAX = 5;
 
-  // If grid already has items, just update labels (preserves checked state)
   const existing = grid.querySelectorAll('.feel-item');
   if (existing.length === t.feelings.length) {
     t.feelings.forEach((f, idx) => {
@@ -1043,7 +1194,6 @@ function buildFeelings() {
     return;
   }
 
-  // First build — create checkboxes from scratch
   grid.innerHTML = '';
   t.feelings.forEach((f, idx) => {
     const item = document.createElement('div');
@@ -1097,7 +1247,6 @@ function clearErrors() {
 function validateSection(n) {
   clearErrors();
   let valid = true;
-  const t = translations[currentLang];
 
   if (n === 1) {
     const designBg = document.querySelector('input[name="design_bg"]:checked');
@@ -1121,7 +1270,6 @@ function validateSection(n) {
   }
 
   if (n === 3) {
-    // Validate exactly 5 feelings selected
     const checked = document.querySelectorAll('#feel-grid input:checked');
     if (checked.length !== 5) {
       document.getElementById('field-feelings').classList.add('field-error');
@@ -1133,10 +1281,8 @@ function validateSection(n) {
 }
 
 function goTo(n) {
-  // Only validate when moving forward
   if (n > currentSection) {
     if (!validateSection(currentSection)) {
-      // Scroll to first error
       const firstError = document.querySelector('.field-error');
       if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
@@ -1207,8 +1353,8 @@ function buildWheel() {
   const catOuter  = 452;
   const RING_SIZE = 18;
   const CAT_SIZE  = 18;
-  const LINE_GAP_INNER = RING_SIZE * 1.1;  // reduced interline for inner ring
-  const LINE_GAP  = RING_SIZE * 1.35;       // interline for middle/outer arc text
+  const LINE_GAP_INNER = RING_SIZE * 1.1;
+  const LINE_GAP  = RING_SIZE * 1.35;
 
   const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
   svg.appendChild(defs);
@@ -1233,8 +1379,6 @@ function buildWheel() {
     return `M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} ${sw} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
   }
   function splitLabel(label) {
-    const customThree = {};
-    if (customThree[label]) return customThree[label];
     const customTwo = {
       'Neuro-atypical': ['Neuro-', 'atypical'],
       'Neuro-typical': ['Neuro-', 'typical'],
@@ -1268,35 +1412,10 @@ function buildWheel() {
     const mid = Math.ceil(words.length / 2);
     const line1 = words.slice(0,mid).join(' ');
     const line2 = words.slice(mid).join(' ');
-    // Labels that need line order swapped because they sit on the bottom half of the wheel
     const invertSplit = [
-      // English
-      'Trans, Intersex, non-binary',
-      'Cisgender women',
-      'Renting / Sheltered',
-      'Middle class',
-      'Different shades',
-      'Global North',
-      'Cisgender men',
-      // Spanish
-      'Trans, intersex, no binario',
-      'Mujeres cisgénero',
-      'Clase media',
-      'Tonos intermedios',
-      'Norte global',
-      'Hombres cisgénero',
-      'Sin hogar',
-      // Italian
-      'Trans, intersex, non binario',
-      'Donne cisgender',
-      'Ceto medio',
-      'Tonalità intermedie',
-      'Nord globale',
-      'Uomini cisgender',
-      'Senza tetto',
-      'Nella media',
-      'Colore della pelle',
-      'In affitto / Ospitato/a',
+      'Trans, Intersex, non-binary','Cisgender women','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender men',
+      'Trans, intersex, no binario','Mujeres cisgénero','Clase media','Tonos intermedios','Norte global','Hombres cisgénero','Sin hogar',
+      'Trans, intersex, non binario','Donne cisgender','Ceto medio','Tonalità intermedie','Nord globale','Uomini cisgender','Senza tetto','Nella media','Colore della pelle','In affitto / Ospitato/a',
     ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
@@ -1305,7 +1424,6 @@ function buildWheel() {
     return label.length * fontSize * 0.58 <= arcLen(r, spanDeg) * 0.82;
   }
 
-  // ── Category background bands ──
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, lg=(ea-sa)>180?1:0;
     const [bx1,by1]=polar(sa,catOuter),[bx2,by2]=polar(ea,catOuter);
@@ -1324,7 +1442,6 @@ function buildWheel() {
     svg.appendChild(band);
   });
 
-  // ── Marginalization ring ──
   {
     const mRing = document.createElementNS('http://www.w3.org/2000/svg','circle');
     mRing.setAttribute('cx', cx); mRing.setAttribute('cy', cy);
@@ -1335,12 +1452,11 @@ function buildWheel() {
     mRing.setAttribute('pointer-events','none');
     svg.appendChild(mRing);
 
-    // "marginalization" text 5 times equally around the ring
     const mMidR = (margInner + margOuter) / 2;
     const margMap = { en: 'marginalization', es: 'marginalización', it: 'marginalizzazione' };
     const mText = margMap[currentLang] || 'marginalization';
     for (let t = 0; t < 5; t++) {
-      const angleDeg = t * 72; // 360/5
+      const angleDeg = t * 72;
       const flip = (angleDeg > 90 && angleDeg < 270);
       const startA = flip ? angleDeg + 50 : angleDeg - 50;
       const endA   = flip ? angleDeg - 50 : angleDeg + 50;
@@ -1370,9 +1486,7 @@ function buildWheel() {
 
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
-
     const arcFlip = (mid > 90 && mid < 270);
-    // Labels forced to radial orientation regardless of ring
     const radialOverride = ['Documented','Tonos intermedios','Bachillerato','Alguna discapacidad'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
@@ -1385,7 +1499,6 @@ function buildWheel() {
       const midR = (ir + or) / 2;
       const label = dim.rings[r];
 
-      // ── Segment ──
       const path = document.createElementNS('http://www.w3.org/2000/svg','path');
       path.setAttribute('d', segPath(sa, ea, ir, or));
       path.setAttribute('fill', ringColors[r]);
@@ -1395,7 +1508,6 @@ function buildWheel() {
       path.setAttribute('class','wseg');
       path.dataset.spoke=i; path.dataset.ring=r;
       path.style.cursor='pointer'; path.style.transition='opacity 0.12s';
-
       path.addEventListener('click', () => {
         const container = document.getElementById('wheel-container');
         if (container && container.dataset.justDragged === '1') return;
@@ -1406,25 +1518,20 @@ function buildWheel() {
       path.addEventListener('mouseleave', () => { hoverRing(i,r,false); hideTooltip(); });
       svg.appendChild(path);
 
-      // ── INNERMOST ring (r=0): radial text ──
       if (r === 0) {
         const [tx, ty] = polar(mid, midR);
         let rotAngle = mid - 90;
         if (rotAngle > 90 && rotAngle <= 270) rotAngle += 180;
         else if (rotAngle > 270) rotAngle -= 180;
-
         const tGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
         tGroup.setAttribute('class', `rlbl rlbl-${i}-${r}`);
         tGroup.setAttribute('pointer-events','none');
         tGroup.setAttribute('transform', `rotate(${rotAngle.toFixed(1)}, ${tx.toFixed(1)}, ${ty.toFixed(1)})`);
-
         const lines0 = splitLabel(label);
         if (lines0.length === 1 || !lines0[1]) {
           const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-          t.setAttribute('x', tx.toFixed(1));
-          t.setAttribute('y', ty.toFixed(1));
-          t.setAttribute('text-anchor','middle');
-          t.setAttribute('dominant-baseline','central');
+          t.setAttribute('x', tx.toFixed(1)); t.setAttribute('y', ty.toFixed(1));
+          t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
           t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
           t.textContent = label;
           tGroup.appendChild(t);
@@ -1435,31 +1542,24 @@ function buildWheel() {
             const t = document.createElementNS('http://www.w3.org/2000/svg','text');
             t.setAttribute('x', tx.toFixed(1));
             const offset = (li - (total-1)/2) * LINE_GAP_INNER;
-            const yOff = radialSign * offset;
-            t.setAttribute('y', (ty + yOff).toFixed(1));
-            t.setAttribute('text-anchor','middle');
-            t.setAttribute('dominant-baseline','central');
+            t.setAttribute('y', (ty + radialSign * offset).toFixed(1));
+            t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
             t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
             t.textContent = ln;
             tGroup.appendChild(t);
           });
         }
         svg.appendChild(tGroup);
-
       } else {
-        // ── MIDDLE + OUTER rings (r=1,2): curved arc text (or radial if overridden) ──
         if (radialOverride.includes(label)) {
-          // Render radially like inner ring
           const [tx, ty] = polar(mid, midR);
           let rotAngle = mid - 90;
           if (rotAngle > 90 && rotAngle <= 270) rotAngle += 180;
           else if (rotAngle > 270) rotAngle -= 180;
-
           const tGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
           tGroup.setAttribute('class', `rlbl rlbl-${i}-${r}`);
           tGroup.setAttribute('pointer-events','none');
           tGroup.setAttribute('transform', `rotate(${rotAngle.toFixed(1)}, ${tx.toFixed(1)}, ${ty.toFixed(1)})`);
-
           const splitLines = splitLabel(label);
           const validLines = splitLines.filter(l => l);
           const total = validLines.length;
@@ -1483,7 +1583,6 @@ function buildWheel() {
             });
           }
           svg.appendChild(tGroup);
-
         } else {
           const splitLines = splitLabel(label);
           const needsMultiLine = splitLines.length > 1 && splitLines[1];
@@ -1498,7 +1597,6 @@ function buildWheel() {
               return [l, midR + arcSign * offset];
             });
           }
-
           lines.forEach(([txt, lr], li) => {
             if (!txt) return;
             const pid = `rp-${i}-${r}-${li}`;
@@ -1507,7 +1605,6 @@ function buildWheel() {
             ad.setAttribute('d', textArcPath(sa, ea, lr, arcFlip));
             ad.setAttribute('fill','none');
             defs.appendChild(ad);
-
             const tEl = document.createElementNS('http://www.w3.org/2000/svg','text');
             tEl.setAttribute('pointer-events','none');
             tEl.setAttribute('class',`rlbl rlbl-${i}-${r}`);
@@ -1524,7 +1621,6 @@ function buildWheel() {
       }
     }
 
-    // ── Category name: curved text in outer band ──
     const catMidR = (catInner + catOuter) / 2;
     const catLabel = dim.name;
     const needsTwoLines = !fitsOnArc(catLabel, catMidR, step, CAT_SIZE);
@@ -1532,7 +1628,6 @@ function buildWheel() {
     const catLines = needsTwoLines
       ? splitLabel(catLabel).map((l,li) => [l||'', catMidR + (li===0 ? -arcSign*(catLineGap*0.5) : arcSign*(catLineGap*0.5))])
       : [[catLabel, catMidR]];
-
     catLines.forEach(([txt, lr], li) => {
       if (!txt) return;
       const cpid = `sp-${i}-${li}`;
@@ -1541,7 +1636,6 @@ function buildWheel() {
       cd.setAttribute('d', textArcPath(sa, ea, lr, arcFlip));
       cd.setAttribute('fill','none');
       defs.appendChild(cd);
-
       const tCat = document.createElementNS('http://www.w3.org/2000/svg','text');
       tCat.setAttribute('pointer-events','none');
       if (li===0) tCat.dataset.spokeLbl = i;
@@ -1557,7 +1651,6 @@ function buildWheel() {
     });
   });
 
-  // Centre circle
   const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
   c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',innerCore);
   c.setAttribute('fill','#2C2C2A'); c.setAttribute('stroke','none');
@@ -1690,20 +1783,16 @@ function downloadWheel() {
   img.src = url;
 }
 
-// ── Custom category ──
 function updateCustomCategory() {
   const name = document.getElementById('missing-category').value.trim();
   const r0   = document.getElementById('custom-ring-0').value.trim() || '—';
   const r1   = document.getElementById('custom-ring-1').value.trim() || '—';
   const r2   = document.getElementById('custom-ring-2').value.trim() || '—';
 
-  // Show/hide ring inputs
   document.getElementById('custom-rings-wrap').style.display = name ? 'block' : 'none';
-  // Show hint only when at least one ring label is filled
   const anyRing = [0,1,2].some(n => document.getElementById(`custom-ring-${n}`).value.trim());
   document.getElementById('custom-hint').style.display = (name && anyRing) ? 'block' : 'none';
 
-  // Remove previous custom spoke if any
   if (customDim !== null) {
     wheelDimensions.splice(CUSTOM_SPOKE_INDEX, 1);
     delete wheelState[CUSTOM_SPOKE_INDEX];
@@ -1739,20 +1828,21 @@ async function submitSurvey() {
 
   const designBgEl = document.querySelector('input[name="design_bg"]:checked');
   const data = {
-    responseId:           responseId,
-    design_background:    designBgEl ? designBgEl.value : '',
-    productType:   document.getElementById('product-type').value,
-    whyChosen:     document.getElementById('why-chosen').value,
-    feelOther:     document.getElementById('feel-other').value,
-    finalThoughts: document.getElementById('final-thoughts').value,
-    imageUrl:      '',
+    responseId:        responseId,
+    design_background: designBgEl ? designBgEl.value : '',
+    productType:       document.getElementById('product-type').value,
+    whyChosen:         document.getElementById('why-chosen').value,
+    feelOther:         document.getElementById('feel-other').value,
+    finalThoughts:     document.getElementById('final-thoughts').value,
+    imageUrl:          '',
   };
-  // One column per feeling (1 = selected, 0 = not selected) — always stored as English labels
+
   const enFeelings = translations.en.feelings;
   const allChecked = [...document.querySelectorAll('#feel-grid input:checked')];
   const checkedIndices = new Set(allChecked.map(el => el.value));
   enFeelings.forEach((f, idx) => { data['feeling_' + f.replace(/ /g,'_')] = checkedIndices.has(String(idx)) ? 1 : 0; });
   data['survey_language'] = currentLang;
+
   const enDims = translations.en.wheel_dims;
   wheelDimensions.forEach((dim, i) => {
     const r = wheelState[i];
@@ -1762,12 +1852,13 @@ async function submitSurvey() {
       data[enName] = enRingLabel;
     }
   });
-  data['custom_category_name']     = document.getElementById('missing-category').value.trim();
-  data['custom_category_impact']   = document.getElementById('missing-impact').value.trim();
-  data['custom_category_ring_0']   = document.getElementById('custom-ring-0').value.trim();
-  data['custom_category_ring_1']   = document.getElementById('custom-ring-1').value.trim();
-  data['custom_category_ring_2']   = document.getElementById('custom-ring-2').value.trim();
-  // Store custom dimension selected ring value under its name for Apps Script lookup
+
+  data['custom_category_name']   = document.getElementById('missing-category').value.trim();
+  data['custom_category_impact'] = document.getElementById('missing-impact').value.trim();
+  data['custom_category_ring_0'] = document.getElementById('custom-ring-0').value.trim();
+  data['custom_category_ring_1'] = document.getElementById('custom-ring-1').value.trim();
+  data['custom_category_ring_2'] = document.getElementById('custom-ring-2').value.trim();
+
   const customName = document.getElementById('missing-category').value.trim();
   if (customName && wheelState[translations.en.wheel_dims.length] !== null) {
     const customDimEntry = wheelDimensions[translations.en.wheel_dims.length];
@@ -1805,18 +1896,13 @@ async function submitSurvey() {
     formData.append('upload_preset', 'designed_out');
     formData.append('public_id', responseId);
     formData.append('tags', responseId);
-
     fetch('https://api.cloudinary.com/v1_1/dmfc7eknr/image/upload', {
       method: 'POST',
       body: formData
     })
     .then(res => res.json())
-    .then(result => {
-      submitToSheets(result.secure_url || '');
-    })
-    .catch(() => {
-      submitToSheets('');
-    });
+    .then(result => { submitToSheets(result.secure_url || ''); })
+    .catch(() => { submitToSheets(''); });
   } else {
     submitToSheets('');
   }
@@ -1859,13 +1945,11 @@ zone.addEventListener('drop', e => {
 });
 
 buildFeelings();
-
 buildWheel();
 renderWheel();
 renderPills();
 setLanguage('en');
 
-// ── Wheel: zoom + pan ──
 (function() {
   const container = document.getElementById('wheel-container');
   const svg       = document.getElementById('wheel-svg');
@@ -1880,13 +1964,11 @@ setLanguage('en');
     svg.style.transformOrigin = '50% 50%';
     svg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
   }
-
   function clamp() {
     const m = (scale - 1) * container.offsetWidth * 0.5;
     panX = Math.max(-m, Math.min(m, panX));
     panY = Math.max(-m, Math.min(m, panY));
   }
-
   function updateButtons() {
     btnOut.disabled = scale <= MIN;
     btnIn.disabled  = scale >= MAX;
@@ -1900,7 +1982,6 @@ setLanguage('en');
     clamp(); apply(); updateButtons();
     setTimeout(() => { svg.style.transition = ''; }, 250);
   });
-
   btnOut.addEventListener('click', e => {
     e.stopPropagation();
     svg.style.transition = 'transform 0.2s ease';
@@ -1910,7 +1991,6 @@ setLanguage('en');
     setTimeout(() => { svg.style.transition = ''; }, 250);
   });
 
-  // Mouse drag — only activates after moving 5px threshold to avoid click conflicts
   let drag = false, dragged = false, ox = 0, oy = 0, px0 = 0, py0 = 0;
   container.addEventListener('mousedown', e => {
     if (scale <= 1 || e.button !== 0) return;
@@ -1924,21 +2004,18 @@ setLanguage('en');
     if (!dragged && Math.hypot(dx, dy) < 5) return;
     dragged = true;
     container.style.cursor = 'grabbing';
-    panX = px0 + dx;
-    panY = py0 + dy;
+    panX = px0 + dx; panY = py0 + dy;
     clamp(); apply();
   });
   window.addEventListener('mouseup', e => {
     if (!drag) return;
     drag = false;
-    // Brief flag so ring click handler can ignore this mouseup
     container.dataset.justDragged = dragged ? '1' : '0';
     setTimeout(() => { container.dataset.justDragged = '0'; }, 100);
     dragged = false;
     container.style.cursor = scale > 1 ? 'grab' : 'default';
   });
 
-  // Touch drag (single finger pan when zoomed) — threshold to avoid click conflicts
   let touch = false, touched = false, tx0 = 0, ty0 = 0, tpx0 = 0, tpy0 = 0;
   container.addEventListener('touchstart', e => {
     if (scale <= 1 || e.touches.length !== 1) return;
@@ -1958,14 +2035,11 @@ setLanguage('en');
   container.addEventListener('touchend', () => { touch = false; touched = false; });
 })();
 
-// ── Tooltip (click to open, × to close, click outside to close) ──
-
-// Positionality term — use delegation so it works after language switch
 document.addEventListener('click', e => {
   const el = e.target.closest('.positionality-term');
   if (!el) return;
   e.stopPropagation();
-  const keyMap = { en: 'Positionality', es: 'Posicionalidad', it: 'Posizionalità' };
+  const keyMap   = { en: 'Positionality', es: 'Posicionalidad', it: 'Posizionalità' };
   const labelMap = { en: 'Positionality', es: 'Posicionalidad', it: 'Posizionalità' };
   const closeMap = { en: 'close', es: 'cerrar', it: 'chiudi' };
   const key = keyMap[currentLang] || 'Positionality';
@@ -1976,7 +2050,6 @@ document.addEventListener('click', e => {
   modalOverlayEl.classList.add('visible');
 });
 
-// Clear error states on correction
 document.getElementById('img-input').addEventListener('change', () => {
   document.getElementById('field-image').classList.remove('field-error');
 });
