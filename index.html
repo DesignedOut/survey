@@ -1390,24 +1390,29 @@ function buildWheel() {
       'Post-secondary': ['Post-', 'secondary'],
       'Able-bodied': ['Able-', 'bodied'],
       'Renting / Sheltered': ['Sheltered', 'Renting /'],
+      'Inglés nativo': ['Inglés', 'nativo'],
+      'Inglés aprendido': ['Inglés', 'aprendido'],
+      'Madrelingua inglese': ['Madrelingua', 'inglese'],
+      'Parlante inglese': ['Parlante', 'inglese'],
       'Monolingüe no anglófono/a': ['Monolingüe', 'no anglófono/a'],
-      'Monolingue non anglofono/a': ['Monolingue', 'non anglofono/a'],
+      'Monolingue non anglofonə': ['Monolingue', 'non anglofono/a'],
       'Colore della pelle': ['della pelle', 'Colore'],
-      'Alquiler / Ospitado/a': ['Ospitado/a', 'Alquiler /'],
-      'In affitto / Ospitato/a': ['Ospitato/a', 'In affitto /'],
+      'Affitto / Ospitatə': ['Ospitatə', 'In affitto /'],
       'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
-      'Neuroatipico/a': ['Neuro-', 'atipico/a'],
-      'Neurotipico/a': ['Neuro-', 'tipico/a'],
+      'Neuroatipicə': ['Neuro-', 'atipicə'],
+      'Neurotipicə': ['Neuro-', 'tipicə'],
       'Neurodiversidad significativa': ['Neurodiversidad', 'significativa'],
       'Neurodiversità significativa': ['Neurodiversità', 'significativa'],
       'Discapacidad significativa': ['Discapacidad', 'significativa'],
       'Disabilità significativa': ['Disabilità', 'significativa'],
-      'Documentato/a': ['mentato/a', 'Docu-'],
-      'Non documentato/a': ['documentato/a', 'Non docu-'],
-      'Documentado/a': ['mentado/a', 'Docu-'],
-      'Indocumentado/a': ['mentado/a', 'Indocu-'],
+      'Migrante legale': ['legale', 'Migrante'],
+      'Migrante illegale': ['illegale', 'Migrante'],
+      'Migrante legal': ['legal', 'Migrante'],
+      'Migrante ilegal': ['ilegal', 'Migrante'],
+      'Scuola superiore di 3º grado': ['di 3º grado', 'Scuola sup.'],
+      'Scuola superiore di 2º grado': ['di 2º grado', 'Scuola sup.'],
     };
     if (customTwo[label]) return customTwo[label];
     const words = label.split(' ');
@@ -1416,9 +1421,9 @@ function buildWheel() {
     const line1 = words.slice(0,mid).join(' ');
     const line2 = words.slice(mid).join(' ');
     const invertSplit = [
-      'Trans, Intersex, non-binary','Cisgender women','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender men',
-      'Trans, intersex, no binario','Mujeres cisgénero','Clase media','Tonos intermedios','Norte global','Hombres cisgénero','Sin hogar',
-      'Trans, intersex, non binario','Donne cisgender','Ceto medio','Tonalità intermedie','Nord globale','Uomini cisgender','Senza tetto','Nella media','Colore della pelle','In affitto / Ospitato/a',
+      'Trans, Intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender men',
+      'Trans, intersex, no binariə','Mujer cisgénero','Clase media','Tonos intermedios','Norte global','Hombre cisgénero','Sin hogar',
+      'Trans, intersex, non binario','Donna cisgender','Classe media','Toni intermedi','Nord globale','Uomo cisgender','Senzatetto','Nella media','Colore della pelle','Affitto / Ospitatə',
     ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
@@ -1490,7 +1495,7 @@ function buildWheel() {
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
-    const radialOverride = ['Documented','Tonos intermedios','Bachillerato','Alguna discapacidad'];
+    const radialOverride = ['Documented','Tonos intermedios','Bachillerato','Discapacidad leve'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
