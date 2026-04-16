@@ -1391,9 +1391,7 @@ function buildWheel() {
       'Able-bodied': ['Able-', 'bodied'],
       'Renting / Sheltered': ['Sheltered', 'Renting /'],
       'Inglés nativo': ['Inglés', 'nativo'],
-      'Inglés aprendido': ['Inglés', 'aprendido'],
-      'Parlante inglese': ['Parlante', 'inglese'],
-      'Monolingue non anglofonə': ['Monolingue', 'non anglofono/a'],
+      'Monolingue non anglofonə': ['Monolingue', 'non anglofonə'],
       'Colore della pelle': ['della pelle', 'Colore'],
       'Toni intermedi': ['intermedi', 'Toni'],
       'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
@@ -1402,10 +1400,6 @@ function buildWheel() {
       'Neurotípico/a': ['Neuro-', 'típico/a'],
       'Neuroatipicə': ['Neuro-', 'atipicə'],
       'Neurotipicə': ['Neuro-', 'tipicə'],
-      'Neurodiversidad significativa': ['Neurodiversidad', 'significativa'],
-      'Neurodiversità significativa': ['Neurodiversità', 'significativa'],
-      'Discapacidad significativa': ['Discapacidad', 'significativa'],
-      'Disabilità significativa': ['Disabilità', 'significativa'],
       'Migrante legale': ['legale', 'Migrante'],
       'Migrante illegale': ['illegale', 'Migrante'],
       'Migrante legal': ['legal', 'Migrante'],
@@ -1424,9 +1418,9 @@ function buildWheel() {
     const line1 = words.slice(0,mid).join(' ');
     const line2 = words.slice(mid).join(' ');
     const invertSplit = [
-      'Trans, Intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender men',
-      'Trans, intersex, no binariə','Mujer cisgénero','Clase media','Tonos intermedios','Norte global','Hombre cisgénero','Sin hogar',
-      'Trans, intersex, non binario','Donna cisgender','Classe media','Toni intermedi','Nord globale','Uomo cisgender','Senzatetto','Nella media','Colore della pelle','Affitto / Ospitatə',
+      'Trans, Intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man',
+      'Trans, intersex, no binariə','Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
+      'Trans, intersex, non binario','Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media',
     ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
