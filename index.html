@@ -1382,6 +1382,12 @@ function buildWheel() {
     return `M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} ${sw} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
   }
   function splitLabel(label) {
+   const customThree = {
+      'Scuola sup. di 3º grado': ['Scuola', 'sup. di', '3º grado'],
+      'Scuola sup. di 2º grado': ['Scuola', 'sup. di', '2º grado'],
+     'Discapacidad leve': ['Disca-', 'pacidad', 'leve'],
+          };
+    if (customThree[label]) return customThree[label];
     const customTwo = {
       'Neuro-atypical': ['Neuro-', 'atypical'],
       'Neuro-typical': ['Neuro-', 'typical'],
@@ -1394,11 +1400,11 @@ function buildWheel() {
       'Monolingue non anglofonə': ['Monolingue', 'non anglofonə'],
       'Madrelingua inglese': ['inglese', 'Madrelingua'],
       'Colore della pelle': ['della pelle', 'Colore'],
+     'Livello di benessere': ['di benessere', 'Livello']
       'Toni intermedi': ['intermedi', 'Toni'],
      'Tonos intermedios': ['intermedios', 'Tonos'],
       'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
-      'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
-      'Secundaria / Bachillerato': ['Secundaria /', 'Bachillerato'],
+      'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
       'Neuroatipicə': ['Neuro-', 'atipicə'],
@@ -1407,9 +1413,8 @@ function buildWheel() {
       'Migrante illegale': ['illegale', 'Migrante'],
       'Migrante legal': ['legal', 'Migrante'],
       'Migrante ilegal': ['ilegal', 'Migrante'],
-      'Scuola sup. di 3º grado': ['Scuola sup.', 'di 3º grado'],
-      'Scuola sup. di 2º grado': ['Scuola sup.', 'di 2º grado'],
       'Eterosessuale': ['sessuale', 'Etero-'],
+       'Secundaria / Bachillerato': ['Secundaria', 'Bachillerato'],
       'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,']
               };
     if (customTwo[label]) return customTwo[label];
@@ -1493,8 +1498,7 @@ function buildWheel() {
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
-    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi',
-  'Scuola sup. di 3º grado','Scuola sup. di 2º grado','Secundaria / Bachillerato','Alquiler / Hospedado/a','Discapacidad leve'];
+    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi','Alquiler / Hospedado/a','Discapacidad leve'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
