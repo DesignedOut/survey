@@ -620,7 +620,7 @@ const translations = {
     // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
     // Format: { name: "Category", rings: ["inner (fewer obstacles)", "middle", "outer (more obstacles)"] }
     wheel_dims: [
-      { name: "Gender",           rings: ["Cisgender men",      "Cisgender women",        "Trans, Intersex, non-binary"] },
+      { name: "Gender",           rings: ["Cisgender man",      "Cisgender woman",        "Trans, Intersex, non-binary"] },
       { name: "Citizenship",      rings: ["Citizen",            "Documented",             "Undocumented"] },
       { name: "Skin Colour",      rings: ["White",              "Different shades",       "Dark"] },
       { name: "Formal Education", rings: ["Post-secondary",     "High school",            "Elementary"] },
@@ -893,7 +893,7 @@ const translations = {
       { name: "Genere",             rings: ["Uomo cisgender",   "Donna cisgender",          "Trans, intersex, non binariə"] },
       { name: "Cittadinanza",       rings: ["Cittadinə",        "Migrante legale",            "Migrante illegale"] },
       { name: "Colore della pelle", rings: ["Bianco",             "Toni intermedi",      "Scuro"] },
-      { name: "Istruzione",         rings: ["Scuola superiore di 3º grado",      "Scuola superiore di 2º grado",         "Scuola elementare"] },
+      { name: "Istruzione",         rings: ["Scuola sup. di 3º grado",      "Scuola sup. di 2º grado",         "Scuola elementare"] },
       { name: "Abilità",            rings: ["Senza disabilità",   "Disabilità lieve",       "Disabilità significativa"] },
       { name: "Neurodiversità",     rings: ["Neurotipicə",      "Neuroatipicə",           "Neurodiversità significativa"] },
       { name: "Età",                rings: ["Mezza età",          "Gioventù",                 "Anzianità"] },
@@ -1021,8 +1021,8 @@ const ringDefs = {
   'Bianco':                    'Persone socialmente classificate come bianche nel loro contesto socio-culturale.',
   'Toni intermedi':         'Persone di classificazione razziale mista o ambigua nel loro contesto socio-culturale.',
   'Scuro':                     'Persone socialmente classificate come nere nel loro contesto socio-culturale.',
-  'Scuola superiore di 3º grado':  'Persone il cui livello di istruzione più alto è la scuola superiore.',
- 'Scuola superiore di 2º grado':  'Persone il cui livello di istruzione più elevato è la scuola secondaria.',
+  'Scuola sup. di 3º grado':  'Persone il cui livello di istruzione più alto è la scuola superiore.',
+ 'Scuola sup. di 2º grado':  'Persone il cui livello di istruzione più elevato è la scuola secondaria.',
   'Scuola elementare':           'Persone il cui livello di istruzione più elevato è la scuola primaria.',
    'Senza disabilità':            'Persone senza menomazioni fisiche o sensoriali.',
   'Disabilità lieve':          'Persone con una disabilità che influisce sulla loro vita quotidiana.',
@@ -1387,16 +1387,17 @@ function buildWheel() {
       'Neuro-typical': ['Neuro-', 'typical'],
       'Non-English monolingual': ['Non-English', 'monolingual'],
       'Hetero-sexual': ['sexual', 'Hetero-'],
+      'Heterosexual': ['sexual', 'Hetero-'],
       'Post-secondary': ['Post-', 'secondary'],
       'Able-bodied': ['Able-', 'bodied'],
       'Renting / Sheltered': ['Sheltered', 'Renting /'],
-      'Inglés nativo': ['Inglés', 'nativo'],
       'Monolingue non anglofonə': ['Monolingue', 'non anglofonə'],
-     'Madrelingua inglese': ['inglese', 'Madrelingua'],
+      'Madrelingua inglese': ['inglese', 'Madrelingua'],
       'Colore della pelle': ['della pelle', 'Colore'],
       'Toni intermedi': ['intermedi', 'Toni'],
       'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
       'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
+     'Secundaria / Bachillerato': ['Bachillerato', 'Secundaria /'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
       'Neuroatipicə': ['Neuro-', 'atipicə'],
@@ -1408,8 +1409,7 @@ function buildWheel() {
       'Scuola sup. di 3º grado': ['di 3º grado', 'Scuola sup.'],
       'Scuola sup. di 2º grado': ['di 2º grado', 'Scuola sup.'],
       'Eterosessuale': ['sessuale', 'Etero-'],
-     'Popolazione indigene': ['indigene', 'Popolazione'],
-     'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
+      'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
       
     };
     if (customTwo[label]) return customTwo[label];
@@ -1420,8 +1420,8 @@ function buildWheel() {
     const line2 = words.slice(mid).join(' ');
     const invertSplit = [
       'Trans, Intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man',
-      'Trans, intersex, no binariə','Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
-      'Trans, intersex, non binario','Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media',
+      'Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
+      'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Popolazione indigene',
     ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
@@ -1494,7 +1494,7 @@ function buildWheel() {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
     const radialOverride = ['Documented','Tonos intermedios','Toni intermedi',
-  'Scuola sup. di 3º grado','Scuola sup. di 2º grado'];
+  'Scuola sup. di 3º grado','Scuola sup. di 2º grado','Secundaria / Bachillerato'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
