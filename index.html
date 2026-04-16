@@ -560,7 +560,7 @@ const translations = {
     s2_type_ph:      "e.g. personal care, small appliance, sports equipment, medical device...",
     s2_why_label:    "What about this product made you choose it?",
     s2_why_ph:       "Describe what struck you...",
-    s2_why_hint:     "Think about its <em>product language</em> — the formal qualities that communicate meaning: <strong>its shape, colour, material, texture, or other aesthetic elements</strong>.",
+    s2_why_hint:     "<strong><span style=\"color:var(--accent)\"><u>Think about its <em>product language</em></u><strong><span style=\"color:var(--accent)\"> — the formal qualities that communicate meaning: <strong>its shape, colour, material, texture, or other aesthetic elements</strong>.",
 
     // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
     s3_num:          "03 — Your experience",
@@ -694,7 +694,7 @@ const translations = {
     s2_type_ph:      "p.ej. cuidado personal, electrodoméstico pequeño, equipo deportivo, dispositivo médico...",
     s2_why_label:    "¿Qué te ha llevado a elegir este producto?",
     s2_why_ph:       "Describe lo que te llamó la atención...",
-    s2_why_hint:     "Piensa en su <em>lenguaje de producto</em> — las cualidades formales que comunican significado: <strong>su forma, color, material, textura u otros elementos estéticos</strong>.",
+    s2_why_hint:     "<strong><span style=\"color:var(--accent)\"><u>Piensa en su <em>lenguaje de producto</em></u><strong><span style=\"color:var(--accent)\"> — las cualidades formales que comunican significado: <strong>su forma, color, material, textura u otros elementos estéticos</strong>.",
 
     // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
     s3_num:          "03 — Tu experiencia",
@@ -1133,6 +1133,7 @@ function hideModal() {
 }
 
 let currentLang = 'en';
+let surveyComplete = false;
 
 const CUSTOM_SPOKE_INDEX = wheelDimensions.length;
 let customDim = null;
@@ -1166,7 +1167,7 @@ function setLanguage(lang) {
 
   const labelEl = document.getElementById('progress-label');
   if (labelEl && labelEl.textContent) {
-    labelEl.textContent = t.progress(currentSection, 4);
+    labelEl.textContent = surveyComplete ? t.progress_complete : t.progress(currentSection, 4);
   }
 
   buildFeelings();
@@ -1316,7 +1317,7 @@ function updateProgress() {
   label.style.display = 'block';
   const pct = (currentSection / 4) * 100;
   bar.style.width = pct + '%';
-  label.textContent = translations[currentLang].progress(currentSection, 4);
+  label.textContent = surveyComplete ? translations[currentLang].progress_complete : translations[currentLang].progress(currentSection, 4);
 }
 
 function showTooltip(name, x, y) {
@@ -1885,6 +1886,7 @@ async function submitSurvey() {
     .then(() => {
       ['s0','s1','s2','s3','s4'].forEach(id => { document.getElementById(id).style.display='none'; });
       document.getElementById('progress').style.width = '100%';
+      surveyComplete = true;
       document.getElementById('progress-label').textContent = translations[currentLang].progress_complete || 'Complete';
       document.getElementById('thankyou').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
