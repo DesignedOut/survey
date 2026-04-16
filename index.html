@@ -1492,13 +1492,8 @@ function buildWheel() {
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
-    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi','Discapacidad leve',
-  'Scuola sup. di 3º grado','Scuola sup. di 2º grado',
-  'Neurodiversità significativa','Disabilità significativa',
-  'Neurodiversidad significativa','Discapacidad significativa',
-  'Lesbica, bi, pan, asessuale','Lesbiana, bi, pan, asexual',
-  'Monolingue non anglofonə','Monolingüe no anglófono/a',
-  'Popolazione indigene'];
+    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi',
+  'Scuola sup. di 3º grado','Scuola sup. di 2º grado'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
