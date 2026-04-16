@@ -1383,9 +1383,11 @@ function buildWheel() {
   }
   function splitLabel(label) {
    const customThree = {
-      'Scuola sup. di 3º grado': ['Scuola', 'sup. di', '3º grado'],
       'Scuola sup. di 2º grado': ['Scuola', 'sup. di', '2º grado'],
-      'Discapacidad leve': ['Disca-', 'pacidad', 'leve']
+      'Discapacidad leve': ['Disca-', 'pacidad', 'leve'],
+    'Secundaria / Bachillerato': ['Secundaria', 'Bachiller'],
+    'Tonos intermedios': ['Tonos', 'inter-', 'medios'],
+    'Toni intermedi': ['Toni', 'inter-', 'medi']
           };
     if (customThree[label]) return customThree[label];
     const customTwo = {
@@ -1393,7 +1395,8 @@ function buildWheel() {
       'Neuro-typical': ['Neuro-', 'typical'],
       'Non-English monolingual': ['Non-English', 'monolingual'],
       'Hetero-sexual': ['sexual', 'Hetero-'],
-      'Heterosexual': ['sexual', 'Hetero-'],
+     'Documented': ['Docu-', 'mented'],
+           'Heterosexual': ['sexual', 'Hetero-'],
       'Post-secondary': ['Post-', 'secondary'],
       'Able-bodied': ['Able-', 'bodied'],
       'Renting / Sheltered': ['Sheltered', 'Renting /'],
@@ -1401,10 +1404,8 @@ function buildWheel() {
       'Madrelingua inglese': ['inglese', 'Madrelingua'],
       'Colore della pelle': ['della pelle', 'Colore'],
      'Livello di benessere': ['di benessere', 'Livello'],
-      'Toni intermedi': ['intermedi', 'Toni'],
-     'Tonos intermedios': ['intermedios', 'Tonos'],
       'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
-      'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler'],
+      'Alquiler / Hospedado/a': ['Alquiler', 'Hospedado/a'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
       'Neuroatipicə': ['Neuro-', 'atipicə'],
@@ -1414,8 +1415,8 @@ function buildWheel() {
       'Migrante legal': ['legal', 'Migrante'],
       'Migrante ilegal': ['ilegal', 'Migrante'],
       'Eterosessuale': ['sessuale', 'Etero-'],
-       'Secundaria / Bachillerato': ['Secundaria', 'Bachillerato'],
-      'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,']
+             'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
+     'Scuola sup. di 3º grado': ['Scuola sup.', 'di 3º grado'],
               };
     if (customTwo[label]) return customTwo[label];
     const words = label.split(' ');
@@ -1498,7 +1499,7 @@ function buildWheel() {
   wheelDimensions.forEach((dim, i) => {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
-    const radialOverride = ['Documented','Tonos intermedios','Toni intermedi','Alquiler / Hospedado/a','Discapacidad leve'];
+    const radialOverride = [];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
