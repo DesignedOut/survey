@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discrimination in Product Language — Survey</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACJklEQVR42u2awW3DMAxFOU+RSXLtZAW6S2fJCD20BTpAEQMGDMMyxU/yS1bcADzk4Nj/SbIlflJ+fz4fOuQJYMTl8vIwAJNWPAYCcOmmk8hRulkkQlT/ev0o4/vrbzdYDJKXvqvbBKiQtALwSgcBkhgSU//+dpuCBTDdf744wCBh9VMsD04CrK/3MkhYPTgJ+PDHGARXv5EOMriGX8MIAiDqzYUUU48zSFK9OQkZAISBA7CeBPOlwtXHAVzqFwZvIAAmgwEw/W6kHmSYBfgANhttnYFyJK6rn0NjkMri0e7FVa8xbJ6lLSSpD3+FgZ5b1QdLmwQHwPrujfLDcuB9AOAxs12Ca34tSoaxAEwGAkAHpyQIMMLwBybhnwF089sGAoh5DSmAyvae8S/CAJtjrA2gJX554wj/O+Jf+AC8GL0B1o/JA+T9Q9BBOtEMPAHIX6EhADL7wEAAsWgF0IcB9LHdAPP23AFg2fV9ABpDmbD2AVg/UVNvAFBORESLpTywqQCm5dRZfenSxV2JAwE4tko7hsDwO5y51gxhi9f2RjsAIKUq1Bt1pZd5mxGsksTtdY2hTFspiS+tPlBnSBrurmoVp8RUN75dJTNXtSoFoDEgBRvwzTEZUlXKXQawXpYEmBkIdWKkUu8tGyOjwKzUBxjMLzpRfbZbJQZQWUWtulU0o4EI0LxfCMQAy9cU6fyeORfAYT1zJ+laPEPf6Hk6d8/TO31I3AF7/BH1cOrUMwAAAABJRU5ErkJggg==">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-soft: #5a5750; --ink-faint: #a09d98;
+    --paper: #faf9f7; --paper-warm: #f2efe9; --paper-mid: #e8e4dc;
+    --accent: #534AB7; --accent-soft: #EEEDFE;
+    --purple-dark: #3C3489; --purple-mid: #7F77DD; --purple-light: #EEEDFE;
+    --border: rgba(26,24,20,0.12); --radius: 4px;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.6; font-weight: 300; }
+
+  .survey-header { border-bottom: 1px solid var(--border); padding: 3rem 2rem 2.5rem; max-width: 680px; margin: 0 auto; }
+  .survey-header h1 { font-family: var(--serif); font-size: clamp(2rem,5vw,3rem); font-weight: 700; line-height: 1.2; letter-spacing: normal; margin-bottom: 0.5rem; padding-bottom: 0.15em;
+    color: #1a1814;
+  }
+  .survey-header h1 em { font-style: italic; color: var(--accent); }
+  .h1-sub {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    font-family: var(--sans) !important;
+    color: #5B3DB0 !important;
+    -webkit-text-fill-color: #5B3DB0 !important;
+    background: none !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4 !important;
+    display: block;
+  }
+  .gradient-text {
+    background: linear-gradient(120deg, #5B3DB0 0%, #F59E0B 28%, #0ABFA8 48%, #00C4A0 65%, #1DB87A 82%, #0ABFA8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .survey-note {
+    position: relative; z-index: 1;
+    font-size: 12px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    border-left: 2px solid var(--accent);
+    background: var(--paper-warm);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: italic;
+  }
+
+  .survey-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+    margin-top: -0.3rem;
+  }
+  .survey-subtitle em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .survey-header p { font-size: 15px; color: var(--ink-soft); max-width: 520px; line-height: 1.7; }
+  .progress-bar { width: 100%; height: 2px; background: var(--paper-mid); margin-top: 2rem; }
+  .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.5s ease; }
+  .progress-label { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.4rem; }
+
+  .section { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; border-bottom: 1px solid var(--border); display: none; animation: fadeUp 0.4s ease both; }
+  .section.active { display: block; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .section-number { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+  .section-desc { font-size: 14px; color: var(--ink-soft); margin-bottom: 2.5rem; line-height: 1.75; max-width: 500px; }
+
+  .field { margin-bottom: 2rem; }
+  .field label { display: block; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.5rem; }
+  .field label .opt { font-weight: 300; color: var(--ink-faint); font-size: 12px; margin-left: 6px; letter-spacing: 0; }
+
+  .consent-block { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .consent-check { display: flex; align-items: flex-start; gap: 0.7rem; margin-top: 1rem; cursor: pointer; }
+  .consent-check input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; min-width: 16px; accent-color: var(--accent); cursor: pointer; }
+  .consent-check label { font-size: 13px; color: var(--ink); line-height: 1.5; cursor: pointer; }
+  .consent-check label strong { font-weight: 500; }
+  .btn-next:disabled { opacity: 0.35; cursor: not-allowed; }
+  .info-accordion { margin-top: 1.2rem; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .info-accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; background: var(--paper-warm); cursor: pointer; font-size: 12px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.04em; user-select: none; }
+  .info-accordion-header:hover { color: var(--ink); }
+  .info-accordion-body { display: none; padding: 1rem; font-size: 12px; color: var(--ink-soft); line-height: 1.7; border-top: 1px solid var(--border); }
+  .info-accordion-body p { margin-bottom: 0.6rem; }
+  .info-accordion-body p:last-child { margin-bottom: 0; }
+  .info-accordion.open .info-accordion-body { display: block; }
+  .info-accordion.open .info-accordion-header .acc-arrow { transform: rotate(180deg); }
+  .acc-arrow { transition: transform 0.2s; display: inline-block; }
+
+  .field-hint { font-size: 12px; color: var(--ink-soft); font-style: italic; margin: 0.3rem 0 0.6rem; line-height: 1.5; }
+
+  .upload-zone { border: 1.5px dashed var(--paper-mid); border-radius: var(--radius); padding: 2.5rem 2rem; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: var(--paper-warm); position: relative; }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: var(--accent-soft); }
+  .upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .upload-icon { width: 40px; height: 40px; margin: 0 auto 1rem; border: 1.5px solid var(--ink-faint); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .upload-icon svg { width: 18px; height: 18px; stroke: var(--ink-faint); fill: none; }
+  .upload-text { font-size: 14px; color: var(--ink-soft); }
+  .upload-subtext { font-size: 12px; color: var(--ink-faint); margin-top: 0.3rem; }
+
+  input[type="text"], textarea { width: 100%; font-family: var(--sans); font-size: 15px; font-weight: 300; color: var(--ink); background: var(--paper-warm); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.8rem 1rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+  input[type="text"]:focus, textarea:focus { border-color: var(--accent); background: #fff; }
+  textarea { min-height: 80px; }
+
+  .feel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .feel-item { position: relative; }
+  .feel-item input[type="checkbox"], .feel-item input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .feel-item label { display: flex; align-items: center; gap: 9px; padding: 0.6rem 0.9rem; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; font-size: 14px; font-weight: 300; color: var(--ink-soft); background: var(--paper-warm); transition: all 0.12s; margin-bottom: 0; line-height: 1.3; }
+  .feel-item label::before { content: ''; width: 13px; height: 13px; min-width: 13px; border: 1px solid var(--paper-mid); border-radius: 2px; background: #fff; transition: all 0.12s; }
+  .feel-item input[type="radio"] + label::before { border-radius: 50%; }
+  .feel-item input[type="checkbox"]:checked + label, .feel-item input[type="radio"]:checked + label { border-color: var(--purple-mid); background: var(--purple-light); color: var(--purple-dark); font-weight: 400; }
+  .feel-item input[type="checkbox"]:checked + label::before, .feel-item input[type="radio"]:checked + label::before { background: var(--purple-mid); border-color: var(--purple-mid); background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l3 3 5-6' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: 9px; background-repeat: no-repeat; background-position: center; }
+  .feel-item input[type="checkbox"]:disabled + label, .feel-item input[type="radio"]:disabled + label { opacity: 0.35; cursor: not-allowed; background: var(--paper-mid); border-color: transparent; color: var(--ink-faint); }
+  .feel-item input[type="checkbox"]:disabled + label:hover, .feel-item input[type="radio"]:disabled + label:hover { border-color: transparent; background: var(--paper-mid); color: var(--ink-faint); }
+  .feel-item label:hover { border-color: var(--purple-mid); background: #f5f4fe; color: var(--ink); }
+
+  .btn-row { display: flex; gap: 12px; margin-top: 2.5rem; align-items: center; }
+  .btn-next { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0.05em; color: #fff; background: var(--ink); border: none; border-radius: var(--radius); padding: 0.75rem 2rem; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+  .btn-next:hover { background: var(--accent); }
+  .btn-next:active { transform: scale(0.98); }
+  .btn-back { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--ink-soft); background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem 1.5rem; cursor: pointer; transition: border-color 0.15s; }
+  .btn-back:hover { border-color: var(--ink-soft); }
+
+  .wheel-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+  .wheel-wrap #wheel-container { margin-top: -0.6rem; }
+  .wheel-legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-faint); flex-wrap: wrap; justify-content: center; }
+  .legend-track { display: flex; border-radius: 3px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+  .legend-seg { width: 24px; height: 10px; }
+  .pill-list { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 520px; min-height: 26px; }
+  .sel-pill { font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid; font-family: var(--sans); white-space: nowrap; }
+  .wheel-hint { font-size: 12px; color: var(--ink-faint); font-style: italic; text-align: center; max-width: 420px; line-height: 1.6; }
+  .btn-reset { font-size: 12px; color: var(--ink-faint); background: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 4px 12px; cursor: pointer; font-family: var(--sans); }
+  .btn-reset:hover { color: var(--ink-soft); }
+
+  .thankyou { max-width: 680px; margin: 0 auto; padding: 5rem 2rem; text-align: center; display: none; animation: fadeUp 0.5s ease both; }
+  .thankyou h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 400; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .thankyou p { color: var(--ink-soft); font-size: 15px; max-width: 400px; margin: 0 auto; line-height: 1.7; }
+  .divider-mark { width: 32px; height: 2px; background: var(--accent); margin: 1.5rem auto; }
+
+  .field-error input[type="text"],
+  .field-error textarea { border-color: #c0392b; background: #fdf0ef; }
+  .field-error .upload-zone { border-color: #c0392b; background: #fdf0ef; }
+  .field-error .feel-grid { outline: 1.5px solid #c0392b; border-radius: var(--radius); background: #fdf0ef; padding: 6px; }
+  .field-error-msg { display: none; font-size: 12px; color: #c0392b; margin-top: 0.4rem; font-style: italic; }
+  .field-error .field-error-msg { display: block; }
+
+  .section--landing { border-bottom: none; padding-top: 0.5rem; }
+
+  @media (max-width: 500px) {
+    .survey-header, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .feel-grid { grid-template-columns: repeat(2, 1fr); }
+    .wheel-hint { font-size: 13px; }
+    #wheel-container { border-radius: 8px; }
+  }
+
+  @keyframes glitch-main {
+    0%,1.9%,4.1%,6%,59.9%,62.1%,64%,74.9%,76.1%,78%,100% { transform:translate(0) skewX(0); }
+    2%       { transform:translate(-4px,0) skewX(-4deg); }
+    3%       { transform:translate(4px,0) skewX(4deg); }
+    4%       { transform:translate(-2px,0) skewX(0); }
+    60%      { transform:translate(5px,0); }
+    61%      { transform:translate(-5px,0); }
+    62%      { transform:translate(3px,0); }
+    75%      { transform:translate(-3px,0); }
+    75.5%    { transform:translate(3px,0); }
+    76%      { transform:translate(0); }
+  }
+  @keyframes glitch-r {
+    0%,1.9%,4.1%,59.9%,62.1%,74.9%,76.1%,100% { clip-path:inset(0 0 100% 0); opacity:0; }
+    2%       { clip-path:inset(10% 0 75% 0); opacity:1; transform:translate(6px,0); }
+    3%       { clip-path:inset(60% 0 5% 0);  opacity:1; transform:translate(-5px,0); }
+    4%       { clip-path:inset(35% 0 40% 0); opacity:1; transform:translate(4px,0); }
+    60%      { clip-path:inset(20% 0 60% 0); opacity:1; transform:translate(7px,0); }
+    61%      { clip-path:inset(70% 0 5% 0);  opacity:1; transform:translate(-6px,0); }
+    62%      { clip-path:inset(0 0 100% 0);  opacity:0; }
+    75%      { clip-path:inset(5% 0 85% 0);  opacity:1; transform:translate(-4px,0); }
+    76%      { clip-path:inset(0 0 100% 0);  opacity:0; }
+  }
+  @keyframes glitch-b {
+    0%,1.9%,4.1%,59.9%,62.1%,74.9%,76.1%,100% { clip-path:inset(0 0 100% 0); opacity:0; }
+    2%       { clip-path:inset(60% 0 10% 0); opacity:1; transform:translate(-5px,0); }
+    3%       { clip-path:inset(15% 0 65% 0); opacity:1; transform:translate(4px,0); }
+    4%       { clip-path:inset(45% 0 30% 0); opacity:1; transform:translate(-3px,0); }
+    60%      { clip-path:inset(50% 0 20% 0); opacity:1; transform:translate(-6px,0); }
+    61%      { clip-path:inset(10% 0 70% 0); opacity:1; transform:translate(5px,0); }
+    62%      { clip-path:inset(0 0 100% 0);  opacity:0; }
+    75%      { clip-path:inset(40% 0 35% 0); opacity:1; transform:translate(3px,0); }
+    76%      { clip-path:inset(0 0 100% 0);  opacity:0; }
+  }
+  .glitch-t {
+    display: inline-block; position: relative; font-style: italic;
+    animation: glitch-main 5s steps(1) infinite;
+    background: none; -webkit-text-fill-color: #1a1814; color: #1a1814;
+  }
+  .glitch-t::before, .glitch-t::after {
+    content: attr(data-char); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  }
+  .glitch-t::before { color: #0ea5e9; -webkit-text-fill-color: #0ea5e9; animation: glitch-r 5s steps(1) infinite; clip-path: inset(0 0 100% 0); }
+  .glitch-t::after  { color: #f43f5e; animation: glitch-b 5s steps(1) infinite; clip-path: inset(0 0 100% 0); }
+
+  .positionality-term { border-bottom: 1px dashed var(--ink-soft); cursor: help; display: inline; }
+  .positionality-term:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+  .wheel-tooltip-overlay { display: none; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  }
+  .modal-overlay.visible { opacity: 1; pointer-events: auto; }
+  .modal-box {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%,-50%) scale(0.97);
+    width: 80vw; max-width: 480px;
+    background: #1a1814; color: #faf9f7;
+    font-family: var(--sans); font-size: 15px; font-weight: 300; line-height: 1.7;
+    padding: 2rem 2rem 1.5rem; border-radius: 12px;
+    z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+  }
+  .modal-box.visible { opacity: 1; pointer-events: auto; transform: translate(-50%,-50%) scale(1); }
+  .modal-box strong { font-weight: 500; font-size: 17px; display: block; margin-bottom: 0.6rem; color: #fff; }
+  .modal-close {
+    display: block; margin-top: 1.2rem; margin-left: auto;
+    background: none; border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.7); font-size: 13px;
+    font-family: var(--sans); padding: 5px 16px; border-radius: 20px; cursor: pointer;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+  .wheel-tooltip {
+    position: fixed; background: #1a1814; color: #faf9f7;
+    font-family: var(--sans); font-size: 13px; font-weight: 300; line-height: 1.55;
+    padding: 10px 14px; border-radius: 6px; max-width: 240px;
+    pointer-events: none; opacity: 0; transition: opacity 0.15s; z-index: 1000;
+  }
+  .wheel-tooltip.visible { opacity: 1; }
+  .wheel-tooltip strong { font-weight: 500; display: block; margin-bottom: 3px; color: #fff; }
+
+  .lang-switcher { display: flex; gap: 6px; justify-content: flex-end; padding: 0.8rem 2rem 0; max-width: 680px; margin: 0 auto; }
+  .lang-btn { font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--ink-faint); background: none; border: none; cursor: pointer; padding: 2px 4px; letter-spacing: 0.04em; transition: color 0.15s; }
+  .lang-btn:hover { color: var(--ink-soft); }
+  .lang-btn.active { color: var(--accent); font-weight: 500; border-bottom: 1px solid var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLanguage('en')">English</button>
+  <button class="lang-btn" onclick="setLanguage('es')">Español</button>
+  <button class="lang-btn" onclick="setLanguage('it')">Italiano</button>
+</div>
+
+<header class="survey-header">
+  <h1>Designed Ou<span class="glitch-t" data-char="t">t</span></h1>
+  <p class="h1-sub" data-i18n="subtitle">Discrimination in product language</p>
+  <div class="progress-bar" style="display:none;"><div class="progress-fill" id="progress"></div></div>
+  <p class="progress-label" id="progress-label" style="display:none;"></p>
+</header>
+
+<!-- LANDING -->
+<section class="section active" id="s0">
+  <h2 class="section-title" data-i18n="landing_title">About this survey</h2>
+  <p class="section-desc" data-i18n="landing_desc">Every object has a language.</p>
+  <p class="section-desc" style="color:var(--ink-faint);font-size:13px;" data-i18n="landing_time">Estimated time: 7–10 minutes</p>
+
+  <div class="info-accordion" id="info-accordion">
+    <div class="info-accordion-header" onclick="document.getElementById('info-accordion').classList.toggle('open')">
+      <span data-i18n="info_toggle">About this research</span>
+      <span class="acc-arrow">&#9662;</span>
+    </div>
+    <div class="info-accordion-body" data-i18n="info_body"></div>
+  </div>
+
+  <div class="consent-block">
+    <div class="consent-check">
+      <input type="checkbox" id="consent-age" onchange="updateStartBtn()">
+      <label for="consent-age" data-i18n="consent_age">I declare that I am 18 years of age or older.</label>
+    </div>
+    <div class="consent-check">
+      <input type="checkbox" id="consent-info" onchange="updateStartBtn()">
+      <label for="consent-info" data-i18n="consent_info">I have read the information and consent.</label>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem;">
+    <button class="btn-next" id="btn-start" onclick="goTo(1)" disabled style="background:var(--accent);font-size:15px;padding:0.9rem 2.5rem;" data-i18n="btn_start">Start survey &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 1 -->
+<section class="section" id="s1">
+  <div class="section-number" data-i18n="s1_num">01 &#8212; Before we start</div>
+  <h2 class="section-title" data-i18n="s1_title">A couple of quick questions.</h2>
+
+  <div class="field" id="field-design-bg">
+    <label style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--ink);display:block;margin-bottom:0.8rem;" data-i18n="s1_design_label">Do you have a background in design?</label>
+    <div class="feel-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-yes" value="Yes -- I work or have studied in design"><label for="bg-yes" data-i18n="bg_yes">Yes &#8212; I work or have studied in design</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-some" value="Somewhat -- I have some design knowledge"><label for="bg-some" data-i18n="bg_some">Somewhat &#8212; I have some design knowledge</label></div>
+      <div class="feel-item"><input type="radio" name="design_bg" id="bg-no" value="No"><label for="bg-no" data-i18n="bg_no">No</label></div>
+    </div>
+    <p class="field-error-msg" data-i18n="err_select">Please select one option before continuing.</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(0)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(2)" data-i18n="btn_continue">Continue &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="section" id="s2">
+  <div class="section-number" data-i18n="s2_num">02 &#8212; The product</div>
+  <h2 class="section-title" data-i18n="s2_title">Show us the product</h2>
+  <p class="section-desc" data-i18n="s2_desc">Have you ever encountered an object...</p>
+
+  <div class="field" id="field-image">
+    <label data-i18n="s2_upload_label">Upload image</label>
+    <div class="upload-zone" id="upload-zone">
+      <input type="file" id="img-input" accept="image/*">
+      <div class="upload-icon">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 16l4-4 4 4 4-6 4 8"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </div>
+      <p class="upload-text" data-i18n="s2_upload_text">Click to upload or drag an image here</p>
+      <p class="upload-subtext">JPG, PNG or WEBP</p>
+    </div>
+    <div id="preview-wrap" style="display:none;margin-top:1rem;">
+      <img id="preview" alt="Preview" style="max-width:100%;max-height:260px;object-fit:contain;border-radius:var(--radius);border:1px solid var(--border);display:block;">
+      <div id="img-meta" style="margin-top:0.5rem;font-size:13px;color:var(--ink-soft);line-height:1.6;"></div>
+      <button id="change-img" style="margin-top:0.6rem;font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:4px 14px;cursor:pointer;" data-i18n="s2_change_img">Change image</button>
+    </div>
+    <p class="field-error-msg" data-i18n="err_upload">Please upload an image of the product.</p>
+  </div>
+
+  <div class="field" id="field-product-type">
+    <label data-i18n="s2_type_label">What type of product is it?</label>
+    <input type="text" id="product-type" data-i18n-placeholder="s2_type_ph" placeholder="e.g. personal care...">
+    <p class="field-error-msg" data-i18n="err_type">Please describe what type of product this is.</p>
+  </div>
+
+  <div class="field">
+    <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
+    <p class="field-hint" data-i18n="s2_why_hint">Think about its product language...</p>
+    <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(1)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(3)" data-i18n="btn_continue">Continue &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section" id="s3">
+  <div class="section-number" data-i18n="s3_num">03 &#8212; Your experience</div>
+  <h2 class="section-title" data-i18n="s3_title">It makes me feel&#8230;</h2>
+  <p class="section-desc" data-i18n="s3_desc">Select exactly 5 feelings that best describe your experience with this product.</p>
+
+  <div id="sticky-selection" style="display:none;position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--border);padding:0.6rem 0;flex-wrap:wrap;gap:6px;margin-bottom:1rem;"></div>
+
+  <div class="field" id="field-feelings">
+    <div class="feel-grid" id="feel-grid"></div>
+    <p id="feel-count" style="margin-top:0.8rem;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:0.05em;min-height:1.2em;"></p>
+    <p class="field-error-msg" data-i18n="err_feelings">Please select exactly 5 feelings before continuing.</p>
+  </div>
+
+  <div class="field" style="margin-top:0.5rem;">
+    <label data-i18n="s3_other_label">Anything else you'd like to say? <span class="opt" data-i18n="opt">optional</span></label>
+    <textarea id="feel-other" data-i18n-placeholder="s3_other_ph" placeholder="In your own words..."></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(2)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="goTo(4)" data-i18n="btn_continue">Continue &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section class="section" id="s4">
+  <div class="section-number" data-i18n="s4_num">04 &#8212; Your positionality</div>
+  <h2 class="section-title" data-i18n="s4_title">Where you stand</h2>
+  <p class="section-desc" data-i18n="s4_desc">This wheel maps your <span class="positionality-term" tabindex="0">positionality</span>...</p>
+
+  <div class="wheel-wrap">
+    <p class="wheel-hint" data-i18n="wheel_hint">Click a ring within a spoke to mark your position.</p>
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:0;">
+      <button id="zoom-out" disabled style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#8722;</button>
+      <button id="zoom-in"  style="font-family:var(--sans);font-size:18px;font-weight:300;width:36px;height:36px;border:1px solid var(--border);border-radius:50%;background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);">&#43;</button>
+    </div>
+    <div id="wheel-container" style="width:100%;overflow:hidden;position:relative;user-select:none;-webkit-user-select:none;margin-top:0;"><svg id="wheel-svg" width="100%" viewBox="0 0 960 960" style="max-width:820px;display:block;margin:0 auto;transform-origin:50% 50%;user-select:none;-webkit-user-select:none;"></svg></div>
+
+    <div style="display:flex;gap:8px;align-items:center;justify-content:center;">
+      <button class="btn-reset" onclick="resetWheel()" data-i18n="btn_reset">Reset</button>
+      <button class="btn-reset" onclick="downloadWheel()" title="Download wheel as image" style="display:flex;align-items:center;gap:5px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="btn_download">Download</span>
+      </button>
+    </div>
+
+    <div class="wheel-legend">
+      <span data-i18n="legend_fewer">fewer obstacles &amp; more privilege</span>
+      <div class="legend-track">
+        <div class="legend-seg" style="background:#EEEDFE;"></div>
+        <div class="legend-seg" style="background:#9491D9;"></div>
+        <div class="legend-seg" style="background:#534AB7;"></div>
+      </div>
+      <span data-i18n="legend_more">more obstacles &amp; marginalization</span>
+    </div>
+
+    <div class="pill-list" id="pill-list">
+      <span class="wheel-hint" data-i18n="no_dims">No dimensions marked yet</span>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:2rem;">
+    <label data-i18n="s4_missing_label">Is there a dimension missing from the wheel? <span class="opt" data-i18n="opt">optional</span></label>
+    <input type="text" id="missing-category" data-i18n-placeholder="s4_missing_ph" placeholder="e.g. religion..." style="margin-bottom:0.6rem;">
+    <div id="custom-rings-wrap" style="display:none;">
+      <p style="font-size:13px;color:var(--ink-soft);margin:0.8rem 0 0.6rem;font-style:italic;" data-i18n="s4_custom_desc">Describe the three positions within this dimension to add it to the wheel.</p>
+      <div id="custom-rings" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;" data-i18n="ring_inner">Inner ring <span style="font-weight:300;font-size:10px;" data-i18n="ring_inner_sub">fewer obstacles</span></label>
+          <input type="text" id="custom-ring-0" placeholder="">
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;" data-i18n="ring_mid">Middle ring</label>
+          <input type="text" id="custom-ring-1" placeholder="">
+        </div>
+        <div>
+          <label style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.3rem;display:block;" data-i18n="ring_outer">Outer ring <span style="font-weight:300;font-size:10px;" data-i18n="ring_outer_sub">more obstacles</span></label>
+          <input type="text" id="custom-ring-2" placeholder="">
+        </div>
+      </div>
+      <p id="custom-hint" style="display:none;margin-top:0.7rem;font-size:12px;color:var(--ink-faint);font-style:italic;" data-i18n="custom_hint">Your dimension has been added to the wheel above.</p>
+      <textarea id="missing-impact" data-i18n-placeholder="s4_impact_ph" placeholder="How does this dimension impact you?" style="margin-top:1rem;"></textarea>
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:2.5rem;">
+    <label data-i18n="s4_reflections_label">Any final reflections? <span class="opt" data-i18n="opt">optional</span></label>
+    <textarea id="final-thoughts" data-i18n-placeholder="s4_reflections_ph" placeholder="Anything else about your experience or context..."></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-back" onclick="goTo(3)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-next" onclick="submitSurvey()" style="background:var(--accent);" data-i18n="btn_submit">Submit &#8594;</button>
+  </div>
+</section>
+
+<div class="thankyou" id="thankyou">
+  <div class="divider-mark"></div>
+  <h2 data-i18n="ty_title">Thank you.</h2>
+  <p data-i18n="ty_desc">Your response has been recorded.</p>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ▌ ALL SURVEY TEXT — edit here, in all 3 languages
+// ═══════════════════════════════════════════════════════════════════════════
+//
+//  HOW TO EDIT:
+//  • Change the text on the RIGHT side of the colon only
+//  • Never change key names (left side)
+//  • Strings use double quotes — apostrophes are fine inside (don't need escaping)
+//  • HTML tags like <strong>, <em>, <br> are allowed inside string values
+//
+//  SECTIONS (same structure in en / es / it):
+//    GLOBAL         → subtitle, buttons, error messages (used throughout)
+//    LANDING PAGE   → intro text, privacy notice, consent checkboxes
+//    SECTION 1      → design background question
+//    SECTION 2      → product upload
+//    SECTION 3      → feelings (72-word array — keep order and count)
+//    SECTION 4      → positionality wheel
+//    THANK YOU      → completion page
+//    WHEEL DIMS     → 13 identity categories with 3 ring labels each
+//
+//  ⚠  Keep exactly 72 items in each feelings array
+//  ⚠  Keep exactly 13 entries in each wheel_dims array
+// ═══════════════════════════════════════════════════════════════════════════
+
+const translations = {
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ENGLISH
+  // ─────────────────────────────────────────────────────────────────────────
+  en: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "Discrimination in product language",
+    btn_start:    "Start survey →",
+    btn_back:     "← Back",
+    btn_continue: "Continue →",
+    btn_submit:   "Submit →",
+    btn_reset:    "Reset",
+    btn_download: "Download",
+    opt:          "optional",
+    progress:     (n, t) => `Section ${n} of ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Please upload an image of the product.",
+    err_type:     "Please describe what type of product this is.",
+    err_select:   "Please select one option before continuing.",
+    err_platform: "Please tell us which platform.",
+    err_specify:  "Please specify how you found the survey.",
+    err_feelings: "Please select exactly 5 feelings before continuing.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "About this survey",
+    landing_desc:  "Every object has a language. It speaks through colour, shape, material, and form — and those choices carry silent assumptions about who it was designed for. This survey collects examples of everyday objects that communicate exclusion or discrimination through exactly that: their <em><strong>product language</strong></em>.",
+    landing_time:  "Estimated time: 7–10 minutes",
+    landing_note:  "This survey is part of a PhD research project. Responses will be analysed and synthesised, and findings may be used for academic publication. Participation is entirely voluntary and respondents must be 18 or older.",
+
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Privacy Notice and Research Information",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Who is conducting this research</strong><br>This survey is part of a PhD research project conducted by Martina Labarta Labrador at the Department of Design, Politecnico di Milano (Italy), currently developed during a visiting research period at Virginia Tech (USA, March–June 2026). For further information, contact <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p><p><strong>What this research is about</strong><br>The research investigates how the visual and aesthetic qualities of everyday consumer products — including their shape, colour, material, and other formal properties — can communicate implicit assumptions about who a product is designed for, and in doing so may exclude or discriminate against certain groups of people. The goal is to develop a practical framework to help designers identify and avoid these discriminatory patterns.</p><p><strong>What you are asked to do</strong><br>You are invited to submit a photo of a physical product you have personally encountered that made you feel excluded, discriminated against, or not considered as a user. You will then be asked to select words describing how that product makes you feel, and optionally reflect on your own social position.</p><p><strong>Data and anonymity</strong><br>This survey does not collect any personal identifying information — no names, email addresses, or contact details. Each submission is assigned a randomly generated anonymous code that cannot be linked back to any individual. Data will be used exclusively for academic research purposes and any published findings will present results in aggregated and anonymised form only.</p><p><strong>Voluntary participation</strong><br>Participation is entirely voluntary. You may stop at any time without consequence. By proceeding, you consent to your anonymous responses being used for the purposes described above.</p>",
+
+    // Consent checkboxes
+    consent_age:  "I declare that I am <strong>18 years of age or older.</strong>",
+    consent_info: "I have read the <strong>Privacy Notice and Research Information</strong> and I consent to my anonymous responses being used for the purposes described.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — About you",
+    s1_title:        "Your relation to design.",
+    s1_design_label: "Do you have a background in design?",
+    bg_yes:          "Yes — I work or have studied in design",
+    bg_some:         "Somewhat — I have some design knowledge",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — The product",
+    s2_title:        "Show us the product",
+    s2_desc:         "Have you ever encountered an object and felt it wasn't meant for you? Upload a photo of any product that gave you that feeling.<br><br>It could be something you own, use, were gifted, saw in a shop, a friend's place, on social media, or anywhere online. Physical objects only — for example, a laptop is a physical object, while an app interface is not.",
+    s2_upload_label: "Upload image",
+    s2_upload_text:  "Click to upload or drag an image here",
+    s2_change_img:   "Change image",
+    s2_type_label:   "What type of product is it?",
+    s2_type_ph:      "e.g. personal care, small appliance, sports equipment, medical device...",
+    s2_why_label:    "In a few words, what about this product made you choose it?",
+    s2_why_ph:       "Describe what struck you...",
+    s2_why_hint:     "Think about its <em>product language</em> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — Your experience",
+    s3_title:        "It makes me feel…",
+    s3_desc:         "Select exactly 5 feelings that best describe your experience with this product.",
+    s3_other_label:  "Anything else you'd like to say about how it makes you feel?",
+    s3_other_ph:     "In your own words...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — you can now continue` : `${n} / ${max} selected`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisible",         "like an afterthought", "like an exception",  "like somebody else",
+      "unwelcome",         "out of place",         "like a guest",       "erased",
+      "overlooked",        "simplified",           "predetermined",      "categorized",
+      "expected",          "labelled",             "pigeonholed",        "surveilled",
+      "profiled",          "tokenized",            "suspected",          "flagged",
+      "tolerated",         "overcorrected",        "assumed",            "pitied",
+      "othered",           "exposed",              "wrong",              "diminished",
+      "expendable",        "forgotten",            "overexplained",      "anticipated",
+      "familiar",          "taken care of",        "protected",          "noticed",
+      "seen",              "named",                "known",              "held",
+      "guided",            "helped",               "reminded",           "accommodated",
+      "represented",       "corrected",            "managed",            "warned",
+      "contained",         "small",                "childish",           "foreign",
+      "excessive",         "wrong-bodied",         "too much",           "not enough",
+      "strange",           "marginal",             "illegitimate",       "insecure",
+      "guilty",            "ashamed",              "unsettled",          "uncomfortable",
+      "unsafe",            "unvalued",             "underestimated",     "alienated",
+      "isolated",          "displaced",            "misunderstood",      "patronized"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — Your positionality",
+    s4_title:             "Where you stand",
+    s4_desc:              "This wheel maps your positionality — the set of social dimensions that shape your experience in the world. For each dimension, click the ring that best reflects where you stand: the outermost ring can represent facing more obstacles and marginalization, the innermost fewer obstacles and more privilege. This section is entirely optional — answer only what you feel comfortable with. Your responses are completely anonymous and no personal data is stored.",
+    wheel_hint:           "Click a ring within a spoke to mark your position. Click the same ring again to deselect.<br>Use + and − to zoom in/out and drag to navigate.",
+    legend_fewer:         "fewer obstacles & more privilege",
+    legend_more:          "more obstacles & marginalization",
+    no_dims:              "No dimensions marked yet",
+    s4_missing_label:     "Is there a dimension missing from the wheel?",
+    s4_missing_ph:        "e.g. religion, civil status, family structure, diet...",
+    s4_impact_ph:         "How does this dimension impact you?",
+    s4_custom_desc:       "Describe the three positions within this dimension to add it to the wheel.",
+    ring_inner:           "Inner ring",
+    ring_inner_sub:       "fewer obstacles",
+    ring_mid:             "Middle ring",
+    ring_outer:           "Outer ring",
+    ring_outer_sub:       "more obstacles",
+    custom_hint:          "Your dimension has been added to the wheel above — click a ring to mark your position.",
+    s4_reflections_label: "Any final reflections?",
+    s4_reflections_ph:    "Anything else about your experience or context...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Thank you.",
+    ty_desc:  "Your response has been recorded. This research will contribute to a better understanding of how discrimination operates through everyday product design — and to opening new pathways towards more inclusive and sensitive design practice.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    // Format: { name: "Category", rings: ["inner (fewer obstacles)", "middle", "outer (more obstacles)"] }
+    wheel_dims: [
+      { name: "Gender",           rings: ["Cisgender men",      "Cisgender women",        "Trans, Intersex, non-binary"] },
+      { name: "Citizenship",      rings: ["Citizen",            "Documented",             "Undocumented"] },
+      { name: "Skin Colour",      rings: ["White",              "Different shades",       "Dark"] },
+      { name: "Formal Education", rings: ["Post-secondary",     "High school",            "Elementary"] },
+      { name: "Ability",          rings: ["Able-bodied",        "Some disability",        "Significant disability"] },
+      { name: "Neurodiversity",   rings: ["Neuro-typical",      "Neuro-atypical",         "Significant neurodiversity"] },
+      { name: "Age",              rings: ["Middle age",         "Youth",                  "Elderly"] },
+      { name: "Body Size",        rings: ["Slim",               "Average",                "Large"] },
+      { name: "Housing",          rings: ["Owns property",      "Renting / Sheltered",    "Homeless"] },
+      { name: "Wealth",           rings: ["Rich",               "Middle class",           "Poor"] },
+      { name: "Language",         rings: ["English",            "Learned English",        "Non-English monolingual"] },
+      { name: "Sexuality",        rings: ["Hetero-sexual",      "Gay men",                "Lesbian, bi, pan, asexual"] },
+      { name: "Origin",           rings: ["Global North",       "Global South",           "Indigenous nation"] }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ESPAÑOL
+  // ─────────────────────────────────────────────────────────────────────────
+  es: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "Discriminación en el lenguaje de producto",
+    btn_start:    "Comenzar →",
+    btn_back:     "← Atrás",
+    btn_continue: "Continuar →",
+    btn_submit:   "Enviar →",
+    btn_reset:    "Reiniciar",
+    btn_download: "Descargar",
+    opt:          "opcional",
+    progress:     (n, t) => `Sección ${n} de ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Por favor sube una imagen del producto.",
+    err_type:     "Por favor describe qué tipo de producto es.",
+    err_select:   "Por favor selecciona una opción antes de continuar.",
+    err_platform: "Por favor indícanos qué plataforma.",
+    err_specify:  "Por favor especifica cómo encontraste la encuesta.",
+    err_feelings: "Por favor selecciona exactamente 5 sentimientos antes de continuar.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "Sobre esta encuesta",
+    landing_desc:  "Todo objeto tiene un lenguaje. Habla a través del color, la forma, el material y la textura — y esas decisiones llevan suposiciones silenciosas sobre para quién fue diseñado. Esta encuesta recoge ejemplos de objetos cotidianos que comunican exclusión o discriminación a través de su <em><strong>lenguaje de producto</strong></em>.",
+    landing_time:  "Tiempo estimado: 7–10 minutos",
+    landing_note:  "Esta encuesta forma parte de un proyecto de investigación doctoral. Las respuestas serán analizadas y sintetizadas, y los resultados podrán utilizarse en publicaciones académicas. La participación es completamente voluntaria y los participantes deben tener 18 años o más.",
+
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Aviso de privacidad e información sobre la investigación",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Quién realiza esta investigación</strong><br>Esta encuesta forma parte de un proyecto de investigación doctoral realizado por Martina Labarta Labrador en el Departamento de Diseño del Politecnico di Milano (Italia), actualmente desarrollado durante una estancia de investigación visitante en Virginia Tech (EE.UU., marzo–junio 2026). Para más información, contacta a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p><p><strong>De qué trata esta investigación</strong><br>La investigación estudia cómo las cualidades visuales y estéticas de los productos de consumo cotidiano — incluyendo su forma, color, material y otras propiedades formales — pueden comunicar suposiciones implícitas sobre para quién está diseñado un producto, y al hacerlo pueden excluir o discriminar a ciertos grupos de personas. El objetivo es desarrollar un marco práctico para ayudar a los diseñadores a identificar y evitar estos patrones discriminatorios.</p><p><strong>Qué se te pide</strong><br>Se te invita a enviar una foto de un producto físico que hayas encontrado y que te haya hecho sentir excluido/a, discriminado/a o no considerado/a como usuario/a. Luego se te pedirá que selecciones palabras que describan cómo te hace sentir ese producto y, opcionalmente, que reflexiones sobre tu propia posición social.</p><p><strong>Datos y anonimato</strong><br>Esta encuesta no recoge ninguna información personal identificable — ni nombres, ni correos electrónicos, ni datos de contacto. A cada respuesta se le asigna un código anónimo generado aleatoriamente que no puede vincularse a ninguna persona. Los datos se utilizarán exclusivamente con fines de investigación académica y cualquier resultado publicado presentará los datos de forma agregada y anonimizada.</p><p><strong>Participación voluntaria</strong><br>La participación es completamente voluntaria. Puedes detenerte en cualquier momento sin consecuencias. Al continuar, consientes que tus respuestas anónimas se utilicen para los fines descritos.</p>",
+
+    // Consent checkboxes
+    consent_age:  "Declaro que tengo <strong>18 años o más.</strong>",
+    consent_info: "He leído el <strong>Aviso de privacidad e información sobre la investigación</strong> y consiento que mis respuestas anónimas se utilicen para los fines descritos.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — Sobre ti",
+    s1_title:        "Tu relación con el diseño.",
+    s1_design_label: "¿Tienes formación en diseño?",
+    bg_yes:          "Sí — trabajo o he estudiado diseño",
+    bg_some:         "En parte — tengo algunos conocimientos de diseño",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — El producto",
+    s2_title:        "Muéstranos el producto",
+    s2_desc:         "¿Alguna vez has encontrado un objeto y sentiste que no era para ti? Sube una foto de cualquier producto que te haya hecho sentir así.<br><br>Puede ser algo que poseas, uses, te hayan regalado, hayas visto en una tienda, en casa de alguien, en redes sociales o en cualquier lugar online. Solo objetos físicos — por ejemplo, un ordenador portátil es un objeto físico, mientras que una interfaz de aplicación no lo es.",
+    s2_upload_label: "Subir imagen",
+    s2_upload_text:  "Haz clic para subir o arrastra una imagen aquí",
+    s2_change_img:   "Cambiar imagen",
+    s2_type_label:   "¿Qué tipo de producto es?",
+    s2_type_ph:      "p.ej. cuidado personal, electrodoméstico pequeño, equipo deportivo, dispositivo médico...",
+    s2_why_label:    "En pocas palabras, ¿qué te llevó a elegir este producto?",
+    s2_why_ph:       "Describe lo que te llamó la atención...",
+    s2_why_hint:     "Piensa en su <em>lenguaje de producto</em> — las cualidades formales que comunican significado: su forma, color, material, textura u otros elementos estéticos.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — Tu experiencia",
+    s3_title:        "Me hace sentir…",
+    s3_desc:         "Selecciona exactamente 5 sentimientos que mejor describan tu experiencia con este producto.",
+    s3_other_label:  "¿Algo más que quieras añadir sobre cómo te hace sentir?",
+    s3_other_ph:     "Con tus propias palabras...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — puedes continuar` : `${n} / ${max} seleccionados`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisible",              "como una ocurrencia tardía", "como una excepción",       "como otra persona",
+      "no bienvenido/a",        "fuera de lugar",             "como un invitado/a",       "borrado/a",
+      "ignorado/a",             "simplificado/a",             "predeterminado/a",         "categorizado/a",
+      "esperado/a",             "etiquetado/a",               "encasillado/a",            "vigilado/a",
+      "perfilado/a",            "reducido/a a símbolo",       "sospechado/a",             "marcado/a",
+      "tolerado/a",             "sobrecorregido/a",           "dado/a por sentado/a",     "compadecido/a",
+      "tratado/a como el otro", "expuesto/a",                 "equivocado/a",             "disminuido/a",
+      "prescindible",           "olvidado/a",                 "sobreexplicado/a",         "anticipado/a",
+      "familiar",               "cuidado/a",                  "protegido/a",              "notado/a",
+      "visto/a",                "nombrado/a",                 "conocido/a",               "contenido/a",
+      "guiado/a",               "ayudado/a",                  "recordado/a",              "acomodado/a",
+      "representado/a",         "corregido/a",                "gestionado/a",             "advertido/a",
+      "contenido/a",            "pequeño/a",                  "infantilizado/a",          "extranjero/a",
+      "excesivo/a",             "con el cuerpo equivocado",   "demasiado/a",              "insuficiente",
+      "extraño/a",              "marginal",                   "ilegítimo/a",              "inseguro/a",
+      "culpable",               "avergonzado/a",              "desorientado/a",           "incómodo/a",
+      "inseguro/a",             "infravalorado/a",            "subestimado/a",            "alienado/a",
+      "aislado/a",              "desplazado/a",               "incomprendido/a",          "condescendido/a"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — Tu posicionalidad",
+    s4_title:             "Tu posición",
+    s4_desc:              "Esta rueda representa tu <span class=\"positionality-term\" tabindex=\"0\">posicionalidad</span> — el conjunto de dimensiones sociales que dan forma a tu experiencia en el mundo. Para cada dimensión, haz clic en el anillo que mejor refleje tu posición: el anillo exterior puede representar más obstáculos y marginalización, el interior menos obstáculos y más privilegio. Esta sección es completamente opcional — responde solo lo que te haga sentir cómodo/a. Tus respuestas son completamente anónimas y no se almacena ningún dato personal.",
+    wheel_hint:           "Haz clic en un anillo para marcar tu posición. Haz clic de nuevo para deseleccionar.<br>Usa + y − para acercar/alejar y arrastra para navegar.",
+    legend_fewer:         "menos obstáculos y más privilegio",
+    legend_more:          "más obstáculos y marginalización",
+    no_dims:              "Ninguna dimensión marcada todavía",
+    s4_missing_label:     "¿Falta alguna dimensión en la rueda?",
+    s4_missing_ph:        "p.ej. religión, estado civil, estructura familiar, dieta...",
+    s4_impact_ph:         "¿Cómo te impacta esta dimensión?",
+    s4_custom_desc:       "Describe las tres posiciones dentro de esta dimensión para añadirla a la rueda.",
+    ring_inner:           "Anillo interior",
+    ring_inner_sub:       "menos obstáculos",
+    ring_mid:             "Anillo medio",
+    ring_outer:           "Anillo exterior",
+    ring_outer_sub:       "más obstáculos",
+    custom_hint:          "Tu dimensión ha sido añadida a la rueda — haz clic en un anillo para marcar tu posición.",
+    s4_reflections_label: "¿Alguna reflexión final?",
+    s4_reflections_ph:    "Algo más sobre tu experiencia o contexto...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Gracias.",
+    ty_desc:  "Tu respuesta ha sido registrada. Esta investigación contribuirá a una mejor comprensión de cómo opera la discriminación a través del diseño de productos cotidianos — y a abrir nuevos caminos hacia una práctica de diseño más inclusiva y sensible.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    wheel_dims: [
+      { name: "Género",           rings: ["Hombres cisgénero",  "Mujeres cisgénero",         "Trans, intersex, no binario"] },
+      { name: "Ciudadanía",       rings: ["Ciudadano/a",        "Documentado/a",             "Indocumentado/a"] },
+      { name: "Color de piel",    rings: ["Blanco",             "Tonos intermedios",         "Oscuro"] },
+      { name: "Educación formal", rings: ["Universitaria",      "Bachillerato",              "Primaria"] },
+      { name: "Habilidad",        rings: ["Sin discapacidad",   "Alguna discapacidad",       "Discapacidad significativa"] },
+      { name: "Neurodiversidad",  rings: ["Neurotípico/a",      "Neuroatípico/a",            "Neurodiversidad significativa"] },
+      { name: "Edad",             rings: ["Mediana edad",       "Juventud",                  "Vejez"] },
+      { name: "Tamaño corporal",  rings: ["Delgado/a",          "Promedio",                  "Grande"] },
+      { name: "Vivienda",         rings: ["Propietario/a",      "Alquiler / Hospedado/a",    "Sin hogar"] },
+      { name: "Riqueza",          rings: ["Rico/a",             "Clase media",               "Pobre"] },
+      { name: "Idioma",           rings: ["Inglés",             "Inglés aprendido",          "Monolingüe no anglófono/a"] },
+      { name: "Sexualidad",       rings: ["Heterosexual",       "Hombres gay",               "Lesbianas, bi, pan, asexual"] },
+      { name: "Origen",           rings: ["Norte global",       "Sur global",                "Pueblo indígena"] }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ITALIANO
+  // ─────────────────────────────────────────────────────────────────────────
+  it: {
+
+    // ── GLOBAL ───────────────────────────────────────────────────────────────
+    subtitle:     "DISCRIMINAZIONE NEL LINGUAGGIO DI PRODOTTO",
+    btn_start:    "Inizia →",
+    btn_back:     "← Indietro",
+    btn_continue: "Continua →",
+    btn_submit:   "Invia →",
+    btn_reset:    "Reimposta",
+    btn_download: "Scarica",
+    opt:          "opzionale",
+    progress:     (n, t) => `Sezione ${n} di ${t}`,
+
+    // ── ERROR MESSAGES ────────────────────────────────────────────────────────
+    err_upload:   "Per favore carica un'immagine del prodotto.",
+    err_type:     "Per favore descrivi che tipo di prodotto è.",
+    err_select:   "Per favore seleziona un'opzione prima di continuare.",
+    err_platform: "Per favore indicaci quale piattaforma.",
+    err_specify:  "Per favore specifica come hai trovato il sondaggio.",
+    err_feelings: "Per favore seleziona esattamente 5 emozioni prima di continuare.",
+
+    // ── LANDING PAGE ──────────────────────────────────────────────────────────
+    landing_title: "Su questo sondaggio",
+    landing_desc:  "Ogni oggetto ha un linguaggio. Parla attraverso il colore, la forma, il materiale e la texture — e quelle scelte portano con sé assunzioni silenziose su chi è stato pensato come utente. Questo sondaggio raccoglie esempi di oggetti quotidiani che comunicano esclusione o discriminazione attraverso il loro <em><strong>linguaggio del prodotto</strong></em>.",
+    landing_time:  "Tempo stimato: 7–10 minuti",
+    landing_note:  "Questo sondaggio fa parte di un progetto di ricerca dottorale. Le risposte saranno analizzate e sintetizzate, e i risultati potranno essere utilizzati in pubblicazioni accademiche. La partecipazione è completamente volontaria e i partecipanti devono avere 18 anni o più.",
+
+    // Privacy notice — accordion label
+    info_toggle: "ℹ️ Informativa sulla privacy e informazioni sulla ricerca",
+
+    // Privacy notice — body text (HTML, edit each <p> section)
+    info_body: "<p><strong>Chi conduce questa ricerca</strong><br>Questo sondaggio fa parte di un progetto di ricerca dottorale condotto da Martina Labarta Labrador presso il Dipartimento di Design del Politecnico di Milano (Italia), attualmente sviluppato durante un periodo di ricerca visitante presso la Virginia Tech (USA, marzo–giugno 2026). Per ulteriori informazioni, scrivi a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p><p><strong>Di cosa tratta questa ricerca</strong><br>La ricerca indaga come le qualità visive ed estetiche dei prodotti di consumo quotidiani — tra cui la forma, il colore, il materiale e altre proprietà formali — possano comunicare assunzioni implicite su chi è destinatario di un prodotto, e in questo modo escludere o discriminare determinati gruppi di persone. L'obiettivo è sviluppare un framework pratico per aiutare i designer a identificare ed evitare questi schemi discriminatori.</p><p><strong>Cosa ti viene chiesto</strong><br>Sei invitato/a a inviare una foto di un prodotto fisico che hai incontrato e che ti ha fatto sentire escluso/a, discriminato/a o non considerato/a come utente. Ti verrà poi chiesto di selezionare parole che descrivono come ti fa sentire quel prodotto e, facoltativamente, di riflettere sulla tua posizione sociale.</p><p><strong>Dati e anonimato</strong><br>Questo sondaggio non raccoglie alcuna informazione personale identificabile — né nomi, né indirizzi email, né dati di contatto. A ogni risposta viene assegnato un codice anonimo generato casualmente che non può essere ricondotto a nessuna persona. I dati verranno utilizzati esclusivamente per scopi di ricerca accademica e qualsiasi risultato pubblicato presenterà i dati in forma aggregata e anonimizzata.</p><p><strong>Partecipazione volontaria</strong><br>La partecipazione è completamente volontaria. Puoi interrompere in qualsiasi momento senza conseguenze. Procedendo, acconsenti all'utilizzo delle tue risposte anonime per gli scopi descritti. Per ulteriori informazioni, scrivi a <a href=\"mailto:martinamaria.labarta@polimi.it\" style=\"color:var(--accent)\">martinamaria.labarta@polimi.it</a>.</p>",
+
+    // Consent checkboxes
+    consent_age:  "Dichiaro di avere <strong>18 anni o più.</strong>",
+    consent_info: "Ho letto l'<strong>Informativa sulla privacy e le informazioni sulla ricerca</strong> e acconsento all'utilizzo delle mie risposte anonime per gli scopi descritti.",
+
+    // ── SECTION 1 — Design background ────────────────────────────────────────
+    s1_num:          "01 — Su di te",
+    s1_title:        "Il tuo rapporto con il design.",
+    s1_design_label: "Hai una formazione in design?",
+    bg_yes:          "Sì — lavoro o ho studiato design",
+    bg_some:         "In parte — ho alcune conoscenze di design",
+    bg_no:           "No",
+
+    // ── SECTION 2 — Product upload ────────────────────────────────────────────
+    s2_num:          "02 — Il prodotto",
+    s2_title:        "Mostraci il prodotto",
+    s2_desc:         "Hai mai incontrato un oggetto e sentito che non era pensato per te? Carica una foto di qualsiasi prodotto che ti abbia fatto sentire così.<br><br>Può essere qualcosa che possiedi, usi, ti è stato regalato, che hai visto in un negozio, a casa di qualcuno, sui social media o ovunque online. Solo oggetti fisici — per esempio, un laptop è un oggetto fisico, mentre un'interfaccia di un'app non lo è.",
+    s2_upload_label: "Carica immagine",
+    s2_upload_text:  "Clicca per caricare o trascina un'immagine qui",
+    s2_change_img:   "Cambia immagine",
+    s2_type_label:   "Che tipo di prodotto è?",
+    s2_type_ph:      "es. cura personale, piccolo elettrodomestico, attrezzatura sportiva, dispositivo medico...",
+    s2_why_label:    "In poche parole, cosa ti ha spinto a scegliere questo prodotto?",
+    s2_why_ph:       "Descrivi cosa ti ha colpito...",
+    s2_why_hint:     "Pensa al suo <em>linguaggio del prodotto</em> — le qualità formali che comunicano significato: la sua forma, il colore, il materiale, la texture o altri elementi estetici.",
+
+    // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
+    s3_num:          "03 — La tua esperienza",
+    s3_title:        "Mi fa sentire…",
+    s3_desc:         "Seleziona esattamente 5 emozioni che descrivono meglio la tua esperienza con questo prodotto.",
+    s3_other_label:  "Vuoi aggiungere qualcosa su come ti fa sentire?",
+    s3_other_ph:     "Con le tue parole...",
+    feel_count:      (n, max) => n === max ? `${max} / ${max} — puoi continuare` : `${n} / ${max} selezionati`,
+
+    // 72 feelings — edit text only, keep exactly 72 items in this order
+    feelings: [
+      "invisibile",              "come un ripensamento",      "come un'eccezione",        "come qualcun altro",
+      "sgradito/a",              "fuori posto",               "come un ospite",            "cancellato/a",
+      "trascurato/a",            "semplificato/a",            "predeterminato/a",          "categorizzato/a",
+      "atteso/a",                "etichettato/a",             "incasellato/a",             "sorvegliato/a",
+      "profilato/a",             "ridotto/a a simbolo",       "sospettato/a",              "segnalato/a",
+      "tollerato/a",             "ipercorretto/a",            "dato/a per scontato/a",     "compatito/a",
+      "trattato/a come l'altro", "esposto/a",                "sbagliato/a",               "diminuito/a",
+      "sacrificabile",           "dimenticato/a",             "iperspiegato/a",            "anticipato/a",
+      "familiare",               "accudito/a",                "protetto/a",                "notato/a",
+      "visto/a",                 "nominato/a",                "conosciuto/a",              "contenuto/a",
+      "guidato/a",               "aiutato/a",                 "ricordato/a",               "accomodato/a",
+      "rappresentato/a",         "corretto/a",                "gestito/a",                 "avvisato/a",
+      "contenuto/a",             "piccolo/a",                 "infantilizzato/a",          "straniero/a",
+      "eccessivo/a",             "con il corpo sbagliato",    "troppo/a",                  "insufficiente",
+      "strano/a",                "marginale",                 "illegittimo/a",             "insicuro/a",
+      "colpevole",               "vergognoso/a",              "disorientato/a",            "a disagio",
+      "a rischio",               "svalutato/a",               "sottovalutato/a",           "alienato/a",
+      "isolato/a",               "spostato/a",                "incompreso/a",              "condisceso/a"
+    ],
+
+    // ── SECTION 4 — Positionality wheel ──────────────────────────────────────
+    s4_num:               "04 — La tua posizionalità",
+    s4_title:             "La tua posizione",
+    s4_desc:              "Questa ruota rappresenta la tua <span class=\"positionality-term\" tabindex=\"0\">posizionalità</span> — l'insieme delle dimensioni sociali che plasmano la tua esperienza nel mondo. Per ogni dimensione, clicca sull'anello che meglio riflette la tua posizione: l'anello esterno può rappresentare più ostacoli e marginalizzazione, quello interno meno ostacoli e più privilegio. Questa sezione è completamente opzionale — rispondi solo a ciò con cui ti senti a tuo agio. Le tue risposte sono completamente anonime e non vengono memorizzati dati personali.",
+    wheel_hint:           "Clicca su un anello per segnare la tua posizione. Clicca di nuovo per deselezionare.<br>Usa + e − per ingrandire/ridurre e trascina per navigare.",
+    legend_fewer:         "meno ostacoli e più privilegio",
+    legend_more:          "più ostacoli e marginalizzazione",
+    no_dims:              "Nessuna dimensione selezionata",
+    s4_missing_label:     "Manca qualche dimensione nella ruota?",
+    s4_missing_ph:        "es. religione, stato civile, struttura familiare, dieta...",
+    s4_impact_ph:         "Come ti impatta questa dimensione?",
+    s4_custom_desc:       "Descrivi le tre posizioni all'interno di questa dimensione per aggiungerla alla ruota.",
+    ring_inner:           "Anello interno",
+    ring_inner_sub:       "meno ostacoli",
+    ring_mid:             "Anello medio",
+    ring_outer:           "Anello esterno",
+    ring_outer_sub:       "più ostacoli",
+    custom_hint:          "La tua dimensione è stata aggiunta alla ruota — clicca su un anello per segnare la tua posizione.",
+    s4_reflections_label: "Qualche riflessione finale?",
+    s4_reflections_ph:    "Qualcos'altro sulla tua esperienza o contesto...",
+
+    // ── THANK YOU PAGE ────────────────────────────────────────────────────────
+    ty_title: "Grazie.",
+    ty_desc:  "La tua risposta è stata registrata. Questa ricerca contribuirà a una migliore comprensione di come la discriminazione opera attraverso il design dei prodotti quotidiani — e ad aprire nuovi percorsi verso una pratica del design più inclusiva e sensibile.",
+
+    // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
+    wheel_dims: [
+      { name: "Genere",             rings: ["Uomini cisgender",   "Donne cisgender",          "Trans, intersex, non binario"] },
+      { name: "Cittadinanza",       rings: ["Cittadino/a",        "Documentato/a",            "Non documentato/a"] },
+      { name: "Colore della pelle", rings: ["Bianco",             "Tonalità intermedie",      "Scuro"] },
+      { name: "Istruzione",         rings: ["Universitaria",      "Scuola superiore",         "Scuola elementare"] },
+      { name: "Abilità",            rings: ["Senza disabilità",   "Qualche disabilità",       "Disabilità significativa"] },
+      { name: "Neurodiversità",     rings: ["Neurotipico/a",      "Neuroatipico/a",           "Neurodiversità significativa"] },
+      { name: "Età",                rings: ["Mezza età",          "Gioventù",                 "Anzianità"] },
+      { name: "Taglia corporea",    rings: ["Magro/a",            "Nella media",              "Grande"] },
+      { name: "Abitazione",         rings: ["Proprietario/a",     "In affitto / Ospitato/a",  "Senza tetto"] },
+      { name: "Ricchezza",          rings: ["Ricco/a",            "Ceto medio",               "Povero/a"] },
+      { name: "Lingua",             rings: ["Inglese",            "Inglese imparato",         "Monolingue non anglofono/a"] },
+      { name: "Sessualità",         rings: ["Eterosessuale",      "Uomini gay",               "Lesbiche, bi, pan, asessuale"] },
+      { name: "Origine",            rings: ["Nord globale",       "Sud globale",              "Popolo indigeno"] }
+    ]
+  },
+
+};
+
+const wheelDimensions = [
+  { name: "Gender",           rings: ["Cisgender men", "Cisgender women", "Trans, Intersex, non-binary"] },
+  { name: "Citizenship",      rings: ["Citizen", "Documented", "Undocumented"] },
+  { name: "Skin Colour",      rings: ["White", "Different shades", "Dark"] },
+  { name: "Formal Education", rings: ["Post-secondary", "High school", "Elementary"] },
+  { name: "Ability",          rings: ["Able-bodied", "Some disability", "Significant disability"] },
+  { name: "Neurodiversity",   rings: ["Neuro-typical", "Neuro-atypical", "Significant neurodiversity"] },
+  { name: "Age",              rings: ["Middle age", "Youth", "Elderly"] },
+  { name: "Body Size",        rings: ["Slim", "Average", "Large"] },
+  { name: "Housing",          rings: ["Owns property", "Renting / Sheltered", "Homeless"] },
+  { name: "Wealth",           rings: ["Rich", "Middle class", "Poor"] },
+  { name: "Language",         rings: ["English", "Learned English", "Non-English monolingual"] },
+  { name: "Sexuality",        rings: ["Hetero-sexual", "Gay men", "Lesbian, bi, pan, asexual"] },
+  { name: "Origin",           rings: ["Global North", "Global South", "Indigenous nation"] }
+];
+
+const ringColors     = ["#EEEDFE","#9491D9","#534AB7"];
+const ringTextColors = ["#3C3489","#ffffff","#ffffff"];
+const ringBorders    = ["#AFA9EC","#6B67C8","#3C3489"];
+const obstacleLabels = ["fewer obstacles","some obstacles","more obstacles"];
+
+let currentSection = 0;
+const wheelState = {};
+wheelDimensions.forEach((_,i) => wheelState[i] = null);
+
+const ringDefs = {
+  'Cisgender men':               'People whose gender identity is male and matches their sex assigned at birth.',
+  'Cisgender women':             'People whose gender identity is female and matches their sex assigned at birth.',
+  'Trans, Intersex, non-binary': 'People whose gender identity or sex characteristics fall outside the binary of male/female.',
+  'Citizen':                     'People with full legal citizenship in the country where they reside.',
+  'Documented':                  'People with legal residency or visa status, but without full citizenship.',
+  'Undocumented':                'People living without recognised legal immigration status.',
+  'White':                       'People socially classified as white within their local racial context.',
+  'Different shades':            'People of mixed or ambiguous racial classification within their social context.',
+  'Dark':                        'People with darker skin tones within their social context.',
+  'Post-secondary':              'People who have completed university or equivalent higher education.',
+  'High school':                 'People whose highest completed level of education is secondary school.',
+  'Elementary':                  'People whose highest completed level of education is primary school.',
+  'Able-bodied':                 'People without physical or sensory impairments.',
+  'Some disability':             'People living with a disability that affects aspects of daily life.',
+  'Significant disability':      'People living with a disability that substantially affects daily functioning.',
+  'Neuro-typical':               'People whose neurological development and functioning is within the typical range.',
+  'Neuro-atypical':              'People with some neurological differences from the typical range.',
+  'Significant neurodiversity':  'People with substantial neurological differences, such as autism, ADHD, or dyslexia.',
+  'Middle age':                  'Adults broadly between 35 and 65 years of age.',
+  'Youth':                       'Children, teenagers, and young adults.',
+  'Elderly':                     'Older adults, generally above 65 years of age.',
+  'Slim':                        'People whose body size is below average.',
+  'Average':                     'People whose body size is close to the statistical mean.',
+  'Large':                       'People whose body size is above average.',
+  'Owns property':               'People who own the home or property where they live.',
+  'Renting / Sheltered':         'People who rent their home or live in supported or shared housing.',
+  'Homeless':                    'People without a stable or permanent place to live.',
+  'Rich':                        'People with high income and/or significant accumulated wealth.',
+  'Middle class':                'People with moderate, stable income and living standards.',
+  'Poor':                        'People with low income and limited financial resources.',
+  'English':                     'People whose first language is English.',
+  'Learned English':             'People who speak English as an acquired second language.',
+  'Non-English monolingual':     'People who speak only a language other than English.',
+  'Hetero-sexual':               'People attracted to those of a different gender.',
+  'Gay men':                     'Men attracted to other men.',
+  'Lesbian, bi, pan, asexual':   'Women attracted to women, people attracted to more than one gender, or people experiencing little or no sexual attraction.',
+  'Global North':                'Countries in North America, Europe, and other high-income regions.',
+  'Global South':                'Countries in Africa, Latin America, Asia, and other lower-income regions.',
+  'Indigenous nation':           'People belonging to indigenous communities native to their territory.',
+  'Hombres cisgénero':           'Personas cuya identidad de género es masculina y coincide con el sexo asignado al nacer.',
+  'Mujeres cisgénero':           'Personas cuya identidad de género es femenina y coincide con el sexo asignado al nacer.',
+  'Trans, intersex, no binario': 'Personas cuya identidad de género o características sexuales no se ajustan al binario masculino/femenino.',
+  'Ciudadano/a':                 'Personas con ciudadanía legal plena en el país donde residen.',
+  'Documentado/a':               'Personas con residencia legal o visado, pero sin ciudadanía plena.',
+  'Indocumentado/a':             'Personas que viven sin estatus migratorio legal reconocido.',
+  'Blanco/a':                    'Personas clasificadas socialmente como blancas en su contexto racial local.',
+  'Tonos intermedios':           'Personas de clasificación racial mixta o ambigua en su contexto social.',
+  'Oscuro/a':                    'Personas con tonos de piel más oscuros en su contexto social.',
+  'Universitaria':               'Personas que han completado estudios universitarios o equivalentes.',
+  'Bachillerato':                'Personas cuyo nivel educativo más alto es la educación secundaria.',
+  'Primaria':                    'Personas cuyo nivel educativo más alto es la educación primaria.',
+  'Blanco':                      'Personas clasificadas socialmente como blancas en su contexto racial local.',
+  'Oscuro':                      'Personas con tonos de piel más oscuros en su contexto social.',
+  'Alquiler / Hospedado/a':      'Personas que viven en una vivienda de alquiler o con apoyo institucional.',
+  'Sin discapacidad':            'Personas sin discapacidades físicas o sensoriales.',
+  'Alguna discapacidad':         'Personas que viven con una discapacidad que afecta aspectos de su vida diaria.',
+  'Discapacidad significativa':  'Personas que viven con una discapacidad que afecta sustancialmente su funcionamiento diario.',
+  'Neurotípico/a':               'Personas cuyo desarrollo y funcionamiento neurológico está dentro del rango típico.',
+  'Neuroatípico/a':              'Personas con algunas diferencias neurológicas respecto al rango típico.',
+  'Neurodiversidad significativa': 'Personas con diferencias neurológicas sustanciales, como autismo, TDAH o dislexia.',
+  'Mediana edad':                'Adultos de entre aproximadamente 35 y 65 años.',
+  'Juventud':                    'Niños, adolescentes y adultos jóvenes.',
+  'Vejez':                       'Personas mayores, generalmente por encima de los 65 años.',
+  'Delgado/a':                   'Personas cuyo tamaño corporal está por debajo de la media.',
+  'Promedio':                    'Personas cuyo tamaño corporal está cerca de la media estadística.',
+  'Grande':                      'Personas cuyo tamaño corporal está por encima de la media.',
+  'Propietario/a':               'Personas que son dueñas del hogar o propiedad donde viven.',
+  'Acogido/a':                   'Personas que viven en una vivienda de alquiler o con apoyo institucional.',
+  'Sin hogar':                   'Personas sin un lugar estable o permanente donde vivir.',
+  'Rico/a':                      'Personas con altos ingresos y/o riqueza acumulada significativa.',
+  'Clase media':                 'Personas con ingresos moderados y estables y un nivel de vida medio.',
+  'Pobre':                       'Personas con bajos ingresos y recursos económicos limitados.',
+  'Inglés':                      'Personas cuya primera lengua es el inglés.',
+  'Inglés aprendido':            'Personas que hablan inglés como segunda lengua adquirida.',
+  'Monolingüe no anglófono/a':   'Personas que hablan solo una lengua distinta del inglés.',
+  'Heterosexual':                'Personas atraídas por personas de otro género.',
+  'Hombres gay':                 'Hombres atraídos por otros hombres.',
+  'Lesbianas, bi, pan, asexual': 'Mujeres atraídas por mujeres, personas atraídas por más de un género, o personas con poca o ninguna atracción sexual.',
+  'Norte global':                'Países de América del Norte, Europa y otras regiones de altos ingresos.',
+  'Sur global':                  'Países de África, América Latina, Asia y otras regiones de bajos ingresos.',
+  'Pueblo indígena':             'Personas pertenecientes a comunidades indígenas nativas de su territorio.',
+  'Uomini cisgender':            'Persone la cui identità di genere è maschile e corrisponde al sesso assegnato alla nascita.',
+  'Donne cisgender':             'Persone la cui identità di genere è femminile e corrisponde al sesso assegnato alla nascita.',
+  'Trans, intersex, non binario':'Persone la cui identità di genere o caratteristiche sessuali non rientrano nel binario maschio/femmina.',
+  'Cittadino/a':                 'Persone con piena cittadinanza legale nel paese in cui risiedono.',
+  'Documentato/a':               'Persone con residenza legale o visto, ma senza piena cittadinanza.',
+  'Non documentato/a':           'Persone che vivono senza uno status migratorio legale riconosciuto.',
+  'Bianco/a':                    'Persone classificate socialmente come bianche nel loro contesto razziale locale.',
+  'Tonalità intermedie':         'Persone di classificazione razziale mista o ambigua nel loro contesto sociale.',
+  'Scuro/a':                     'Persone con tonalità di pelle più scure nel loro contesto sociale.',
+  'Scuola superiore':            'Persone il cui livello di istruzione più alto è la scuola superiore.',
+  'Scuola elementare':           'Persone il cui livello di istruzione più alto è la scuola elementare.',
+  'Abilità':                     'Presenza o assenza di disabilità fisiche o sensoriali.',
+  'In affitto / Ospitato/a':     'Persone che vivono in affitto o in un alloggio assistito.',
+  'Bianco':                      'Persone classificate socialmente come bianche nel loro contesto razziale locale.',
+  'Scuro':                       'Persone con tonalità di pelle più scure nel loro contesto sociale.',
+  'Senza disabilità':            'Persone senza disabilità fisiche o sensoriali.',
+  'Qualche disabilità':          'Persone che vivono con una disabilità che influenza aspetti della vita quotidiana.',
+  'Disabilità significativa':    'Persone che vivono con una disabilità che influenza sostanzialmente il funzionamento quotidiano.',
+  'Neurotipico/a':               "Persone il cui sviluppo e funzionamento neurologico rientra nell'intervallo tipico.",
+  'Neuroatipico/a':              "Persone con alcune differenze neurologiche rispetto all'intervallo tipico.",
+  'Neurodiversità significativa':'Persone con differenze neurologiche sostanziali, come autismo, ADHD o dislessia.',
+  'Mezza età':                   'Adulti generalmente tra i 35 e i 65 anni.',
+  'Gioventù':                    'Bambini, adolescenti e giovani adulti.',
+  'Anzianità':                   'Persone anziane, generalmente sopra i 65 anni.',
+  'Magro/a':                     'Persone la cui taglia corporea è inferiore alla media.',
+  'Nella media':                 'Persone la cui taglia corporea è vicina alla media statistica.',
+  'Proprietario/a':              'Persone che possiedono la casa o la proprietà in cui vivono.',
+  'Accolto/a':                   'Persone che vivono in affitto o in un alloggio assistito.',
+  'Senza tetto':                 'Persone senza un luogo stabile o permanente in cui vivere.',
+  'Ricco/a':                     'Persone con reddito elevato e/o ricchezza accumulata significativa.',
+  'Ceto medio':                  'Persone con reddito moderato e stabile e un tenore di vita medio.',
+  'Povero/a':                    'Persone con basso reddito e risorse economiche limitate.',
+  'Inglese':                     "Persone la cui prima lingua è l'inglese.",
+  'Inglese imparato':            'Persone che parlano inglese come seconda lingua acquisita.',
+  'Monolingue non anglofono/a':  "Persone che parlano solo una lingua diversa dall'inglese.",
+  'Eterosessuale':               'Persone attratte da persone di un altro genere.',
+  'Uomini gay':                  'Uomini attratti da altri uomini.',
+  'Lesbiche, bi, pan, asessuale':'Donne attratte da donne, persone attratte da più di un genere, o persone con poca o nessuna attrazione sessuale.',
+  'Nord globale':                'Paesi del Nord America, Europa e altre regioni ad alto reddito.',
+  'Sud globale':                 "Paesi dell'Africa, America Latina, Asia e altre regioni a basso reddito.",
+  'Popolo indigeno':             'Persone appartenenti a comunità indigene native del loro territorio.',
+};
+
+const categoryDefs = {
+  'Positionality':    'Positionality refers to how your social identity — including dimensions like gender, race, class, and ability — shapes your perspective, your access to resources, and the obstacles you face in navigating the world.',
+  'Gender':           "The social and personal sense of being a man, woman, or another gender.",
+  'Citizenship':      'Legal membership of a nation-state and the status it confers.',
+  'Skin Colour':      "The tone or pigmentation of a person's skin as a social category.",
+  'Formal Education': 'The highest level of schooling a person has completed.',
+  'Ability':          'The presence or absence of physical or sensory impairments.',
+  'Neurodiversity':   "The range of differences in how people's brains function and process information.",
+  'Age':              'A person\'s age and the life stage they occupy.',
+  'Body Size':        "The physical size and shape of a person's body.",
+  'Housing':          "The type and stability of a person's living situation.",
+  'Wealth':           'The level of financial resources and economic security a person has.',
+  'Language':         'The language or languages a person speaks and their fluency in dominant ones.',
+  'Sexuality':        "A person's sexual orientation and patterns of attraction.",
+  'Origin':           'The geographic and geopolitical region a person comes from.',
+  'Posicionalidad':   'La posicionalidad se refiere a cómo tu identidad social — incluyendo dimensiones como el género, la raza, la clase y la capacidad — moldea tu perspectiva, tu acceso a los recursos y los obstáculos que enfrentas en el mundo.',
+  'Género':           'El sentido social y personal de ser hombre, mujer u otro género.',
+  'Ciudadanía':       'La pertenencia legal a un estado-nación y el estatus que ello confiere.',
+  'Color de piel':    'El tono o pigmentación de la piel de una persona como categoría social.',
+  'Educación formal': 'El nivel más alto de escolarización completado por una persona.',
+  'Habilidad':        'La presencia o ausencia de discapacidades físicas o sensoriales.',
+  'Capacidad':        'La presencia o ausencia de discapacidades físicas o sensoriales.',
+  'Neurodiversidad':  'El rango de diferencias en cómo funcionan y procesan la información los cerebros de las personas.',
+  'Edad':             'La edad de una persona y la etapa vital que ocupa.',
+  'Tamaño corporal':  'El tamaño y la forma física del cuerpo de una persona.',
+  'Vivienda':         'El tipo y la estabilidad de la situación de vivienda de una persona.',
+  'Riqueza':          'El nivel de recursos económicos y seguridad financiera de una persona.',
+  'Idioma':           'La lengua o lenguas que habla una persona y su fluidez en las dominantes.',
+  'Sexualidad':       'La orientación sexual y los patrones de atracción de una persona.',
+  'Origen':           'La región geográfica y geopolítica de la que proviene una persona.',
+  'Posizionalità':    "La posizionalità si riferisce a come la tua identità sociale — incluse dimensioni come il genere, la razza, la classe e le capacità — plasma la tua prospettiva, il tuo accesso alle risorse e gli ostacoli che affronti nel mondo.",
+  'Genere':           "Il senso sociale e personale di essere uomo, donna o un altro genere.",
+  'Cittadinanza':     "L'appartenenza legale a uno stato-nazione e lo status che ne deriva.",
+  'Colore della pelle': 'Il tono o la pigmentazione della pelle di una persona come categoria sociale.',
+  'Istruzione':       'Il livello più alto di istruzione completato da una persona.',
+  "Abilità":          'La presenza o assenza di disabilità fisiche o sensoriali.',
+  'Neurodiversità':   'La gamma di differenze nel modo in cui il cervello delle persone funziona ed elabora le informazioni.',
+  'Età':              "L'età di una persona e la fase della vita che occupa.",
+  'Taglia corporea':  'Le dimensioni e la forma fisica del corpo di una persona.',
+  'Abitazione':       'Il tipo e la stabilità della situazione abitativa di una persona.',
+  'Ricchezza':        'Il livello di risorse economiche e sicurezza finanziaria di una persona.',
+  'Lingua':           'La lingua o le lingue parlate da una persona e la sua padronanza di quelle dominanti.',
+  'Sessualità':       "L'orientamento sessuale e i pattern di attrazione di una persona.",
+  'Origine':          'La regione geografica e geopolitica da cui proviene una persona.',
+};
+
+const overlayEl = document.createElement('div');
+overlayEl.className = 'wheel-tooltip-overlay';
+overlayEl.addEventListener('click', hideTooltip);
+document.body.appendChild(overlayEl);
+
+const tooltipEl = document.createElement('div');
+tooltipEl.className = 'wheel-tooltip';
+document.body.appendChild(tooltipEl);
+
+const modalOverlayEl = document.createElement('div');
+modalOverlayEl.className = 'modal-overlay';
+modalOverlayEl.addEventListener('click', hideModal);
+document.body.appendChild(modalOverlayEl);
+
+const modalEl = document.createElement('div');
+modalEl.className = 'modal-box';
+document.body.appendChild(modalEl);
+
+function updateStartBtn() {
+  const age = document.getElementById('consent-age').checked;
+  const info = document.getElementById('consent-info').checked;
+  document.getElementById('btn-start').disabled = !(age && info);
+}
+
+function hideModal() {
+  modalEl.classList.remove('visible');
+  modalOverlayEl.classList.remove('visible');
+}
+
+let currentLang = 'en';
+
+const CUSTOM_SPOKE_INDEX = wheelDimensions.length;
+let customDim = null;
+
+function setLanguage(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
+  });
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key] !== undefined && typeof t[key] === 'string') {
+      el.innerHTML = t[key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (t[key]) el.placeholder = t[key];
+  });
+
+  const ageLabel = document.querySelector('label[for="consent-age"]');
+  if (ageLabel) ageLabel.innerHTML = t.consent_age;
+  const infoLabel = document.querySelector('label[for="consent-info"]');
+  if (infoLabel) infoLabel.innerHTML = t.consent_info;
+  updateStartBtn();
+
+  const labelEl = document.getElementById('progress-label');
+  if (labelEl && labelEl.textContent) {
+    labelEl.textContent = t.progress(currentSection, 4);
+  }
+
+  buildFeelings();
+
+  const savedWheelState = Object.assign({}, wheelState);
+  wheelDimensions.length = 0;
+  t.wheel_dims.forEach(d => wheelDimensions.push(d));
+  if (customDim !== null) {
+    wheelDimensions.push(customDim);
+    document.getElementById('custom-rings-wrap').style.display = 'block';
+    const anyRing = [0,1,2].some(n => document.getElementById('custom-ring-' + n).value.trim());
+    document.getElementById('custom-hint').style.display = anyRing ? 'block' : 'none';
+  }
+  Object.keys(savedWheelState).forEach(k => { wheelState[k] = savedWheelState[k]; });
+  buildWheel();
+  renderWheel();
+  renderPills();
+}
+
+function buildFeelings() {
+  const grid = document.getElementById('feel-grid');
+  const t = translations[currentLang];
+  const MAX = 5;
+
+  const existing = grid.querySelectorAll('.feel-item');
+  if (existing.length === t.feelings.length) {
+    t.feelings.forEach((f, idx) => {
+      const label = grid.querySelector(`label[for="f-${idx}"]`);
+      if (label) label.textContent = f;
+    });
+    return;
+  }
+
+  grid.innerHTML = '';
+  t.feelings.forEach((f, idx) => {
+    const item = document.createElement('div');
+    item.className = 'feel-item';
+    const id = 'f-' + idx;
+    item.innerHTML = `<input type="checkbox" id="${id}" value="${idx}"><label for="${id}">${f}</label>`;
+    const cb = item.querySelector('input');
+    cb.addEventListener('change', () => {
+      const checked = grid.querySelectorAll('input:checked');
+      if (checked.length >= MAX) {
+        grid.querySelectorAll('input:not(:checked)').forEach(el => el.disabled = true);
+      } else {
+        grid.querySelectorAll('input').forEach(el => el.disabled = false);
+      }
+      const count = checked.length;
+      const countEl = document.getElementById('feel-count');
+      const tNow = translations[currentLang];
+      if (count === MAX) {
+        countEl.textContent = tNow.feel_count(MAX, MAX);
+        countEl.style.color = 'var(--purple-dark)';
+        document.getElementById('field-feelings').classList.remove('field-error');
+      } else {
+        countEl.textContent = count > 0 ? tNow.feel_count(count, MAX) : '';
+        countEl.style.color = 'var(--accent)';
+      }
+      updateStickySelection();
+    });
+    grid.appendChild(item);
+  });
+}
+
+function updateStickySelection() {
+  const sticky = document.getElementById('sticky-selection');
+  const checked = document.querySelectorAll('#feel-grid input:checked');
+  if (checked.length === 0) {
+    sticky.style.display = 'none';
+    return;
+  }
+  sticky.style.display = 'flex';
+  sticky.innerHTML = Array.from(checked).map(cb => {
+    const label = document.querySelector(`label[for="${cb.id}"]`);
+    const text = label ? label.textContent : cb.value;
+    return `<span class="sel-pill" style="background:var(--purple-light);border-color:var(--purple-mid);color:var(--purple-dark);">${text}</span>`;
+  }).join('');
+}
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+}
+
+function validateSection(n) {
+  clearErrors();
+  let valid = true;
+
+  if (n === 1) {
+    const designBg = document.querySelector('input[name="design_bg"]:checked');
+    if (!designBg) {
+      document.getElementById('field-design-bg').classList.add('field-error');
+      valid = false;
+    }
+  }
+
+  if (n === 2) {
+    const imgInput = document.getElementById('img-input');
+    if (!imgInput.files || imgInput.files.length === 0) {
+      document.getElementById('field-image').classList.add('field-error');
+      valid = false;
+    }
+    const productType = document.getElementById('product-type').value.trim();
+    if (!productType || productType === '.') {
+      document.getElementById('field-product-type').classList.add('field-error');
+      valid = false;
+    }
+  }
+
+  if (n === 3) {
+    const checked = document.querySelectorAll('#feel-grid input:checked');
+    if (checked.length !== 5) {
+      document.getElementById('field-feelings').classList.add('field-error');
+      valid = false;
+    }
+  }
+
+  return valid;
+}
+
+function goTo(n) {
+  if (n > currentSection) {
+    if (!validateSection(currentSection)) {
+      const firstError = document.querySelector('.field-error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+  }
+  clearErrors();
+  document.getElementById('s'+currentSection).classList.remove('active');
+  currentSection = n;
+  document.getElementById('s'+currentSection).classList.add('active');
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  updateProgress();
+}
+
+function updateProgress() {
+  const bar = document.getElementById('progress');
+  const label = document.getElementById('progress-label');
+  const progressBar = document.querySelector('.progress-bar');
+  if (currentSection === 0) {
+    progressBar.style.display = 'none';
+    label.style.display = 'none';
+    return;
+  }
+  progressBar.style.display = 'block';
+  label.style.display = 'block';
+  const pct = (currentSection / 4) * 100;
+  bar.style.width = pct + '%';
+  label.textContent = translations[currentLang].progress(currentSection, 4);
+}
+
+function showTooltip(name, x, y) {
+  const def = categoryDefs[name] || ringDefs[name];
+  if (!def) return;
+  tooltipEl.innerHTML = `<strong>${name}</strong>${def}`;
+  tooltipEl.classList.add('visible');
+  if (x !== undefined) moveTooltip(x, y);
+}
+
+function moveTooltip(x, y) {
+  const tw = 260, th = 80;
+  const vw = window.innerWidth, vh = window.innerHeight;
+  let left = x + 16;
+  let top  = y - 10;
+  if (left + tw > vw - 10) left = x - tw - 16;
+  if (top + th > vh - 10)  top  = vh - th - 10;
+  if (top < 8) top = 8;
+  tooltipEl.style.left = left + 'px';
+  tooltipEl.style.top  = top  + 'px';
+}
+
+function hideTooltip() {
+  tooltipEl.classList.remove('visible');
+  overlayEl.classList.remove('visible');
+}
+
+function buildWheel() {
+  const svg = document.getElementById('wheel-svg');
+  svg.innerHTML = '';
+  const cx = 480, cy = 480;
+  const N    = wheelDimensions.length;
+  const step = 360 / N;
+
+  const innerCore = 46;
+  const ringR     = [160, 270, 380];
+  const margInner = 383;
+  const margOuter = 411;
+  const catInner  = 414;
+  const catOuter  = 452;
+  const RING_SIZE = 18;
+  const CAT_SIZE  = 18;
+  const LINE_GAP_INNER = RING_SIZE * 1.1;
+  const LINE_GAP  = RING_SIZE * 1.35;
+
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  svg.appendChild(defs);
+
+  function toRad(deg) { return (deg - 90) * Math.PI / 180; }
+  function polar(deg, r) {
+    const rad = toRad(deg);
+    return [cx + r*Math.cos(rad), cy + r*Math.sin(rad)];
+  }
+  function segPath(sa, ea, ir, or_) {
+    const g = 0.7;
+    const [x1,y1]=polar(sa+g,or_),[x2,y2]=polar(ea-g,or_);
+    const [x3,y3]=polar(ea-g,ir), [x4,y4]=polar(sa+g,ir);
+    const lg=(ea-sa)>180?1:0;
+    return `M${x1.toFixed(1)} ${y1.toFixed(1)} A${or_} ${or_} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)} L${x3.toFixed(1)} ${y3.toFixed(1)} A${ir} ${ir} 0 ${lg} 0 ${x4.toFixed(1)} ${y4.toFixed(1)}Z`;
+  }
+  function arcLen(r, spanDeg) { return r * spanDeg * Math.PI / 180; }
+  function textArcPath(sa, ea, r, flip) {
+    const sA=flip?ea:sa, eA=flip?sa:ea, sw=flip?0:1;
+    const lg=(ea-sa)>180?1:0;
+    const [x1,y1]=polar(sA,r),[x2,y2]=polar(eA,r);
+    return `M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} ${sw} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+  }
+  function splitLabel(label) {
+    const customTwo = {
+      'Neuro-atypical': ['Neuro-', 'atypical'],
+      'Neuro-typical': ['Neuro-', 'typical'],
+      'Non-English monolingual': ['Non-English', 'monolingual'],
+      'Hetero-sexual': ['sexual', 'Hetero-'],
+      'Post-secondary': ['Post-', 'secondary'],
+      'Able-bodied': ['Able-', 'bodied'],
+      'Renting / Sheltered': ['Sheltered', 'Renting /'],
+      'Monolingüe no anglófono/a': ['Monolingüe', 'no anglófono/a'],
+      'Monolingue non anglofono/a': ['Monolingue', 'non anglofono/a'],
+      'Colore della pelle': ['della pelle', 'Colore'],
+      'Alquiler / Ospitado/a': ['Ospitado/a', 'Alquiler /'],
+      'In affitto / Ospitato/a': ['Ospitato/a', 'In affitto /'],
+      'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
+      'Neuroatípico/a': ['Neuro-', 'atípico/a'],
+      'Neurotípico/a': ['Neuro-', 'típico/a'],
+      'Neuroatipico/a': ['Neuro-', 'atipico/a'],
+      'Neurotipico/a': ['Neuro-', 'tipico/a'],
+      'Neurodiversidad significativa': ['Neurodiversidad', 'significativa'],
+      'Neurodiversità significativa': ['Neurodiversità', 'significativa'],
+      'Discapacidad significativa': ['Discapacidad', 'significativa'],
+      'Disabilità significativa': ['Disabilità', 'significativa'],
+      'Documentato/a': ['mentato/a', 'Docu-'],
+      'Non documentato/a': ['documentato/a', 'Non docu-'],
+      'Documentado/a': ['mentado/a', 'Docu-'],
+      'Indocumentado/a': ['mentado/a', 'Indocu-'],
+    };
+    if (customTwo[label]) return customTwo[label];
+    const words = label.split(' ');
+    if (words.length === 1) return [label, null];
+    const mid = Math.ceil(words.length / 2);
+    const line1 = words.slice(0,mid).join(' ');
+    const line2 = words.slice(mid).join(' ');
+    const invertSplit = [
+      'Trans, Intersex, non-binary','Cisgender women','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender men',
+      'Trans, intersex, no binario','Mujeres cisgénero','Clase media','Tonos intermedios','Norte global','Hombres cisgénero','Sin hogar',
+      'Trans, intersex, non binario','Donne cisgender','Ceto medio','Tonalità intermedie','Nord globale','Uomini cisgender','Senza tetto','Nella media','Colore della pelle','In affitto / Ospitato/a',
+    ];
+    if (invertSplit.includes(label)) return [line2, line1];
+    return [line1, line2];
+  }
+  function fitsOnArc(label, r, spanDeg, fontSize) {
+    return label.length * fontSize * 0.58 <= arcLen(r, spanDeg) * 0.82;
+  }
+
+  wheelDimensions.forEach((dim, i) => {
+    const sa=i*step, ea=(i+1)*step, lg=(ea-sa)>180?1:0;
+    const [bx1,by1]=polar(sa,catOuter),[bx2,by2]=polar(ea,catOuter);
+    const [bx3,by3]=polar(ea,catInner),[bx4,by4]=polar(sa,catInner);
+    const band = document.createElementNS('http://www.w3.org/2000/svg','path');
+    band.setAttribute('d',`M${bx1.toFixed(1)} ${by1.toFixed(1)} A${catOuter} ${catOuter} 0 ${lg} 1 ${bx2.toFixed(1)} ${by2.toFixed(1)} L${bx3.toFixed(1)} ${by3.toFixed(1)} A${catInner} ${catInner} 0 ${lg} 0 ${bx4.toFixed(1)} ${by4.toFixed(1)}Z`);
+    band.setAttribute('fill','#f0ede7');
+    band.setAttribute('stroke','#dedad4');
+    band.setAttribute('stroke-width','0.5');
+    band.setAttribute('pointer-events','all');
+    band.dataset.band = i;
+    band.style.cursor = 'default';
+    band.addEventListener('mouseenter', (e) => showTooltip(dim.name, e.clientX, e.clientY));
+    band.addEventListener('mousemove',  (e) => moveTooltip(e.clientX, e.clientY));
+    band.addEventListener('mouseleave', () => hideTooltip());
+    svg.appendChild(band);
+  });
+
+  {
+    const mRing = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    mRing.setAttribute('cx', cx); mRing.setAttribute('cy', cy);
+    mRing.setAttribute('r', (margInner + margOuter) / 2);
+    mRing.setAttribute('fill','none');
+    mRing.setAttribute('stroke','#2C2C2A');
+    mRing.setAttribute('stroke-width', margOuter - margInner);
+    mRing.setAttribute('pointer-events','none');
+    svg.appendChild(mRing);
+
+    const mMidR = (margInner + margOuter) / 2;
+    const margMap = { en: 'marginalization', es: 'marginalización', it: 'marginalizzazione' };
+    const mText = margMap[currentLang] || 'marginalization';
+    for (let t = 0; t < 5; t++) {
+      const angleDeg = t * 72;
+      const flip = (angleDeg > 90 && angleDeg < 270);
+      const startA = flip ? angleDeg + 50 : angleDeg - 50;
+      const endA   = flip ? angleDeg - 50 : angleDeg + 50;
+      const sweep  = flip ? 0 : 1;
+      const toR = (deg) => (deg - 90) * Math.PI / 180;
+      const px = (deg, r) => [cx + r*Math.cos(toR(deg)), cy + r*Math.sin(toR(deg))];
+      const [x1,y1] = px(startA, mMidR), [x2,y2] = px(endA, mMidR);
+      const mpid = `marg-${t}`;
+      const mPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+      mPath.setAttribute('id', mpid);
+      mPath.setAttribute('d', `M${x1.toFixed(1)} ${y1.toFixed(1)} A${mMidR} ${mMidR} 0 0 ${sweep} ${x2.toFixed(1)} ${y2.toFixed(1)}`);
+      mPath.setAttribute('fill','none');
+      defs.appendChild(mPath);
+
+      const mTxt = document.createElementNS('http://www.w3.org/2000/svg','text');
+      mTxt.setAttribute('pointer-events','none');
+      const mTp = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+      mTp.setAttribute('href', `#${mpid}`);
+      mTp.setAttribute('startOffset','50%');
+      mTp.setAttribute('text-anchor','middle');
+      mTp.style.cssText = `font-size:14px;font-family:'DM Sans',sans-serif;font-weight:500;fill:#ffffff;letter-spacing:0.04em;`;
+      mTp.textContent = mText;
+      mTxt.appendChild(mTp);
+      svg.appendChild(mTxt);
+    }
+  }
+
+  wheelDimensions.forEach((dim, i) => {
+    const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
+    const arcFlip = (mid > 90 && mid < 270);
+    const radialOverride = ['Documented','Tonos intermedios','Bachillerato','Alguna discapacidad'];
+    const upperHalf = (mid < 180);
+    const arcSign = upperHalf ? 1 : -1;
+    const leftHalf = (mid > 90 && mid < 270);
+    const radialSign = leftHalf ? 1 : -1;
+
+    for (let r = 0; r < 3; r++) {
+      const ir = r===0 ? innerCore : ringR[r-1];
+      const or = ringR[r];
+      const midR = (ir + or) / 2;
+      const label = dim.rings[r];
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d', segPath(sa, ea, ir, or));
+      path.setAttribute('fill', ringColors[r]);
+      path.setAttribute('opacity','0.15');
+      path.setAttribute('stroke','#faf9f7');
+      path.setAttribute('stroke-width','2');
+      path.setAttribute('class','wseg');
+      path.dataset.spoke=i; path.dataset.ring=r;
+      path.style.cursor='pointer'; path.style.transition='opacity 0.12s';
+      path.addEventListener('click', () => {
+        const container = document.getElementById('wheel-container');
+        if (container && container.dataset.justDragged === '1') return;
+        handleRingClick(i, r);
+      });
+      path.addEventListener('mouseenter', (e) => { hoverRing(i,r,true); showTooltip(label, e.clientX, e.clientY); });
+      path.addEventListener('mousemove',  (e) => moveTooltip(e.clientX, e.clientY));
+      path.addEventListener('mouseleave', () => { hoverRing(i,r,false); hideTooltip(); });
+      svg.appendChild(path);
+
+      if (r === 0) {
+        const [tx, ty] = polar(mid, midR);
+        let rotAngle = mid - 90;
+        if (rotAngle > 90 && rotAngle <= 270) rotAngle += 180;
+        else if (rotAngle > 270) rotAngle -= 180;
+        const tGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+        tGroup.setAttribute('class', `rlbl rlbl-${i}-${r}`);
+        tGroup.setAttribute('pointer-events','none');
+        tGroup.setAttribute('transform', `rotate(${rotAngle.toFixed(1)}, ${tx.toFixed(1)}, ${ty.toFixed(1)})`);
+        const lines0 = splitLabel(label);
+        if (lines0.length === 1 || !lines0[1]) {
+          const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+          t.setAttribute('x', tx.toFixed(1)); t.setAttribute('y', ty.toFixed(1));
+          t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
+          t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
+          t.textContent = label;
+          tGroup.appendChild(t);
+        } else {
+          const validLines = lines0.filter(l => l);
+          const total = validLines.length;
+          validLines.forEach((ln, li) => {
+            const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+            t.setAttribute('x', tx.toFixed(1));
+            const offset = (li - (total-1)/2) * LINE_GAP_INNER;
+            t.setAttribute('y', (ty + radialSign * offset).toFixed(1));
+            t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
+            t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
+            t.textContent = ln;
+            tGroup.appendChild(t);
+          });
+        }
+        svg.appendChild(tGroup);
+      } else {
+        if (radialOverride.includes(label)) {
+          const [tx, ty] = polar(mid, midR);
+          let rotAngle = mid - 90;
+          if (rotAngle > 90 && rotAngle <= 270) rotAngle += 180;
+          else if (rotAngle > 270) rotAngle -= 180;
+          const tGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+          tGroup.setAttribute('class', `rlbl rlbl-${i}-${r}`);
+          tGroup.setAttribute('pointer-events','none');
+          tGroup.setAttribute('transform', `rotate(${rotAngle.toFixed(1)}, ${tx.toFixed(1)}, ${ty.toFixed(1)})`);
+          const splitLines = splitLabel(label);
+          const validLines = splitLines.filter(l => l);
+          const total = validLines.length;
+          if (total === 1) {
+            const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+            t.setAttribute('x', tx.toFixed(1)); t.setAttribute('y', ty.toFixed(1));
+            t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
+            t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
+            t.textContent = label;
+            tGroup.appendChild(t);
+          } else {
+            validLines.forEach((ln, li) => {
+              const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+              t.setAttribute('x', tx.toFixed(1));
+              const offset = (li - (total-1)/2) * LINE_GAP_INNER;
+              t.setAttribute('y', (ty + radialSign * offset).toFixed(1));
+              t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','central');
+              t.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
+              t.textContent = ln;
+              tGroup.appendChild(t);
+            });
+          }
+          svg.appendChild(tGroup);
+        } else {
+          const splitLines = splitLabel(label);
+          const needsMultiLine = splitLines.length > 1 && splitLines[1];
+          let lines;
+          if (!needsMultiLine) {
+            lines = [[label, midR]];
+          } else {
+            const validLines = splitLines.filter(l => l);
+            const total = validLines.length;
+            lines = validLines.map((l, li) => {
+              const offset = (li - (total-1)/2) * LINE_GAP;
+              return [l, midR + arcSign * offset];
+            });
+          }
+          lines.forEach(([txt, lr], li) => {
+            if (!txt) return;
+            const pid = `rp-${i}-${r}-${li}`;
+            const ad = document.createElementNS('http://www.w3.org/2000/svg','path');
+            ad.setAttribute('id',pid);
+            ad.setAttribute('d', textArcPath(sa, ea, lr, arcFlip));
+            ad.setAttribute('fill','none');
+            defs.appendChild(ad);
+            const tEl = document.createElementNS('http://www.w3.org/2000/svg','text');
+            tEl.setAttribute('pointer-events','none');
+            tEl.setAttribute('class',`rlbl rlbl-${i}-${r}`);
+            const tp = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+            tp.setAttribute('href',`#${pid}`);
+            tp.setAttribute('startOffset','50%');
+            tp.setAttribute('text-anchor','middle');
+            tp.style.cssText = `font-size:${RING_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:700;fill:#3C3489;`;
+            tp.textContent = txt;
+            tEl.appendChild(tp);
+            svg.appendChild(tEl);
+          });
+        }
+      }
+    }
+
+    const catMidR = (catInner + catOuter) / 2;
+    const catLabel = dim.name;
+    const needsTwoLines = !fitsOnArc(catLabel, catMidR, step, CAT_SIZE);
+    const catLineGap = CAT_SIZE * 1.3;
+    const catLines = needsTwoLines
+      ? splitLabel(catLabel).map((l,li) => [l||'', catMidR + (li===0 ? -arcSign*(catLineGap*0.5) : arcSign*(catLineGap*0.5))])
+      : [[catLabel, catMidR]];
+    catLines.forEach(([txt, lr], li) => {
+      if (!txt) return;
+      const cpid = `sp-${i}-${li}`;
+      const cd = document.createElementNS('http://www.w3.org/2000/svg','path');
+      cd.setAttribute('id',cpid);
+      cd.setAttribute('d', textArcPath(sa, ea, lr, arcFlip));
+      cd.setAttribute('fill','none');
+      defs.appendChild(cd);
+      const tCat = document.createElementNS('http://www.w3.org/2000/svg','text');
+      tCat.setAttribute('pointer-events','none');
+      if (li===0) tCat.dataset.spokeLbl = i;
+      else        tCat.dataset.spokeLbl2 = i;
+      const tpCat = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+      tpCat.setAttribute('href',`#${cpid}`);
+      tpCat.setAttribute('startOffset','50%');
+      tpCat.setAttribute('text-anchor','middle');
+      tpCat.style.cssText = `font-size:${CAT_SIZE}px;font-family:'DM Sans',sans-serif;font-weight:600;fill:#2C2C2A;letter-spacing:0.03em;`;
+      tpCat.textContent = txt;
+      tCat.appendChild(tpCat);
+      svg.appendChild(tCat);
+    });
+  });
+
+  const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx',cx); c.setAttribute('cy',cy); c.setAttribute('r',innerCore);
+  c.setAttribute('fill','#2C2C2A'); c.setAttribute('stroke','none');
+  svg.appendChild(c);
+  const ct = document.createElementNS('http://www.w3.org/2000/svg','text');
+  ct.setAttribute('x',cx); ct.setAttribute('y',cy);
+  ct.setAttribute('text-anchor','middle'); ct.setAttribute('dominant-baseline','central');
+  ct.setAttribute('font-size','14'); ct.setAttribute('fill','#ffffff');
+  ct.setAttribute('font-family',"'DM Sans',sans-serif"); ct.setAttribute('font-weight','500');
+  ct.setAttribute('pointer-events','none');
+  const privilegeMap = { en: 'privilege', es: 'privilegio', it: 'privilegio' };
+  ct.textContent = privilegeMap[currentLang] || 'privilege';
+  svg.appendChild(ct);
+}
+
+function handleRingClick(si, ri) {
+  wheelState[si] = (wheelState[si] === ri) ? null : ri;
+  renderWheel(); renderPills();
+}
+
+function hoverRing(si, ri, on) {
+  if (wheelState[si] !== null) return;
+  document.querySelectorAll('.wseg').forEach(el => {
+    if (parseInt(el.dataset.spoke) !== si) return;
+    el.setAttribute('opacity', on ? (parseInt(el.dataset.ring)===ri?'0.5':'0.18') : '0.15');
+  });
+}
+
+function renderWheel() {
+  const defaultTextFill  = '#3C3489';
+  const selectedTextFill = ['#3C3489','#ffffff','#ffffff'];
+
+  document.querySelectorAll('.wseg').forEach(el => {
+    const si = parseInt(el.dataset.spoke), ri = parseInt(el.dataset.ring);
+    const sel = wheelState[si];
+    el.setAttribute('fill', ringColors[ri]);
+    el.setAttribute('opacity', sel===null?'0.15': sel===ri?'1':'0.07');
+  });
+
+  document.querySelectorAll('[data-band]').forEach(el => {
+    const si = parseInt(el.dataset.band);
+    el.setAttribute('fill',   wheelState[si]!==null ? '#5a5750' : '#f0ede7');
+    el.setAttribute('stroke', wheelState[si]!==null ? '#5a5750' : '#dedad4');
+  });
+
+  document.querySelectorAll('[data-spoke-lbl],[data-spoke-lbl2]').forEach(el => {
+    const si = parseInt(el.dataset.spokeLbl ?? el.dataset.spokeLbl2);
+    const tp = el.querySelector('textPath');
+    if (tp) {
+      tp.style.fill       = wheelState[si]!==null ? '#faf9f7' : '#2C2C2A';
+      tp.style.fontWeight = wheelState[si]!==null ? '700'     : '600';
+    }
+  });
+
+  wheelDimensions.forEach((dim, i) => {
+    for (let r = 0; r < 3; r++) {
+      const sel = wheelState[i];
+      document.querySelectorAll(`.rlbl-${i}-${r}`).forEach(el => {
+        const isGroup = el.tagName.toLowerCase() === 'g';
+        const applyStyle = (fill, opacity, weight) => {
+          if (isGroup) {
+            el.querySelectorAll('text').forEach(t => { t.style.fill = fill; t.style.fontWeight = weight; });
+            el.style.opacity = opacity;
+          } else {
+            const tp = el.querySelector('textPath');
+            if (tp) { tp.style.fill = fill; tp.style.fontWeight = weight; }
+            el.style.opacity = opacity;
+          }
+        };
+        if (sel === null)   applyStyle(defaultTextFill, '0.85', '700');
+        else if (sel === r) applyStyle(selectedTextFill[r], '1', '700');
+        else                applyStyle(defaultTextFill, '0.12', '700');
+      });
+    }
+  });
+}
+
+function renderPills() {
+  const list = document.getElementById('pill-list');
+  list.innerHTML = '';
+  const entries = Object.entries(wheelState).filter(([,v])=>v!==null);
+  if (!entries.length) {
+    list.innerHTML = '<span class="wheel-hint">No dimensions marked yet</span>';
+    return;
+  }
+  entries.forEach(([i,r]) => {
+    const idx = Number(i);
+    const dim = wheelDimensions[idx];
+    if (!dim || r === null || !dim.rings[r]) return;
+    const pill = document.createElement('span');
+    pill.className = 'sel-pill';
+    pill.style.background  = ringColors[r];
+    pill.style.color       = ringTextColors[r];
+    pill.style.borderColor = ringBorders[r];
+    pill.title = dim.rings[r];
+    pill.textContent = `${dim.name}: ${dim.rings[r]}`;
+    list.appendChild(pill);
+  });
+}
+
+function resetWheel() {
+  wheelDimensions.forEach((_,i) => { wheelState[i] = null; });
+  renderWheel();
+  renderPills();
+}
+
+function downloadWheel() {
+  const svg = document.getElementById('wheel-svg');
+  const serializer = new XMLSerializer();
+  const svgStr = serializer.serializeToString(svg);
+  const svgBlob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(svgBlob);
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    const scale = 2;
+    canvas.width  = svg.viewBox.baseVal.width  * scale;
+    canvas.height = svg.viewBox.baseVal.height * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#faf9f7';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(scale, scale);
+    ctx.drawImage(img, 0, 0);
+    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.download = 'my-positionality-wheel.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+  img.src = url;
+}
+
+function updateCustomCategory() {
+  const name = document.getElementById('missing-category').value.trim();
+  const r0   = document.getElementById('custom-ring-0').value.trim() || '—';
+  const r1   = document.getElementById('custom-ring-1').value.trim() || '—';
+  const r2   = document.getElementById('custom-ring-2').value.trim() || '—';
+
+  document.getElementById('custom-rings-wrap').style.display = name ? 'block' : 'none';
+  const anyRing = [0,1,2].some(n => document.getElementById(`custom-ring-${n}`).value.trim());
+  document.getElementById('custom-hint').style.display = (name && anyRing) ? 'block' : 'none';
+
+  if (customDim !== null) {
+    wheelDimensions.splice(CUSTOM_SPOKE_INDEX, 1);
+    delete wheelState[CUSTOM_SPOKE_INDEX];
+  }
+
+  if (name) {
+    customDim = { name, rings: [r0, r1, r2] };
+    wheelDimensions.push(customDim);
+    wheelState[CUSTOM_SPOKE_INDEX] = null;
+  } else {
+    customDim = null;
+  }
+
+  buildWheel();
+  renderWheel();
+  renderPills();
+}
+
+let customDebounce;
+['missing-category','custom-ring-0','custom-ring-1','custom-ring-2'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    clearTimeout(customDebounce);
+    customDebounce = setTimeout(updateCustomCategory, 400);
+  });
+});
+
+async function submitSurvey() {
+  const btn = document.querySelector('#s4 .btn-next');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
+
+  const designBgEl = document.querySelector('input[name="design_bg"]:checked');
+  const data = {
+    responseId:        responseId,
+    design_background: designBgEl ? designBgEl.value : '',
+    productType:       document.getElementById('product-type').value,
+    whyChosen:         document.getElementById('why-chosen').value,
+    feelOther:         document.getElementById('feel-other').value,
+    finalThoughts:     document.getElementById('final-thoughts').value,
+    imageUrl:          '',
+  };
+
+  const enFeelings = translations.en.feelings;
+  const allChecked = [...document.querySelectorAll('#feel-grid input:checked')];
+  const checkedIndices = new Set(allChecked.map(el => el.value));
+  enFeelings.forEach((f, idx) => { data['feeling_' + f.replace(/ /g,'_')] = checkedIndices.has(String(idx)) ? 1 : 0; });
+  data['survey_language'] = currentLang;
+
+  const enDims = translations.en.wheel_dims;
+  wheelDimensions.forEach((dim, i) => {
+    const r = wheelState[i];
+    if (dim && r !== null) {
+      const enName = enDims[i] ? enDims[i].name : dim.name;
+      const enRingLabel = enDims[i] ? enDims[i].rings[r] : dim.rings[r];
+      data[enName] = enRingLabel;
+    }
+  });
+
+  data['custom_category_name']   = document.getElementById('missing-category').value.trim();
+  data['custom_category_impact'] = document.getElementById('missing-impact').value.trim();
+  data['custom_category_ring_0'] = document.getElementById('custom-ring-0').value.trim();
+  data['custom_category_ring_1'] = document.getElementById('custom-ring-1').value.trim();
+  data['custom_category_ring_2'] = document.getElementById('custom-ring-2').value.trim();
+
+  const customName = document.getElementById('missing-category').value.trim();
+  if (customName && wheelState[translations.en.wheel_dims.length] !== null) {
+    const customDimEntry = wheelDimensions[translations.en.wheel_dims.length];
+    if (customDimEntry) data[customName] = customDimEntry.rings[wheelState[translations.en.wheel_dims.length]];
+  }
+
+  const imgInput = document.getElementById('img-input');
+  const file = imgInput.files && imgInput.files[0];
+
+  function submitToSheets(imageUrl) {
+    data.imageUrl = imageUrl || '';
+    fetch('https://script.google.com/macros/s/AKfycbwpBmrTzvpvhdRiayyjr4avt1iDwtpFmuqhCWredz5T5pHx6mU4A6Ove5bPtY4cDxrilA/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      ['s0','s1','s2','s3','s4'].forEach(id => { document.getElementById(id).style.display='none'; });
+      document.getElementById('progress').style.width = '100%';
+      document.getElementById('progress-label').textContent = 'Complete';
+      document.getElementById('thankyou').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+      btn.textContent = 'Submit →';
+      btn.disabled = false;
+      alert('Could not connect. Please check your internet connection and try again.');
+    });
+  }
+
+  if (file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'designed_out');
+    formData.append('public_id', responseId);
+    formData.append('tags', responseId);
+    fetch('https://api.cloudinary.com/v1_1/dmfc7eknr/image/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(result => { submitToSheets(result.secure_url || ''); })
+    .catch(() => { submitToSheets(''); });
+  } else {
+    submitToSheets('');
+  }
+}
+
+function handleFile(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('preview').src = e.target.result;
+    const sizeKB = (file.size / 1024).toFixed(1);
+    const sizeMB = file.size > 1024*1024 ? (file.size/1024/1024).toFixed(2) + ' MB' : sizeKB + ' KB';
+    document.getElementById('img-meta').innerHTML =
+      `<strong style="color:var(--ink);font-weight:500;">${file.name}</strong><br>${sizeMB}`;
+    document.getElementById('upload-zone').style.display = 'none';
+    document.getElementById('preview-wrap').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+document.getElementById('img-input').addEventListener('change', function() {
+  if (!this.files[0]) return;
+  document.getElementById('upload-zone').style.display = 'none';
+  document.getElementById('preview-wrap').style.display = 'none';
+  handleFile(this.files[0]);
+});
+
+document.getElementById('change-img').addEventListener('click', () => {
+  document.getElementById('img-input').value = '';
+  document.getElementById('img-input').click();
+});
+
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+zone.addEventListener('drop', e => {
+  e.preventDefault(); zone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  handleFile(file);
+});
+
+buildFeelings();
+buildWheel();
+renderWheel();
+renderPills();
+setLanguage('en');
+
+(function() {
+  const container = document.getElementById('wheel-container');
+  const svg       = document.getElementById('wheel-svg');
+  const btnIn     = document.getElementById('zoom-in');
+  const btnOut    = document.getElementById('zoom-out');
+  if (!svg || !container || !btnIn || !btnOut) return;
+
+  let scale = 1, panX = 0, panY = 0;
+  const STEP = 0.4, MAX = 3, MIN = 1;
+
+  function apply() {
+    svg.style.transformOrigin = '50% 50%';
+    svg.style.transform = `translate(${panX}px,${panY}px) scale(${scale})`;
+  }
+  function clamp() {
+    const m = (scale - 1) * container.offsetWidth * 0.5;
+    panX = Math.max(-m, Math.min(m, panX));
+    panY = Math.max(-m, Math.min(m, panY));
+  }
+  function updateButtons() {
+    btnOut.disabled = scale <= MIN;
+    btnIn.disabled  = scale >= MAX;
+    container.style.cursor = scale > 1 ? 'grab' : 'default';
+  }
+
+  btnIn.addEventListener('click', e => {
+    e.stopPropagation();
+    svg.style.transition = 'transform 0.2s ease';
+    scale = Math.min(MAX, Math.round((scale + STEP) * 10) / 10);
+    clamp(); apply(); updateButtons();
+    setTimeout(() => { svg.style.transition = ''; }, 250);
+  });
+  btnOut.addEventListener('click', e => {
+    e.stopPropagation();
+    svg.style.transition = 'transform 0.2s ease';
+    scale = Math.max(MIN, Math.round((scale - STEP) * 10) / 10);
+    if (scale <= MIN) { panX = 0; panY = 0; }
+    clamp(); apply(); updateButtons();
+    setTimeout(() => { svg.style.transition = ''; }, 250);
+  });
+
+  let drag = false, dragged = false, ox = 0, oy = 0, px0 = 0, py0 = 0;
+  container.addEventListener('mousedown', e => {
+    if (scale <= 1 || e.button !== 0) return;
+    e.preventDefault();
+    drag = true; dragged = false;
+    ox = e.clientX; oy = e.clientY; px0 = panX; py0 = panY;
+  });
+  window.addEventListener('mousemove', e => {
+    if (!drag) return;
+    const dx = e.clientX - ox, dy = e.clientY - oy;
+    if (!dragged && Math.hypot(dx, dy) < 5) return;
+    dragged = true;
+    container.style.cursor = 'grabbing';
+    panX = px0 + dx; panY = py0 + dy;
+    clamp(); apply();
+  });
+  window.addEventListener('mouseup', e => {
+    if (!drag) return;
+    drag = false;
+    container.dataset.justDragged = dragged ? '1' : '0';
+    setTimeout(() => { container.dataset.justDragged = '0'; }, 100);
+    dragged = false;
+    container.style.cursor = scale > 1 ? 'grab' : 'default';
+  });
+
+  let touch = false, touched = false, tx0 = 0, ty0 = 0, tpx0 = 0, tpy0 = 0;
+  container.addEventListener('touchstart', e => {
+    if (scale <= 1 || e.touches.length !== 1) return;
+    touch = true; touched = false;
+    tx0 = e.touches[0].clientX; ty0 = e.touches[0].clientY;
+    tpx0 = panX; tpy0 = panY;
+  }, { passive: true });
+  container.addEventListener('touchmove', e => {
+    if (!touch || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - tx0, dy = e.touches[0].clientY - ty0;
+    if (!touched && Math.hypot(dx, dy) < 8) return;
+    touched = true;
+    e.preventDefault();
+    panX = tpx0 + dx; panY = tpy0 + dy;
+    clamp(); apply();
+  }, { passive: false });
+  container.addEventListener('touchend', () => { touch = false; touched = false; });
+})();
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('.positionality-term');
+  if (!el) return;
+  e.stopPropagation();
+  const keyMap   = { en: 'Positionality', es: 'Posicionalidad', it: 'Posizionalità' };
+  const labelMap = { en: 'Positionality', es: 'Posicionalidad', it: 'Posizionalità' };
+  const closeMap = { en: 'close', es: 'cerrar', it: 'chiudi' };
+  const key = keyMap[currentLang] || 'Positionality';
+  const def = categoryDefs[key];
+  if (!def) return;
+  modalEl.innerHTML = `<strong>${labelMap[currentLang]}</strong>${def}<button class="modal-close" onclick="hideModal()">${closeMap[currentLang]}</button>`;
+  modalEl.classList.add('visible');
+  modalOverlayEl.classList.add('visible');
+});
+
+document.getElementById('img-input').addEventListener('change', () => {
+  document.getElementById('field-image').classList.remove('field-error');
+});
+document.getElementById('product-type').addEventListener('input', () => {
+  document.getElementById('field-product-type').classList.remove('field-error');
+});
+document.querySelectorAll('input[name="design_bg"]').forEach(el => {
+  el.addEventListener('change', () => {
+    document.getElementById('field-design-bg').classList.remove('field-error');
+  });
+});
+</script>
+</body>
+</html>
