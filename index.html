@@ -543,7 +543,7 @@ const translations = {
 
     // ── SECTION 1 — Design background ────────────────────────────────────────
     s1_num:          "01 — About you",
-    s1_title:        "Your relation to design.",
+    s1_title:        "Your relation to design",
     s1_design_label: "Do you have a background in design?",
     bg_yes:          "Yes — I work or have studied/am studying in the design field",
     bg_some:         "Somewhat — I have some design knowledge",
@@ -620,7 +620,7 @@ const translations = {
     // ── WHEEL DIMENSIONS ──────────────────────────────────────────────────────
     // Format: { name: "Category", rings: ["inner (fewer obstacles)", "middle", "outer (more obstacles)"] }
     wheel_dims: [
-      { name: "Gender",           rings: ["Cisgender man",      "Cisgender woman",        "Trans, Intersex, non-binary"] },
+      { name: "Gender",           rings: ["Cisgender man",      "Cisgender woman",        "Trans, intersex, non-binary"] },
       { name: "Citizenship",      rings: ["Citizen",            "Documented",             "Undocumented"] },
       { name: "Skin Colour",      rings: ["White",              "Different shades",       "Dark"] },
       { name: "Formal Education", rings: ["Post-secondary",     "High school",            "Elementary"] },
@@ -677,7 +677,7 @@ const translations = {
 
     // ── SECTION 1 — Design background ────────────────────────────────────────
     s1_num:          "01 — Sobre ti",
-    s1_title:        "Tu relación con el diseño.",
+    s1_title:        "Tu relación con el diseño",
     s1_design_label: "¿Tienes formación en diseño?",
     bg_yes:          "Sí, trabajo o he estudiado en el campo del diseño",
     bg_some:         "En parte, tengo algunos conocimientos de diseño",
@@ -813,7 +813,7 @@ const translations = {
 
     // ── SECTION 1 — Design background ────────────────────────────────────────
     s1_num:          "01 — Su di te",
-    s1_title:        "Il tuo rapporto con il design.",
+    s1_title:        "Il tuo rapporto con il design",
     s1_design_label: "Hai una formazione in design?",
     bg_yes:          "Sì, lavoro o ho studiato/sto studiando nel campo del design",
     bg_some:         "In parte, possiedo alcune nozioni di design",
@@ -909,7 +909,7 @@ const translations = {
 };
 
 const wheelDimensions = [
-  { name: "Gender",           rings: ["Cisgender man", "Cisgender woman", "Trans, Intersex, non-binary"] },
+  { name: "Gender",           rings: ["Cisgender man", "Cisgender woman", "Trans, intersex, non-binary"] },
   { name: "Citizenship",      rings: ["Citizen", "Documented", "Undocumented"] },
   { name: "Skin Colour",      rings: ["White", "Different shades", "Dark"] },
   { name: "Formal Education", rings: ["Post-secondary", "High school", "Elementary"] },
@@ -936,7 +936,7 @@ wheelDimensions.forEach((_,i) => wheelState[i] = null);
 const ringDefs = {
   'Cisgender man':               'People whose gender identity is male and matches their sex assigned at birth.',
   'Cisgender woman':             'People whose gender identity is female and matches their sex assigned at birth.',
-  'Trans, Intersex, non-binary': 'People whose gender identity or sex characteristics fall outside the binary of male/female.',
+  'Trans, intersex, non-binary': 'People whose gender identity or sex characteristics fall outside the binary of male/female.',
   'Citizen':                     'People with full legal citizenship in the country where they reside.',
   'Documented':                  'People with legal residency or visa status, but without full citizenship.',
   'Undocumented':                'People living without recognised legal immigration status.',
@@ -1395,9 +1395,10 @@ function buildWheel() {
       'Madrelingua inglese': ['inglese', 'Madrelingua'],
       'Colore della pelle': ['della pelle', 'Colore'],
       'Toni intermedi': ['intermedi', 'Toni'],
+     'Tonos intermedios': ['intermedios', 'Tonos'],
       'Affitto / Ospitatə': ['Ospitatə', 'Affitto /'],
       'Alquiler / Hospedado/a': ['Hospedado/a', 'Alquiler /'],
-     'Secundaria / Bachillerato': ['Bachillerato', 'Secundaria /'],
+      'Secundaria / Bachillerato': ['Secundaria /', 'Bachillerato'],
       'Neuroatípico/a': ['Neuro-', 'atípico/a'],
       'Neurotípico/a': ['Neuro-', 'típico/a'],
       'Neuroatipicə': ['Neuro-', 'atipicə'],
@@ -1406,12 +1407,11 @@ function buildWheel() {
       'Migrante illegale': ['illegale', 'Migrante'],
       'Migrante legal': ['legal', 'Migrante'],
       'Migrante ilegal': ['ilegal', 'Migrante'],
-      'Scuola sup. di 3º grado': ['di 3º grado', 'Scuola sup.'],
-      'Scuola sup. di 2º grado': ['di 2º grado', 'Scuola sup.'],
+      'Scuola sup. di 3º grado': ['Scuola sup.', 'di 3º grado'],
+      'Scuola sup. di 2º grado': ['Scuola sup.', 'di 2º grado'],
       'Eterosessuale': ['sessuale', 'Etero-'],
       'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
-      
-    };
+              };
     if (customTwo[label]) return customTwo[label];
     const words = label.split(' ');
     if (words.length === 1) return [label, null];
@@ -1419,9 +1419,9 @@ function buildWheel() {
     const line1 = words.slice(0,mid).join(' ');
     const line2 = words.slice(mid).join(' ');
     const invertSplit = [
-      'Trans, Intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man',
+      'Trans, intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man','Trans, intersex, no binario'
       'Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
-      'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Popolazione indigene',
+      'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Inglés nativo'
     ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
@@ -1494,7 +1494,7 @@ function buildWheel() {
     const sa=i*step, ea=(i+1)*step, mid=sa+step/2;
     const arcFlip = (mid > 90 && mid < 270);
     const radialOverride = ['Documented','Tonos intermedios','Toni intermedi',
-  'Scuola sup. di 3º grado','Scuola sup. di 2º grado','Secundaria / Bachillerato'];
+  'Scuola sup. di 3º grado','Scuola sup. di 2º grado','Secundaria / Bachillerato','Alquiler / Hospedado/a','Discapacidad leve'];
     const upperHalf = (mid < 180);
     const arcSign = upperHalf ? 1 : -1;
     const leftHalf = (mid > 90 && mid < 270);
