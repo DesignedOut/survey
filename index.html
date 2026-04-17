@@ -1383,10 +1383,9 @@ function buildWheel() {
   }
   function splitLabel(label) {
    const customThree = {
-      'Scuola sup. di 2º grado': ['Scuola', 'sup. di', '2º grado'],
       'Discapacidad leve': ['Disca-', 'pacidad', 'leve'],
-    'Secundaria / Bachillerato': ['E.S.O. /', 'Bachiller'],
-    'Tonos intermedios': ['medios', 'inter-', 'Tonos'],
+    'Scuola sup. di 2º grado': ['2º grado', 'sup. di', 'Scuola'],
+     'Tonos intermedios': ['medios', 'inter-', 'Tonos'],
     'Toni intermedi': ['medi', 'inter-', 'Toni'],
     'Alquiler / Hospedado/a': ['dado/a','Hospe-', 'Alquiler /'],
     'Neurodiversidad significativa': ['Neuro-', 'diversidad', 'significativa']
@@ -1399,6 +1398,9 @@ function buildWheel() {
       'Hetero-sexual': ['sexual', 'Hetero-'],
      'Documented': ['mented', 'Docu-'],
            'Heterosexual': ['sexual', 'Hetero-'],
+     'Post-secondary': ['secondary', 'Post-'],
+'High school': ['school', 'High'],
+'Scuola elementare': ['elementare', 'Scuola'],
       'Post-secondary': ['Post-', 'secondary'],
       'Able-bodied': ['Able-', 'bodied'],
       'Renting / Sheltered': ['Sheltered', 'Renting /'],
@@ -1416,8 +1418,9 @@ function buildWheel() {
       'Migrante legal': ['legal', 'Migrante'],
       'Migrante ilegal': ['ilegal', 'Migrante'],
       'Eterosessuale': ['sessuale', 'Etero-'],
+     'Secundaria / Bachillerato': ['Bachiller', 'E.S.O. /'],
              'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
-     'Scuola sup. di 3º grado': ['Scuola sup.', 'di 3º grado']
+     'Scuola sup. di 3º grado': ['di 3º grado', 'Scuola sup.'],
               };
     if (customTwo[label]) return customTwo[label];
     const words = label.split(' ');
@@ -1426,10 +1429,16 @@ function buildWheel() {
     const line1 = words.slice(0,mid).join(' ');
     const line2 = words.slice(mid).join(' ');
     
+const spokesCount = wheelDimensions.length;
+const educationFlip = [
+  'High school', 'Post-secondary', 'Scuola elementare',
+  'Scuola sup. di 3º grado', 'Scuola sup. di 2º grado', 'Secundaria / Bachillerato',
+];
 const invertSplit = [
   'Trans, intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man',
   'Trans, intersex, no binario','Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
-  'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Inglés nativo'
+  'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Inglés nativo',
+  ...(spokesCount === 14 ? educationFlip : []),
 ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
