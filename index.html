@@ -905,7 +905,7 @@ const translations = {
       { name: "Genere",             rings: ["Uomo cisgender",   "Donna cisgender",          "Trans, intersex, non binariə"] },
       { name: "Cittadinanza",       rings: ["Cittadinə",        "Migrante legale",            "Migrante illegale"] },
       { name: "Colore della pelle", rings: ["Bianco",             "Toni intermedi",      "Scuro"] },
-      { name: "Istruzione",         rings: ["Scuola sup. di 3º grado",      "Scuola sup. di 2º grado",         "Scuola elementare"] },
+      { name: "Istruzione",         rings: ["Università",      "Scuola sup. di 2º grado",         "Scuola elementare"] },
       { name: "Abilità",            rings: ["Senza disabilità",   "Disabilità lieve",       "Disabilità significativa"] },
       { name: "Neurodiversità",     rings: ["Neurotipicə",      "Neuroatipicə",           "Neurodiversità significativa"] },
       { name: "Età",                rings: ["Mezza età",          "Gioventù",                 "Anzianità"] },
@@ -1033,7 +1033,7 @@ const ringDefs = {
   'Bianco':                    'Persone socialmente classificate come bianche nel loro contesto socio-culturale.',
   'Toni intermedi':         'Persone di classificazione razziale mista o ambigua nel loro contesto socio-culturale.',
   'Scuro':                     'Persone socialmente classificate come nere nel loro contesto socio-culturale.',
-  'Scuola sup. di 3º grado':  'Persone il cui livello di istruzione più alto è la scuola superiore.',
+  'Università':  'Persone il cui livello di istruzione più alto è la scuola superiore.',
  'Scuola sup. di 2º grado':  'Persone il cui livello di istruzione più elevato è la scuola secondaria.',
   'Scuola elementare':           'Persone il cui livello di istruzione più elevato è la scuola primaria.',
    'Senza disabilità':            'Persone senza menomazioni fisiche o sensoriali.',
@@ -1432,8 +1432,7 @@ function buildWheel() {
       'Eterosessuale': ['sessuale', 'Etero-'],
      'Secundaria / Bachillerato': ['E.S.O. /', 'Bachiller'],
              'Trans, intersex, non binariə': ['non binariə', 'Trans, intersex,'],
-     'Scuola sup. di 3º grado': ['Scuola sup.', 'di 3º grado'],
-              };
+                   };
     if (customTwo[label]) return customTwo[label];
     const words = label.split(' ');
     if (words.length === 1) return [label, null];
