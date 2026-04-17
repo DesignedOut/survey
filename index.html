@@ -1430,15 +1430,18 @@ function buildWheel() {
     const line2 = words.slice(mid).join(' ');
     
 const spokesCount = wheelDimensions.length;
-const educationFlip = [
-  'High school', 'Post-secondary', 'Scuola elementare',
+const educationFlip13 = [
+  'High school', 'Scuola elementare',
   'Scuola sup. di 3º grado', 'Scuola sup. di 2º grado', 'Secundaria / Bachillerato',
+];
+const educationFlip14 = [
+  'Post-secondary',
 ];
 const invertSplit = [
   'Trans, intersex, non-binary','Cisgender woman','Renting / Sheltered','Middle class','Different shades','Global North','Cisgender man',
   'Trans, intersex, no binario','Mujer cisgénero','Clase media','Norte global','Hombre cisgénero','Sin hogar',
   'Donna cisgender','Classe media','Nord globale','Uomo cisgender','Senzatetto','Nella media','Inglés nativo',
-  ...(spokesCount === 14 ? educationFlip : []),
+  ...(spokesCount === 13 ? educationFlip13 : educationFlip14),
 ];
     if (invertSplit.includes(label)) return [line2, line1];
     return [line1, line2];
