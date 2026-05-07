@@ -368,14 +368,14 @@
     </div>
 
     <!-- 3. Why chosen / feelings -->
-    <div class="field" id="field-why" style="display:none;">
+    <div class="field" id="field-why">
       <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
       <p class="field-hint" data-i18n="s2_why_hint">Think about its product language...</p>
       <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
     </div>
 
     <!-- 4. Image upload -->
-    <div class="field" id="field-image" style="display:none;">
+    <div class="field" id="field-image">
       <label data-i18n="s2_upload_label">Upload image</label>
       <div class="upload-zone" id="upload-zone">
         <input type="file" id="img-input" accept="image/*">
@@ -1450,13 +1450,12 @@ function onProductTypeInput() {
     cb.checked = false;
     toggleCantThink(false);
   }
-  // Show why + image fields only when product type has text
-  document.getElementById('field-why').style.display   = hasText ? '' : 'none';
-  document.getElementById('field-image').style.display = hasText ? '' : 'none';
 }
 
 function toggleCantThink(checked) {
-  document.getElementById('s2-desc').style.display = checked ? 'none' : '';
+  document.getElementById('s2-desc').style.display    = checked ? 'none' : '';
+  document.getElementById('field-why').style.display  = checked ? 'none' : '';
+  document.getElementById('field-image').style.display = checked ? 'none' : '';
   document.getElementById('cant-think-reasons').style.display = checked ? 'block' : 'none';
   if (!checked) {
     document.querySelectorAll('input[name="cant_reason"]').forEach(r => r.checked = false);
