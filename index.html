@@ -80,6 +80,7 @@
 
   .section { max-width: 680px; margin: 0 auto; padding: 3rem 2rem; border-bottom: 1px solid var(--border); display: none; animation: fadeUp 0.4s ease both; }
   .section.active { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
   .section-number { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
@@ -330,41 +331,100 @@
 <section class="section" id="s2">
   <div class="section-number" data-i18n="s2_num">02 &#8212; The product</div>
   <h2 class="section-title" data-i18n="s2_title">Show us the product</h2>
-  <p class="section-desc" data-i18n="s2_desc">Have you ever encountered an object...</p>
+  <p class="section-desc" id="s2-desc" data-i18n="s2_desc">Have you ever encountered an object...</p>
 
-  <div class="field" id="field-image">
-    <label data-i18n="s2_upload_label">Upload image</label>
-    <div class="upload-zone" id="upload-zone">
-      <input type="file" id="img-input" accept="image/*">
-      <div class="upload-icon">
-        <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 16l4-4 4 4 4-6 4 8"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+  <div id="s2-fields">
+
+    <!-- 1. Product type -->
+    <div class="field" id="field-product-type">
+      <label data-i18n="s2_type_label">What type of product is it?</label>
+      <input type="text" id="product-type" data-i18n-placeholder="s2_type_ph" placeholder="e.g. personal care..." oninput="onProductTypeInput()">
+      <p class="field-error-msg" data-i18n="err_type">Please describe what type of product this is.</p>
+    </div>
+
+    <!-- 2. Can't think checkbox — sits inside a warm box, disabled when product type has text -->
+    <div style="margin-bottom:1.5rem;padding:1rem 1.2rem;background:var(--paper-warm);border:1px solid var(--border);border-radius:var(--radius);">
+      <div style="display:flex;align-items:flex-start;gap:0.7rem;">
+        <input type="checkbox" id="cant-think" onchange="toggleCantThink(this.checked)" style="margin-top:3px;width:16px;height:16px;min-width:16px;accent-color:var(--accent);cursor:pointer;">
+        <label for="cant-think" id="cant-think-label" data-i18n="cant_think_label" style="font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;">I can't think of anything right now, or nothing comes to mind.</label>
       </div>
-      <p class="upload-text" data-i18n="s2_upload_text">Click to upload or drag an image here</p>
-      <p class="upload-subtext">JPG, PNG or WEBP</p>
+
+      <!-- Reasons — shown only when cant-think is checked -->
+      <div id="cant-think-reasons" style="display:none;margin-top:1.2rem;">
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:0.8rem;" data-i18n="cant_think_why">What might be the reason?</p>
+        <div class="feel-grid" style="grid-template-columns:repeat(2,1fr);gap:7px;" id="cant-think-grid">
+          <div class="feel-item"><input type="radio" name="cant_reason" id="cr-0" value="I haven't noticed anything like this"><label for="cr-0" data-i18n="cr_0">I haven't noticed anything like this</label></div>
+          <div class="feel-item"><input type="radio" name="cant_reason" id="cr-1" value="It's hard to put into words"><label for="cr-1" data-i18n="cr_1">It's hard to put into words</label></div>
+          <div class="feel-item"><input type="radio" name="cant_reason" id="cr-2" value="I'd need more time to think about it"><label for="cr-2" data-i18n="cr_2">I'd need more time to think about it</label></div>
+          <div class="feel-item"><input type="radio" name="cant_reason" id="cr-3" value="I've experienced it but prefer not to share"><label for="cr-3" data-i18n="cr_3">I've experienced it but prefer not to share</label></div>
+          <div class="feel-item"><input type="radio" name="cant_reason" id="cr-4" value="Other" onchange="document.getElementById('cr-other-wrap').style.display=this.checked?'block':'none'"><label for="cr-4" data-i18n="cr_4">Other</label></div>
+        </div>
+        <div id="cr-other-wrap" style="display:none;margin-top:0.7rem;">
+          <input type="text" id="cr-other-text" data-i18n-placeholder="cr_other_ph" placeholder="Please specify..." style="width:100%;">
+          <p class="field-error-msg" id="cr-other-error" style="display:none;" data-i18n="err_cr_other">Please specify before continuing.</p>
+        </div>
+        <p class="field-error-msg" id="cant-reason-error" style="display:none;" data-i18n="err_cant_reason">Please select a reason before continuing.</p>
+      </div>
     </div>
-    <div id="preview-wrap" style="display:none;margin-top:1rem;">
-      <img id="preview" alt="Preview" style="max-width:100%;max-height:260px;object-fit:contain;border-radius:var(--radius);border:1px solid var(--border);display:block;">
-      <div id="img-meta" style="margin-top:0.5rem;font-size:13px;color:var(--ink-soft);line-height:1.6;"></div>
-      <button id="change-img" style="margin-top:0.6rem;font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:4px 14px;cursor:pointer;" data-i18n="s2_change_img">Change image</button>
+
+    <!-- 3. Why chosen / feelings -->
+    <div class="field" id="field-why" style="display:none;">
+      <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
+      <p class="field-hint" data-i18n="s2_why_hint">Think about its product language...</p>
+      <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
     </div>
-    <p class="field-error-msg" data-i18n="err_upload">Please upload an image of the product.</p>
+
+    <!-- 4. Image upload -->
+    <div class="field" id="field-image" style="display:none;">
+      <label data-i18n="s2_upload_label">Upload image</label>
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="img-input" accept="image/*">
+        <div class="upload-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 16l4-4 4 4 4-6 4 8"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        </div>
+        <p class="upload-text" data-i18n="s2_upload_text">Click to upload or drag an image here</p>
+        <p class="upload-subtext">JPG, PNG or WEBP</p>
+      </div>
+      <div id="preview-wrap" style="display:none;margin-top:1rem;">
+        <img id="preview" alt="Preview" style="max-width:100%;max-height:260px;object-fit:contain;border-radius:var(--radius);border:1px solid var(--border);display:block;">
+        <div id="img-meta" style="margin-top:0.5rem;font-size:13px;color:var(--ink-soft);line-height:1.6;"></div>
+        <button id="change-img" style="margin-top:0.6rem;font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:none;border:1px solid var(--border);border-radius:var(--radius);padding:4px 14px;cursor:pointer;" data-i18n="s2_change_img">Change image</button>
+      </div>
+      <p class="field-error-msg" data-i18n="err_upload">Please upload an image of the product.</p>
+    </div>
+
   </div>
 
-  <div class="field" id="field-product-type">
-    <label data-i18n="s2_type_label">What type of product is it?</label>
-    <input type="text" id="product-type" data-i18n-placeholder="s2_type_ph" placeholder="e.g. personal care...">
-    <p class="field-error-msg" data-i18n="err_type">Please describe what type of product this is.</p>
-  </div>
-
-  <div class="field">
-    <label data-i18n="s2_why_label">In a few words, what about this product made you choose it? <span class="opt" data-i18n="opt">optional</span></label>
-    <p class="field-hint" data-i18n="s2_why_hint">Think about its product language...</p>
-    <textarea id="why-chosen" data-i18n-placeholder="s2_why_ph" placeholder="Describe what struck you..."></textarea>
-  </div>
-
-  <div class="btn-row">
+  <div class="btn-row" id="s2-btn-row">
     <button class="btn-back" onclick="goTo(1)" data-i18n="btn_back">&#8592; Back</button>
-    <button class="btn-next" onclick="goTo(3)" data-i18n="btn_continue">Continue &#8594;</button>
+    <button class="btn-next" id="s2-next-btn" onclick="s2Next()" data-i18n="btn_continue">Continue &#8594;</button>
+  </div>
+</section>
+
+<!-- SECTION 2b — decision page -->
+<section class="section" id="s2b">
+  <div class="section-number" id="s2b-num" data-i18n="s2b_num">02 &#8212; No product in mind</div>
+  <h2 class="section-title" id="s2b-title" data-i18n="s2b_title">That's completely fine.</h2>
+  <p class="section-desc" id="s2b-desc" data-i18n="s2b_desc">You can still contribute. Choose how you'd like to continue:</p>
+
+  <div style="display:flex;flex-direction:column;gap:1rem;max-width:480px;">
+
+    <!-- Option A: continue to positionality — primary action, like btn-next -->
+    <div onclick="choosePath('positionality')" style="border:2px solid var(--ink);border-radius:8px;padding:1.4rem 1.6rem;cursor:pointer;background:var(--ink);transition:background 0.15s,border-color 0.15s;" onmouseenter="this.style.background='var(--accent)';this.style.borderColor='var(--accent)'" onmouseleave="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
+      <div style="font-size:14px;font-weight:500;color:#fff;margin-bottom:0.4rem;" data-i18n="s2b_opt_wheel_title">Map your positionality →</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;" data-i18n="s2b_opt_wheel_desc">Move on to the positionality wheel — where you can reflect on dimensions like gender, race, disability, and more that shape your experience in the world.</div>
+    </div>
+
+    <!-- Option B: submit and close — secondary/terminal action, outlined -->
+    <div id="s2b-submit-card" onclick="choosePath('submit')" style="border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;cursor:pointer;background:var(--paper-warm);transition:border-color 0.15s,background 0.15s;" onmouseenter="this.style.borderColor='var(--ink-soft)';this.style.background='var(--paper-mid)'" onmouseleave="this.style.borderColor='var(--border)';this.style.background='var(--paper-warm)'">
+      <div style="font-size:14px;font-weight:400;color:var(--ink-soft);margin-bottom:0.4rem;" data-i18n="s2b_opt_submit_title">Submit and close →</div>
+      <div style="font-size:13px;color:var(--ink-faint);line-height:1.65;" data-i18n="s2b_opt_submit_desc">Submit your response as it is and close the survey. Every response counts, even without a product.</div>
+    </div>
+
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem;">
+    <button class="btn-back" onclick="goBackFromS2b()" data-i18n="btn_back">&#8592; Back</button>
   </div>
 </section>
 
@@ -389,7 +449,7 @@
 
   <div class="btn-row">
     <button class="btn-back" onclick="goTo(2)" data-i18n="btn_back">&#8592; Back</button>
-    <button class="btn-next" onclick="goTo(4)" data-i18n="btn_continue">Continue &#8594;</button>
+    <button class="btn-next" onclick="goToDecision()" data-i18n="btn_continue">Continue &#8594;</button>
   </div>
 </section>
 
@@ -460,7 +520,7 @@
   </div>
 
   <div class="btn-row">
-    <button class="btn-back" onclick="goTo(3)" data-i18n="btn_back">&#8592; Back</button>
+    <button class="btn-back" onclick="s4Back()" data-i18n="btn_back">&#8592; Back</button>
     <button class="btn-next" onclick="submitSurvey()" style="background:var(--accent);" data-i18n="btn_submit">Submit &#8594;</button>
   </div>
 </section>
@@ -575,7 +635,29 @@ const translations = {
     s2_why_hint:     "<strong><span style=\"color:var(--accent)\">Think about its <em>product language</em></strong></span> — the formal qualities that communicate meaning: its shape, colour, material, texture, or other aesthetic elements.",
 
     // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
-    s3_num:          "03 — Your experience",
+    cant_think_label: "I can't think of anything right now, or nothing comes to mind.",
+    cant_think_why: "What might be the reason?",
+    cr_0: "I haven't noticed anything like this",
+    cr_1: "It's hard to put into words",
+    cr_2: "I'd need more time to think about it",
+    cr_3: "I've experienced it but prefer not to share",
+    cr_4: "Other",
+    err_cant_reason: "Please select a reason before continuing.",
+    cr_other_ph: "Please specify...",
+    err_cr_other: "Please specify before continuing.",
+    
+    s2b_num:           "02 — No product in mind",
+    s2b_title:         "That's completely fine.",
+    s2b_desc:          "You can still contribute. Choose how you'd like to continue:",
+    s2b_num_p:         "03 — Almost there",
+    s2b_title_p:       "One more step.",
+    s2b_desc_p:        "Would you also like to map your positionality, or are you done?",
+    s2b_opt_wheel_title: "Map your positionality →",
+    s2b_opt_wheel_desc:  "Move on to the positionality wheel — where you can reflect on dimensions like gender, race, disability, and more that shape your experience in the world.",
+    s2b_opt_submit_title: "Submit and close →",
+    s2b_opt_submit_desc:  "Submit your response as it is and close the survey. Every response counts, even without a product.",
+
+        s3_num:          "03 — Your experience",
     s3_title:        "It makes me feel…",
     s3_desc:         "<strong><span style=\"color:var(--accent)\">Select 5 options</span></strong> that best describe your experience with this product.",
     s3_other_label:  "Is there anything else you’d like to add about how it makes you feel?",
@@ -709,7 +791,29 @@ const translations = {
     s2_why_hint:     "<strong><span style=\"color:var(--accent)\">Piensa en su <em>lenguaje de producto</em></strong></span> — las cualidades formales que comunican significado: su forma, color, material, textura u otros elementos estéticos.",
 
     // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
-    s3_num:          "03 — Tu experiencia",
+    cant_think_label: "No se me ocurre nada en este momento, o no me viene nada a la mente.",
+    cant_think_why: "¿Cuál podría ser la razón?",
+    cr_0: "No he notado nada de esto",
+    cr_1: "Es difícil de expresar con palabras",
+    cr_2: "Necesitaría más tiempo para pensarlo",
+    cr_3: "Lo he vivido pero prefiero no compartirlo",
+    cr_4: "Otro",
+    err_cant_reason: "Por favor, selecciona una razón antes de continuar.",
+    cr_other_ph: "Por favor, especifica...",
+    err_cr_other: "Por favor, especifica antes de continuar.",
+    
+    s2b_num:           "02 — Sin producto en mente",
+    s2b_title:         "No pasa nada.",
+    s2b_desc:          "Puedes seguir contribuyendo. Elige cómo quieres continuar:",
+    s2b_num_p:         "04 — Casi listo",
+    s2b_title_p:       "Un paso más.",
+    s2b_desc_p:        "¿Te gustaría también mapear tu posicionalidad, o ya has terminado?",
+    s2b_opt_wheel_title: "Mapear mi posicionalidad →",
+    s2b_opt_wheel_desc:  "Continúa con la rueda de posicionalidad — donde puedes reflexionar sobre dimensiones como el género, la raza, la discapacidad y más que dan forma a tu experiencia en el mundo.",
+    s2b_opt_submit_title: "Enviar y cerrar →",
+    s2b_opt_submit_desc:  "Envía tu respuesta tal como está y cierra la encuesta. Cada respuesta cuenta, aunque no haya producto.",
+
+        s3_num:          "03 — Tu experiencia",
     s3_title:        "Me hace sentir…",
     s3_desc:         "<strong><span style=\"color:var(--accent)\">Selecciona 5 opciones</span></strong> que mejor describan tu experiencia con este producto.",
     s3_other_label:  "¿Algo más que quieras añadir sobre cómo te hace sentir?",
@@ -845,7 +949,29 @@ const translations = {
     s2_why_hint:     "<strong><span style=\"color:var(--accent)\">Pensa al <em>linguaggio di questo prodotto</em></span></strong>: le qualità estetiche che esprimono il suo significato, come la forma, i colori, i materiali, la consistenza e altri elementi estetici.",
 
     // ── SECTION 3 — Feelings ──────────────────────────────────────────────────
-    s3_num:          "03 — La tua esperienza",
+    cant_think_label: "Non mi viene in mente nulla in questo momento.",
+    cant_think_why: "Qual potrebbe essere il motivo?",
+    cr_0: "Non ho notato nulla di simile",
+    cr_1: "È difficile da esprimere a parole",
+    cr_2: "Avrei bisogno di più tempo per pensarci",
+    cr_3: "L'ho vissuto ma preferisco non condividerlo",
+    cr_4: "Altro",
+    err_cant_reason: "Per favore seleziona un motivo prima di continuare.",
+    cr_other_ph: "Per favore specifica...",
+    err_cr_other: "Per favore specifica prima di continuare.",
+    
+    s2b_num:           "02 — Nessun prodotto in mente",
+    s2b_title:         "Va benissimo.",
+    s2b_desc:          "Puoi comunque contribuire. Scegli come vuoi continuare:",
+    s2b_num_p:         "04 — Quasi fatto",
+    s2b_title_p:       "Un altro passo.",
+    s2b_desc_p:        "Vorresti anche mappare la tua posizionalità, o hai finito?",
+    s2b_opt_wheel_title: "Mappa la mia posizionalità →",
+    s2b_opt_wheel_desc:  "Passa alla ruota della posizionalità — dove puoi riflettere su dimensioni come il genere, la razza, la disabilità e altro ancora che plasmano la tua esperienza nel mondo.",
+    s2b_opt_submit_title: "Invia e chiudi →",
+    s2b_opt_submit_desc:  "Invia la tua risposta così com'è e chiudi il sondaggio. Ogni risposta conta, anche senza un prodotto.",
+
+        s3_num:          "03 — La tua esperienza",
     s3_title:        "Mi fa sentire…",
     s3_desc:         "<strong><span style=\"color:var(--accent)\">Segli 5 opzioni</span></strong> che meglio esprimono la tua esperienza con questo prodotto.",
     s3_other_label:  "Vuoi aggiungere altro sulle tue sensazioni su questo prodotto?",
@@ -1272,15 +1398,17 @@ function validateSection(n) {
   }
 
   if (n === 2) {
-    const imgInput = document.getElementById('img-input');
-    if (!imgInput.files || imgInput.files.length === 0) {
-      document.getElementById('field-image').classList.add('field-error');
-      valid = false;
-    }
-    const productType = document.getElementById('product-type').value.trim();
-    if (!productType || productType === '.') {
-      document.getElementById('field-product-type').classList.add('field-error');
-      valid = false;
+    if (!document.getElementById('cant-think').checked) {
+      const imgInput = document.getElementById('img-input');
+      if (!imgInput.files || imgInput.files.length === 0) {
+        document.getElementById('field-image').classList.add('field-error');
+        valid = false;
+      }
+      const productType = document.getElementById('product-type').value.trim();
+      if (!productType || productType === '.') {
+        document.getElementById('field-product-type').classList.add('field-error');
+        valid = false;
+      }
     }
   }
 
@@ -1293,6 +1421,147 @@ function validateSection(n) {
   }
 
   return valid;
+}
+
+function s4Back() {
+  document.getElementById('s4').classList.remove('active');
+  if (document.getElementById('cant-think').checked) {
+    // came via cant-think path → go back to s2b decision page
+    document.getElementById('s2b').classList.add('active');
+    currentSection = '2b';
+  } else {
+    // came normally → go back to s2b decision page (between s3 and s4)
+    document.getElementById('s2b').classList.add('active');
+    currentSection = '2b';
+  }
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  updateProgress();
+}
+
+function onProductTypeInput() {
+  const hasText = document.getElementById('product-type').value.trim().length > 0;
+  const cb = document.getElementById('cant-think');
+  const label = document.getElementById('cant-think-label');
+  cb.disabled = hasText;
+  label.style.opacity = hasText ? '0.4' : '1';
+  label.style.cursor  = hasText ? 'default' : 'pointer';
+  if (hasText && cb.checked) {
+    cb.checked = false;
+    toggleCantThink(false);
+  }
+  // Show why + image fields only when product type has text
+  document.getElementById('field-why').style.display   = hasText ? '' : 'none';
+  document.getElementById('field-image').style.display = hasText ? '' : 'none';
+}
+
+function toggleCantThink(checked) {
+  document.getElementById('s2-desc').style.display = checked ? 'none' : '';
+  document.getElementById('cant-think-reasons').style.display = checked ? 'block' : 'none';
+  if (!checked) {
+    document.querySelectorAll('input[name="cant_reason"]').forEach(r => r.checked = false);
+    document.getElementById('cant-reason-error').style.display = 'none';
+    document.getElementById('cr-other-wrap').style.display = 'none';
+    document.getElementById('cr-other-text').value = '';
+  }
+}
+
+function setDecisionMode(hasProduct) {
+  const t = translations[currentLang];
+  const suffix = hasProduct ? '_p' : '';
+  document.getElementById('s2b-num').textContent   = t['s2b_num'   + suffix] || t.s2b_num;
+  document.getElementById('s2b-title').textContent = t['s2b_title' + suffix] || t.s2b_title;
+  document.getElementById('s2b-desc').textContent  = t['s2b_desc'  + suffix] || t.s2b_desc;
+}
+
+function s2Next() {
+  if (document.getElementById('cant-think').checked) {
+    const reasonSelected = document.querySelector('input[name="cant_reason"]:checked');
+    if (!reasonSelected) {
+      document.getElementById('cant-reason-error').style.display = 'block';
+      return;
+    }
+    document.getElementById('cant-reason-error').style.display = 'none';
+    if (reasonSelected.value === 'Other') {
+      const otherText = document.getElementById('cr-other-text').value.trim();
+      if (!otherText) {
+        document.getElementById('cr-other-error').style.display = 'block';
+        document.getElementById('cr-other-text').focus();
+        return;
+      }
+      document.getElementById('cr-other-error').style.display = 'none';
+    }
+    setDecisionMode(false);
+    document.getElementById('s2').classList.remove('active');
+    document.getElementById('s2b').classList.add('active');
+    currentSection = '2b';
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    updateProgress();
+  } else {
+    goTo(3);
+  }
+}
+
+function goToDecision() {
+  if (!validateSection(3)) {
+    const firstError = document.querySelector('.field-error');
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  clearErrors();
+  setDecisionMode(true);
+  document.getElementById('s3').classList.remove('active');
+  document.getElementById('s2b').classList.add('active');
+  currentSection = '2b';
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  updateProgress();
+}
+
+function goBackFromS2b() {
+  document.getElementById('s2b').classList.remove('active');
+  if (document.getElementById('cant-think').checked) {
+    // came from cant-think path — go back to s2
+    document.getElementById('s2').classList.add('active');
+    currentSection = 2;
+  } else {
+    // came from normal path after s3 — go back to s3
+    document.getElementById('s3').classList.add('active');
+    currentSection = 3;
+  }
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  updateProgress();
+}
+
+function choosePath(path) {
+  if (path === 'positionality') {
+    document.getElementById('s2b').classList.remove('active');
+    currentSection = 4;
+    document.getElementById('s4').classList.add('active');
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    updateProgress();
+  } else {
+    // Show loading state on the card
+    const card = document.getElementById('s2b-submit-card');
+    card.onclick = null;
+    card.style.cursor = 'default';
+    card.style.opacity = '0.8';
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round" style="animation:spin 1s linear infinite;flex-shrink:0;">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke="var(--ink-soft)"/>
+        </svg>
+        <span style="font-size:14px;color:var(--ink-soft);font-weight:400;" data-i18n="btn_sending">Sending…</span>
+      </div>`;
+    // Also disable the positionality card
+    const wheelCard = card.previousElementSibling;
+    if (wheelCard) { wheelCard.onclick = null; wheelCard.style.opacity = '0.4'; wheelCard.style.cursor = 'default'; }
+    submitSurvey();
+  }
 }
 
 function goTo(n) {
@@ -1323,9 +1592,10 @@ function updateProgress() {
   }
   progressBar.style.display = 'block';
   label.style.display = 'block';
-  const pct = (currentSection / 4) * 100;
+  const secNum = currentSection === '2b' ? 2 : currentSection;
+  const pct = (secNum / 4) * 100;
   bar.style.width = pct + '%';
-  label.textContent = surveyComplete ? translations[currentLang].progress_complete : translations[currentLang].progress(currentSection, 4);
+  label.textContent = surveyComplete ? translations[currentLang].progress_complete : translations[currentLang].progress(secNum, 4);
 }
 
 function showTooltip(name, x, y) {
@@ -1856,9 +2126,12 @@ let customDebounce;
 });
 
 async function submitSurvey() {
-  const btn = document.querySelector('#s4 .btn-next');
-  btn.textContent = translations[currentLang].btn_sending || 'Sending…';
-  btn.disabled = true;
+  // The submit button may be in s4 (normal path) or we may be called from s2b (cant-think / decision path)
+  const btn = document.querySelector('#s4 .btn-next') || document.querySelector('#s2b .btn-next');
+  if (btn) {
+    btn.textContent = translations[currentLang].btn_sending || 'Sending…';
+    btn.disabled = true;
+  }
 
   const responseId = 'resp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
 
@@ -1870,6 +2143,8 @@ async function submitSurvey() {
     whyChosen:         document.getElementById('why-chosen').value,
     feelOther:         document.getElementById('feel-other').value,
     finalThoughts:     document.getElementById('final-thoughts').value,
+    cant_think:        document.getElementById('cant-think').checked ? 'yes' : 'no',
+    cant_reason:       (()=>{ const r = document.querySelector('input[name="cant_reason"]:checked'); if(!r) return ''; return r.value === 'Other' ? 'Other: ' + document.getElementById('cr-other-text').value.trim() : r.value; })(),
     imageUrl:          '',
   };
 
@@ -1913,7 +2188,7 @@ async function submitSurvey() {
       body: JSON.stringify(data)
     })
     .then(() => {
-      ['s0','s1','s2','s3','s4'].forEach(id => { document.getElementById(id).style.display='none'; });
+      ['s0','s1','s2','s2b','s3','s4'].forEach(id => { document.getElementById(id).style.display='none'; });
       document.getElementById('progress').style.width = '100%';
       surveyComplete = true;
       document.getElementById('progress-label').textContent = translations[currentLang].progress_complete || 'Complete';
@@ -1921,8 +2196,7 @@ async function submitSurvey() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     })
     .catch(() => {
-      btn.textContent = 'Submit →';
-      btn.disabled = false;
+      if (btn) { btn.textContent = 'Submit →'; btn.disabled = false; }
       alert('Could not connect. Please check your internet connection and try again.');
     });
   }
